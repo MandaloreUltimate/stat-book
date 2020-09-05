@@ -1,0 +1,188 @@
+\section{Интервальное оценивание: Центральная статистика и использование точечной оценки}
+
+\begin{defn}
+    \textit{Доверительный интервал} для параметра $\theta$ с коэффициентом доверия (или надёжности) $\gamma \in (0, 1)$~--- интервал $\bigl(T_1(\SampleX), T_2(\SampleX)\bigr)$, где $T_i$~--- статистики, т.ч.:
+    \begin{enumerate}
+        \item $T_1(\SampleX) \overset{\text{п.н.}}{\leqslant} T_2({\SampleX})$;
+        \item $\MyPrTh \Bigl(T_1(\SampleX) \leqslant \theta \leqslant T_2(\SampleX) \Bigr) \geqslant \gamma$.
+    \end{enumerate}
+\end{defn}
+
+\begin{exmp}
+    Пусть $\Sample$~--- выборка из $\Normal_{\theta, 1}$. Тогда
+    \begin{equation*}
+        \theta^{*}
+        = \SampleMean
+        = \frac{1}{n} \sum\limits_{i=1}^{n} X_{i} \sim \Normal_{\theta, \frac{1}{n}}
+        \; \xrightarrow[n \to \infty]{\text{d}} \; (\SampleMean-\theta) \sqrt{n} \sim \Normal_{0;1}
+    \end{equation*}
+
+    Для величины, имеющей стандартное нормальное распределение, можно построить доверительный интервал следующим образом: находим такое $t_{\gamma / 2}$, что
+    \begin{equation*}
+        \MyPrTh\Bigl(\bigl|(\SampleMean-\theta) \sqrt{n}\bigr| \leqslant t_{\gamma / 2}\Bigr) = \gamma.
+    \end{equation*}
+
+    Решаем уравнение относительно $\theta$ и получаем
+    \begin{equation*}
+        \MyPrTh\left(\SampleMean-\cfrac{t_{\gamma / 2}}{\sqrt{n}} \leqslant \theta \leqslant \SampleMean+\cfrac{t_{\gamma / 2}}{\sqrt{n}}\right)=\gamma.
+    \end{equation*}
+
+    Таким образом, $ \left(\SampleMean-\cfrac{t_{\gamma / 2}}{\sqrt{n}}, \: \SampleMean+\cfrac{t_{\gamma / 2}}{\sqrt{n}} \right)$~--- $\gamma$-доверительный интервал для параметра $\theta$.
+\end{exmp}
+
+Длина построенного нами в примере интервала~--- $2\, \cfrac{t_{\gamma / 2}}{\sqrt{n}}$.
+Она зависит лишь от размера выборки.
+Однако в общем случае длина доверительного интервала является случайной величиной~--- $T_2(X) - T_1(X)$.
+Вместе с тем очевидно, что нам хотелось бы сделать интервал как можно более коротким.
+Рассмотрим достотаточно общий способ построения кратчайших доверительных интервалов.
+Для этого нам понадобится ввести следующее определение.
+
+\begin{defn}
+    \textit{Центральная статистика}~--- функция $G(X,\theta)$, т.ч.:
+    \begin{enumerate}
+        \item $G(X,\theta)$ непрерывна и строго монотонна по $\theta$ при любом фиксированной реализации выборки $\boldsymbol{x}$. 
+        \item $F_G (t) \equiv \MyPrTh \bigl(G(X, \theta) < t\bigr)$ непрерывна и не зависит от $\theta$.
+    \end{enumerate}
+\end{defn}
+
+\begin{rmrk}
+    Формально определённая выше величина не является статистикой, т.к. зависит от неизвестного параметра $\theta$.
+\end{rmrk}
+
+\subsubsection{Построение кратчайшего доверительного интервала с помощью центральной статистики:}
+
+\begin{enumerate}
+    \item Найдём $g_{1}, g_{2} \in \Real$, т.ч.
+        \begin{equation*}
+            \MyPrTh\Bigl(g_{1} \leqslant G(X, \theta) \leqslant g_{2}\Bigr)=\gamma~~\AllTh \quad \iff \quad  F_{G}(g_{2} + 0) - F_{G}(g_{1})=\gamma.
+        \end{equation*}
+    \item Пусть для определённости $G(X,\theta)$ возрастает по $\theta$. 
+        Тогда существует обратная по $\theta$ функция $G^{-1}(X, g)$ и из условий
+        \begin{equation*}
+            %\left\{\begin{array}{l}
+            %G(X, \theta) \leqslant \gamma_{2} \\
+            %G(X, \theta) \geqslant \gamma_{1}
+            %\end{array}\right.
+            \begin{cases}
+                G(X, \theta) \leqslant & g_{2} \\
+                G(X, \theta) \geqslant & g_{1}
+            \end{cases}
+        \end{equation*}
+        можно найти статистики
+        \begin{equation*}
+            %\left\{\begin{array}{l}
+            %    T_{2}(\SampleX): G(X, T_{2}(\SampleX))=\gamma_{2} \\ 
+            %    T_{1}(\SampleX): G(X, T_{1}(\SampleX))=\gamma_{1}
+            %\end{array} 
+            \begin{cases}
+                T_{2}(\SampleX)\colon G\bigl(X, T_{2}(\SampleX)\bigr) = g_{2} \\ 
+                T_{1}(\SampleX)\colon G\bigl(X, T_{1}(\SampleX)\bigr) = g_{1}
+            \end{cases}
+            \iff T_{1}(\SampleX) \leqslant \theta \leqslant T_{2}(\SampleX) 
+        \end{equation*}
+        откуда $\MyPrTh\Bigl(T_{1}(\SampleX) \leqslant \theta \leqslant T_{2}(\SampleX)\Bigr) \geqslant \gamma~ \AllTh$.
+    \item 
+        Минимизируем длину получившегося интервала.
+        В общем случае это сводится к поиску условного экстремума
+        \begin{equation*}
+            \Bigl| G^{-1}(\SampleX, g_2) - G^{-1}(\SampleX, g_1) \Bigr| = 
+            \Bigl| T_2(\SampleX) - T_1(\SampleX) \Bigr| \to 
+            \min_{F_{G}(g_2 + 0) - F_{G}(g_1) \geqslant \gamma}
+        \end{equation*}
+\end{enumerate}
+
+Поиск условного экстремума зачастую является сложной задачей.
+Порой вместо минимизации длины интервала минимизируют среднюю длину $\ExpTh \bigl[ T_2(\SampleX) - T_1(\SampleX) \bigr]$, 
+или даже отношение $\frac{g_2}{g_1}$ (считая, что $g_2 > g_1$).
+
+\vspace{5mm}
+Можно использовать и другой подход, который позволяет избежать решения сложных оптимизационных задач.
+Согласно определению, параметр попадает в доверительный интервал с вероятностью $\gamma$.
+Мы можем распределить оставшиеся $1 - \gamma$ поровну, чтобы параметр был левее или правее нашего интервала с равной вероятностью.
+
+\begin{defn}
+    \textit{Центральный доверительный интервал} для параметра $\theta$ с коэффициентом доверия $\gamma \in (0, 1)$~--- 
+    интервал $\bigl(T_1(\SampleX), T_2(\SampleX)\bigr)$, т.ч.:
+    \begin{gather*}
+        \MyPrTh\Bigl(T_{1}(\SampleX) > \theta\Bigr)=\cfrac{1-\gamma}{2} \\
+        \MyPrTh\Bigl(T_{1}(\SampleX) \leqslant \theta \leqslant T_{2}(\SampleX)\Bigr)=\gamma \\
+        \MyPrTh\Bigl(T_{2}(\SampleX) < \theta\Bigr)=\cfrac{1-\gamma}{2}
+    \end{gather*}
+\end{defn}
+
+%В этом случае при наличии центральной статистики построение интервала сводится просто к поиску квантилей распределения $F_G(x)$ соответствующих порядков: $\frac{1 - \gamma}{2}$ и $\frac{1 + \gamma}{2}$.
+В этом случае при наличии центральной статистики мы однозначно находим $g_1, g_2$ как квантили распределения $F_G(x)\colon g_1 = F_G^{-1}\left(\frac{1 - \gamma}{2}\right), \, g_2 = F_G^{-1}\left(\frac{1 + \gamma}{2}\right)$, 
+и остаётся лишь найти $T_1(\SampleX) = G^{-1}(\SampleX, g_1), \; T_2(\SampleX) = G^{-1}(\SampleX, g_2)$ (или наоборот, если $G(\SampleX, \theta)$ убывает по $\theta$).
+
+\subsubsection{Построение доверительного интервала с помощью точечной оценки}
+Порой бывает невозможно найти центральную статистику, так как функция распределения имеет слишком сложный вид~--- 
+например, в случае бернуллиевского или пуассоновского распределения.
+В таком случае можно использовать метод точечной оценки.
+
+\begin{enumerate}
+    \item Пусть $T(\SampleX)$~--- точечная оценка $\theta$. 
+        Обозначим $F_{T}(t, \theta)={\MyPrTh\Bigl(T(\SampleX)<t\Bigr)}$. 
+        Предположим, что $F_{T}(t,\theta)$~--- непрерывная и строго монотонная функция~$\theta$ при любом фиксированном~$t$. 
+        Найдём такие $t_1(\theta), t_2(\theta)$, что ${\MyPrTh \Bigl( t_1(\theta) \leqslant T(\SampleX) \leqslant t_2(\theta) \Bigr) \geqslant \gamma}$.
+        Для однозначности будем выбирать их так, чтобы
+        \begin{equation*}
+            \begin{cases}
+                \MyPrTh \Bigl( T(\SampleX) > t_2(\theta) \Bigr) \leqslant \cfrac{1 - \gamma}{2} \\ 
+                \MyPrTh \Bigl( T(\SampleX) < t_1(\theta) \Bigr) \leqslant \cfrac{1 - \gamma}{2} 
+            \end{cases}
+            \iff 
+            \begin{cases}
+                1 - F_{T}\bigl(t_2(\theta), \theta\bigr) \leqslant \cfrac{1 - \gamma}{2} \\
+                F_{T}\bigl(t_1(\theta), \theta\bigr) \leqslant \cfrac{1 - \gamma}{2}
+            \end{cases}
+        \end{equation*}
+        Т.е. речь идёт о построении центрального доверительного интервала.
+        Подразумевается, что $t_1(\theta)$~--- наибольшее, а $t_2(\theta)$~--- наименьшее значения $T(\SampleX)$, удовлетворяющие этим требованиям.
+        Если наблюдаемая случайная величина имеет непрерывное распределение, то неравенства заменяются на равенства.
+        
+    \item Рассмотрим вспомогательную лемму, верную в абсолютно непрерывном случае:
+        \begin{lem}
+            Если $F_{T}\bigl(t, \theta\bigr)$ возрастает по $\theta$, то $t_{1}(\theta)$ и $t_{2}(\theta)$ убывают. 
+            Если же $F_{T}\bigl(t, \theta\bigr)$ убывает по $\theta$, то $t_{1}(\theta)$ и $t_{2}(\theta)$ возрастают.
+        \end{lem}
+        \begin{proof}
+            Докажем для $t_1$, для $t_2$ аналогично.
+            Пусть $F_{T}(t, \theta)$ возрастает.
+            От противного: предположим, что $\exists \theta_{1}<\theta_{2} \colon t_{1}\left(\theta_{1}\right) \leqslant t_{1}\left(\theta_{2}\right)$.
+            Используя то, что $F_{T}\bigl(t, \theta\bigr)$ возрастает по $\theta$ и, как всякая функция распределения, не убывает по $t$, получим:
+            \begin{equation*}
+                \frac{1-\gamma}{2} = 
+                F_{T}\bigl(t_{1}(\theta_{1}), \theta_{1}\bigr) < 
+                F_{T}\bigl(t_{1}(\theta_{1}), \theta_{2}\bigr) \leqslant 
+                F_{T}\bigl(t_{1}(\theta_{2}), \theta_{2}\bigr) = 
+                \frac{1-\gamma}{2}
+            \end{equation*}
+            Полученное противоречие завершает доказательство.
+        \end{proof}
+    \item %Из леммы следует, что для любого $\theta$ в абсолютно непрерывном случае
+        Заключительный шаг:
+        \begin{equation*}
+            \begin{aligned}
+                t_{1}(\theta) < T(\SampleX)
+                \iff \theta > \varphi_{1} \bigl(T(\SampleX)\bigr)
+                \implies 
+                \MyPrTh\Bigl(\theta>\varphi_{1} \bigl(T(\SampleX)\bigr)\Bigr)
+                = \cfrac{1-\gamma}{2} \\
+                t_{2}(\theta) > T(\SampleX) 
+                \iff \theta < \varphi_{2} \bigl(T(\SampleX)\bigr) 
+                \implies 
+                \MyPrTh\Bigl(\theta < \varphi_{2}\bigl(T(\SampleX)\bigr)\Bigr)
+                = \cfrac{1-\gamma}{2} \\
+                \implies 
+                \MyPrTh \Bigl(\underbrace{\varphi_{2} \bigl(T(\SampleX)\bigr)}_{T_{1}(\SampleX)} 
+                \leqslant \theta 
+                \leqslant \underbrace{\varphi_{1}\bigl(T(\SampleX)\bigr)}_{T_{2}(\SampleX)} \Bigr)
+                = \gamma
+            \end{aligned}
+        \end{equation*}
+        где $\varphi_1, \varphi_2$~--- обратные к $t_1(\theta), t_2(\theta)$ функции. 
+        Доказанная выше лемма является, по существу, обоснованием применимости метода в абсолютно непрерывном случае~--- 
+        ведь если $t_1, t_2$ строго монотонны, то они обратимы.
+
+        В дискретном случае придётся проверять обратимость вручную.
+\end{enumerate}

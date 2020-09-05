@@ -1,0 +1,37 @@
+\section{Центральная предельная теорема}
+\begin{namedthm}[Центральная предельная теорема]
+    Пусть $\xi_{1}, \xi_{2}, \ldots$~--- последовательность независимых одинаково распределенных невырожденных\footnote{Т.е. их дисперсии отличны от нуля. Важное требование, т.к. нам нужно будет делить на дисперсию.} случайных величин с $\Exp \xi_{1}^{2}<\infty$ и $S_{n}=\xi_{1}+\ldots+\xi_{n}$. 
+    Тогда
+    \begin{equation*}
+        \MyPr\left(\frac{S_{n}-\Exp S_{n}}{\sqrt{\Var S_{n}}} \leqslant x\right)
+        \xrightarrow[n \to +\infty]{}
+        \Phi(x) = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{x} e^{-\frac{u^{2}}{2}} du~~ \forall x \in \Real
+    \end{equation*}
+\end{namedthm}
+\begin{proof}
+Пусть $\Exp \xi_{1}=m,\, \Var \xi_{1}=\sigma^{2}$. 
+Введём $X = \xi_1 - m$ и $\varphi_X(t)=\Exp e^{i tX}$. 
+Введём также
+\begin{equation*}
+    \varphi_{n}(t)=\Exp e^{i t \frac{S_{n}-\Exp S_{n}}{\sqrt{\Var S_{n}}}} = 
+    \left[\varphi_X\left(\frac{t}{\sigma \sqrt{n}}\right)\right]^{n}
+\end{equation*}
+
+В силу разложения характеристической функции (при существовании соответствующих моментов)
+\begin{equation*}
+    \varphi_{X}(t)=1+i t \Exp X+\ldots+\frac{(i t)^{n}}{n !} \Exp X^{n}+R_{n}(t)
+\end{equation*}
+
+Учитывая то, что $\Exp X = \Exp \left[ \xi_1 - m\right] = 0$, при $n=2$ получим 
+\begin{equation*}
+    \varphi(t)=1-\frac{\sigma^{2} t^{2}}{2}+\overline{o}\left(t^{2}\right), \quad t \to 0
+\end{equation*}
+
+Следовательно, для любого $t \in \Real$ при $n \to +\infty$
+\begin{equation*}
+    \varphi_{n}(t)=\left[1-\frac{\sigma^{2} t^{2}}{2 \sigma^{2} n}+\overline{o}\left(\frac{1}{n}\right)\right]^n \to e^{-\frac{t^{2}}{2}}
+\end{equation*}
+
+Функция $e^{-\frac{t^{2}}{2}}$ является характеристической функцией $\Normal_{0,1}$. 
+В силу теоремы о непрерывном соответствии между функциями распределения и характеристическими функциями центральная предельная теорема доказана.
+\end{proof}

@@ -1,0 +1,25 @@
+%sec1-8
+\begin{center}
+    \begin{tikzpicture}[
+        declare function={
+            exp_pdf(\x,\l) = \l * exp(-\l*  \x);
+            geom_pmf(\x,\p) = \p * (1 - \p)^(\x);
+        }]
+        \begin{axis}[
+            height=9cm, width=18cm,
+            xmin=0, xmax=6,
+            ymin=0, ymax=0.6,
+            xlabel={$x$},
+            ylabel={$f(x)$},
+            xtick={0.5, 1, ..., 5.5},
+            ytick={0.1, 0.2, ..., 0.5},
+            axis line style=thick,
+            axis lines=middle,
+            enlargelimits=false
+            ]
+            \addplot[very thick, black, domain=0:5.5] {exp_pdf(x,0.5)};
+            \addplot[color=red, domain=0:5, samples=6, mark=*] {geom_pmf(x,0.5)};
+            \legend{$\ExpDist_{0.5}$, $Geom_{0.5}$}
+        \end{axis}
+    \end{tikzpicture}
+\end{center}

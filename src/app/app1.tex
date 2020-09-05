@@ -1,0 +1,32 @@
+\chapter{Дополнительные главы теории вероятностей}
+\section{Усиленный закон больших чисел}
+\hypertarget{SLLN}{}
+\begin{namedthm}[Усиленный закон больших чисел в форме Колмогорова]
+	Пусть $\xi_1, \xi_2, \ldots, \xi_n, \ldots, $~--- независимые одинаково распределённые случайные величины. Тогда 
+	\begin{enumerate}
+		\item Если существует $\Exp {\xi_1} = a$, то $\displaystyle \MyPr(\lim\limits_{n \to \infty} \cfrac{1}{n} \sum\limits_{i = 1}^n \xi_i = a) = 1$. 
+		          
+		      Иными словами, $\displaystyle \cfrac{1}{n} \sum\limits_{i = 1}^n \xi_i \stackrel{\text{п.н.}}{\longrightarrow} a $.
+		          
+		\item Если существует $\displaystyle \lim\limits_{n \to \infty} \cfrac{1}{n} \sum\limits_{i = 1}^n \xi_i = a$, то существует $\Exp \xi_1 = a$.
+	\end{enumerate}
+\end{namedthm}
+
+\section{Обобщённое неравенство Чебышёва}
+\hypertarget{cheb}{}
+\begin{namedthm}[Обобщённое неравенство Чебышёва] 
+	Пусть функция $g$ не убывает и неотрицательна на $\Real$. 
+	Если $\Exp g(\xi) < +\infty$, то для любого $x \in \Real$
+	\begin{equation*}
+		\MyPr(\xi \geqslant x) \leqslant \frac{\Exp g(\xi)}{g(x)}.
+	\end{equation*}
+\end{namedthm}
+\begin{proof}
+	Заметим, что $\MyPr(\xi \geqslant x) \leqslant \MyPr\bigl( g(\xi) \geqslant g(x) \bigr)$, поскольку функция $g$ не убывает. 
+	Оценим последнюю вероятность по неравенству Маркова, которое можно применять в силу неотрицательности $g(x)$
+	\begin{equation*}
+		\MyPr\biggl( g(\xi) \geqslant g(x) \biggr) \leqslant \frac{\Exp g(\xi)}{g(x)}
+	\end{equation*}
+\end{proof}
+
+Используя эту теорему, можно получить экспоненциально убывающую оценку (в то время как оценки по неравествам Чебышёва и Маркова убывают по степенному закону).

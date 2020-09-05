@@ -1,0 +1,138 @@
+\section{Характеристические функции и их свойства}
+\begin{defn}
+    \textit{Характеристическая функция случайной величины} $\xi$~--- функция $\varphi_{\xi} \colon \Real \to \Complex$:
+    \begin{equation*}
+        \varphi_{\xi}(t)
+        = \Exp e^{it \xi}
+        = \Exp \cos (t \xi)+i \Exp \sin (t \xi) = \int\limits_{\Real}^{} e^{i t x} d F_{\xi}(x),
+    \end{equation*}
+    где интеграл справа называется \textit{интегралом Фурье-Стильтьеса}.
+    
+    Для абсолютно непрерывного распределения характеристическая функция имеет вид
+    \begin{equation*}
+        \varphi_{\xi}(t)=\int\limits_{\Real} e^{i t x} f(x) \, dx.
+    \end{equation*}
+    Для дискретного, соответственно,
+    \begin{equation*}
+        \varphi_{\xi}(t)=\sum\limits_{i} e^{i t x_{i}} \, \MyPr\left(\xi=x_{i}\right) \! .
+    \end{equation*}
+\end{defn}
+
+\begin{exmp}
+    Характеристическая функция стандартной нормальной случайной величины $\xi \sim \Normal_{0;1}$:
+    \begin{multline*}
+        \varphi_{\xi}(t) 
+        = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{i t x} e^{-x^{2} / 2} d x
+        = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{-t^{2} / 2} e^{-x^2/2 \,+\, itx \,+\, t^2/2} d x = \\
+        = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{-t^{2} / 2} e^{-(x-i t)^{2} / 2} d x =  
+         e^{-t^{2} / 2} \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{-(x-i t)^{2} / 2} d(x-i t)
+        = e^{-t^{2} / 2}.
+    \end{multline*}
+\end{exmp}
+
+\begin{namedthm}[Свойства характеристической функции]\leavevmode
+    \begin{enumerate}
+        \item 
+            Характеристическая функция существует для любой случайной величины $\xi$.
+        \item 
+            $\forall \xi, ~\forall a, b \in \Real \colon \varphi_{a \xi + b}(t) = e^{itb} \varphi_{\xi}(at)$.
+        \item 
+            \begin{enumerate}
+                \item $ \bigl| \varphi_{\xi}(t) \bigr| = \bigl| \Exp e^{i t \xi} \bigr| \leqslant 1 $;
+                \item $ \varphi_{\xi}(0) = 1 $;
+                \item $ \overline{\varphi_{\xi}(t)} = \varphi_{\xi}(-t) = \varphi_{-\xi}(t) \quad \forall t \in \Real$.
+            \end{enumerate}
+            \textbf{Следствие}
+                Если характеристическая функция вещественнозначна, то она является чётной.
+        \item 
+            Если случайные величины $\xi$ и $\eta$ независимы, то $\varphi_{\xi + \eta}(t) = \varphi_{\xi}(t) \varphi_{\eta}(t)$.
+        \item 
+            Характеристическая функция равномерно непрерывна.
+        \item 
+            Если существует абсолютный момент $k$-го порядка $\Exp |\xi|^{k} < \infty,~ k \geqslant 1$, 
+            то существует непрерывная $k$-я производная характеристической функции:
+            \begin{equation*}
+                \left.\cfrac{\partial^{k}}{\partial t^{k}} \, \varphi_{\xi}(t)\right|_{t=0}= i^{k} \, \Exp \xi^{k}.
+            \end{equation*}
+            
+            Если существует непрерывная производная характеристической функции порядка $k = 2n, n \in \Natural$, 
+            то существует абсолютный момент порядка $k = 2n: \; \Exp |\xi|^k = \Exp \xi^k$ (а следовательно, и все предыдущие) 
+            и его можно вычислить по той же формуле.
+        
+        \item 
+            Характеристическая функция случайно величины $\xi$ однозначно определяет её функцию распределения $F_{\xi}(x)$. 
+            Ряд распределения или плотность восстанавливаются по характеристической функции с помощью преобразования Фурье.
+            
+            Дискретное распределение:
+            \begin{equation*}
+                \MyPr(\xi=k)=\frac{1}{2 \pi} \int\limits_{-\pi}^{\pi} e^{-i t k} \varphi_{\xi}(t) \, d t, k \in \Integer.
+            \end{equation*}
+            Абсолютно непрерывное распределение:
+            \begin{equation*}
+                f_{\xi}(x)=\frac{1}{2 \pi} \int\limits_{-\infty}^{\infty} e^{-i t x} \varphi_{\xi}(t) \, d t, \quad x \in \Real.
+            \end{equation*}
+        \item 
+            $\xi_n \xrightarrow[n \to \infty]{\text{d}} \xi \iff \varphi_{\xi_{n}}(t) \xrightarrow[n \to \infty]{} \varphi_{\xi}(t)$ (теорема Леви о непрерывном соответствии).
+    \end{enumerate}
+\end{namedthm}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            Существование характеристической функции равносильно равномерной сходимости соответствующего интеграла. 
+            Докажем её по признаку Вейерштрасса:
+            \begin{equation*}
+                \left|\varphi_{\xi}(t)\right|=\left|\int\limits_{\Real} e^{i t x} d F(x)\right| 
+                \leqslant \int\limits_{\Real}\left|e^{i t x}\right| d F(x)=\int\limits_{\Real} d F(x)=1.
+            \end{equation*}
+        \item 
+            $\varphi_{a \xi+b}(t) 
+            = \Exp e^{i t(a \xi+b)}
+            = e^{i t b} \Exp e^{i t a \xi}
+            = e^{i t b} \varphi_{\xi}(at)$.
+        \item 
+            Неравенство доказано в пункте 1, равенство $(b)$ очевидно.
+            \begin{equation*}
+                \varphi_{\xi}(-t) = \Exp cos(-t \xi) + i\Exp sin(-t \xi) 
+                = \Exp cos(t \xi) - i\Exp sin(t \xi) = \overline{\varphi_{\xi}(t)}.
+            \end{equation*}
+            Оставшиеся равенства следуют из второго свойства.
+        \item 
+            $\varphi_{\xi + \eta}(t) 
+            = \Exp e^{it(\xi + \eta)} 
+            = \text{\{независимость\}}
+            = \Exp e^{it\xi}\Exp e^{it\eta}
+            = \varphi_{\xi}(t)\varphi_{\eta}(t).$
+        \item 
+            Выберем сколь угодно малое $\varepsilon > 0$ и оценим разность значений характеристической функции в точках $t$ и $t + h$:
+            \begin{multline*}
+                \bigl| \varphi(t+h)-\varphi(t) \bigr| 
+                = \left|\int\limits_{\Real} \left(e^{i(t+h) x}-e^{i tx}\right) d F(x)\right|
+                = \left|\int\limits_{\Real} e^{i t x}\left(e^{i h x}-1\right) d F(x)\right| \leqslant \\
+                \leqslant \int\limits_{\Real} \left|e^{i h x}-1\right| d F(x)=\int\limits_{|x| \leqslant R}\left|e^{i h x}-1\right| d F(x)+\int\limits_{|x|>R}\left|e^{i h x}-1\right| d F(x)
+            \end{multline*}
+            Теперь выберем $R$ настолько большим, чтобы $\MyPr\bigl(|x|>R\bigr) < \frac{\varepsilon}{4}$. 
+            Поскольку $\left|e^{i h x}-1\right| \leqslant 2$, второй интеграл при этом не превосходит по величине~$\frac{\varepsilon}{2}$. 
+            После этого выберем $h$ столь малым, чтобы $\left|e^{i h x}-1\right|<\frac{\varepsilon}{2}~$ при всех $|x| \leqslant R$. 
+            Тогда и первый интеграл не превосходит $\frac{\varepsilon}{2}$ и, таким образом, по заданному $\varepsilon > 0$ подобрано столь малое $h >0$, что ${|\varphi(t+h)-\varphi(t)|<\varepsilon~ \forall t \in \Real}$.
+        \item 
+            Если существует $\Exp \xi^{k}<\infty,~ k \geqslant 1$, то для всех $m = \overline{1, k}$ существуют $\Exp \xi^{m}<\infty$. Следовательно,
+            \begin{equation*}
+                \left|\int\limits_{\Real}(i x)^{m} e^{i t x} d F(x)\right| \leqslant \int\limits_{\Real}|x|^{k} d F(x)=\Exp |\xi|^{m}<\infty \quad \forall m = \overline{1, k}.
+            \end{equation*}
+            Т.е. интегралы $\int\limits_{\Real}(i x)^{m} e^{i t x} d F(x)$ сходятся равномерно по $t$, а значит, дифференцирование по $t$ можно менять местами с операцией интегрирования, откуда
+            \begin{equation*}
+                \varphi_{\xi}^{(m)}(t)=i^{m} \int\limits_{\Real} x^{m} e^{i t x} d F(x),~ \varphi_{\xi}^{(m)}(0)=i^{m} \int\limits_{\Real} x^{m} d F(x)=i^{m} \Exp \xi^{m}.
+            \end{equation*}
+            
+            Пусть у характеристической функции существует непрерывная производная чётного порядка $k$. 
+            Характеристическая функция и её производные непрерывны, функция $e^{itx}$ бесконечно (а значит, и нужные нам $k$ раз) дифференцируема по $t$, 
+            и можно показать, что при этих условиях можно поменять знаки интегрирования и дифференцирования местами.
+            Тогда мы получим, что
+            \begin{equation*}
+                \varphi^{(k)}(0) = i^k \left.\Exp \xi^k e^{itx}\right|_{t=0} = i^k \Exp \xi^k = 
+            \int\limits_{\Real} x^k dF(x).
+            \end{equation*}
+            $x^k \geqslant 0$ в силу чётности k, а значит, указанный интеграл сходится абсолютно, что и означает существование искомого математического ожидания.
+    \end{enumerate}
+\end{proof}

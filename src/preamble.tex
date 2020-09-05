@@ -1,0 +1,172 @@
+\documentclass[oneside,final,14pt]{extreport}
+
+%Общий вид и оформление
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=20mm,top=15mm,right=20mm,bottom=15mm,
+  headheight=0pt,headsep=0mm,foot=0pt,footskip=13mm,
+  includeheadfoot
+}
+\linespread{1.05}
+\raggedbottom
+\sloppy
+
+%Русский язык
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+%Шрифты
+\usepackage{fix-cm}
+\usepackage{microtype}
+\usepackage{anyfontsize}
+\newcommand\veryhuge{\fontsize{55}{66}\selectfont}
+\newcommand\verylarge{\fontsize{25}{30}\selectfont}
+\newcommand\quitelarge{\fontsize{22.5}{27}\selectfont}
+\newcommand{\garamond}{\fontencoding{T2A}\fontfamily{CormorantGaramond-LF}\selectfont}
+\newcommand{\gillius}{\fontencoding{T1}\fontfamily{GilliusADFNoTwo-LF}\selectfont}
+
+%Математические формулы
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{centernot}
+\allowdisplaybreaks
+
+\newcommand{\notimplies}{\centernot\implies}
+\newcommand{\notimpliedby}{\centernot\impliedby}
+
+%Таблицы
+\usepackage{adjustbox}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{caption}
+
+\newcommand\mylinespace[1][10pt]{\rule[\normalbaselineskip]{0pt}{#1}}
+\newcommand{\doublerow}[2]{\begin{tabular}{@{}c@{}}#1 \\ #2\end{tabular}}
+
+\DeclareCaptionType{mytype}[Таблица][Список] %Название таблицы без окружения table
+\newenvironment{mytable}{\captionsetup{type=mytype}}{}
+
+%Графика
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepgfplotslibrary{fillbetween}
+
+%Заголовки глав и секций
+\usepackage{titlesec}   
+\titleformat{\section}
+  {\large\bfseries}{\thesection}{1em}{}   
+\titleformat{\chapter}
+    {\Huge\bfseries}{}{0pt}{}
+\titlespacing*{\chapter}
+    {0cm}{-\topskip}{1em}[0pt]
+    
+%Библиография
+\usepackage{csquotes}
+\usepackage[
+    backend=biber, 
+    sorting=nyt,
+    bibstyle=gost-authoryear,
+    citestyle=gost-authoryear
+]{biblatex}
+\addbibresource{src/refs.bib}
+
+%Гиперссылки
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+%Прочие пакеты
+\usepackage{relsize}
+\usepackage{enumitem}
+\usepackage[perpage]{footmisc}
+
+%Обозначения математических операторов
+\DeclareMathOperator{\Exp}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\mathbb{D}}
+\DeclareMathOperator{\MyPr}{\mathbb{P}}
+
+\DeclareMathOperator{\ExpTh}{\Exp_{\theta}}
+\DeclareMathOperator{\VarTh}{\mathbb{D}_{\theta}}
+\DeclareMathOperator{\MyPrTh}{\MyPr_{\theta}}
+
+\DeclareMathOperator{\Ind}{\mathrm{I}}
+
+\DeclareMathOperator{\Dist}{\mathcal{P}}
+\DeclareMathOperator{\Uniform}{\mathrm{U}}
+\DeclareMathOperator{\Bernoulli}{\mathrm{B}}
+\DeclareMathOperator{\Binom}{\mathrm{Bi}}
+\DeclareMathOperator{\NegBinom}{\mathrm{NB}}
+\DeclareMathOperator{\Geom}{\mathrm{Geom}}
+\DeclareMathOperator{\ExpDist}{\mathrm{Exp}}
+\DeclareMathOperator{\Pois}{\mathrm{Pois}}
+\DeclareMathOperator{\Normal}{\mathrm{N}}
+\DeclareMathOperator{\Cauchy}{\mathrm{C}}
+\DeclareMathOperator{\GammaDist}{\Gamma}
+\DeclareMathOperator{\Student}{\mathrm{T}}
+
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\Irrational}{\mathbb{I}}
+
+\newcommand{\Alg}{\mathcal{A}}
+\newcommand{\SigAlg}{\mathcal{F}}
+\newcommand{\Borel}{\mathfrak{B}}
+
+\newcommand{\Sample}{\bigl(X_1, \ldots, X_n \bigr)}
+\newcommand{\SampleX}{\mathbf{X}}
+\newcommand{\SampleMean}{\overline{X}}
+\newcommand{\SampleVar}{S^{2}}
+\newcommand{\AllTh}{\forall \theta \in \Theta} 
+
+%Оформление определений, теорем, доказательств и т.п.
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewenvironment{proof}{{\bfseries Доказательство.}}{\qed}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Определение}
+\newtheorem*{exmp}{Пример}
+\newtheorem*{symb}{Обозначение}
+\newtheorem*{rmrk}{Замечание}
+\newtheorem*{task}{Задача}
+
+\theoremstyle{plain}
+\newtheorem*{thm*}{Утверждение}
+\newtheorem*{lem}{Лемма}
+\newtheorem*{crlr}{Следствие}
+
+\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3}}
+\theoremstyle{named}
+\newtheorem*{namedthm}{Теорема}
+
+%Компактный список
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+\newenvironment{compactlist}{
+    \begin{list}{{$\sbullet[.75]$}}
+    {\setlength\partopsep{0pt}
+     \setlength\parskip{0pt}
+     \setlength\parsep{0pt}
+     \setlength\topsep{0pt}
+     \setlength\itemsep{0pt}
+    }}
+    {\end{list}}
+
+\newcommand{\CoverName}{Cover} %Нумерация обложки

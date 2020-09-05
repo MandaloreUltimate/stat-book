@@ -1,0 +1,25 @@
+%sec1-5
+\begin{center}
+    \begin{tikzpicture}[
+        declare function={
+            normal_pdf(\x,\sstd,\mu) = 1 / sqrt(2 * pi * \sstd)*  exp(-(\x - \mu)^2 / (2 * \sstd));
+            cdfapp(\x) = 1 / (1 + exp(-0.07056 * (\x)^3 - 1.5976 * (\x);
+            sknorm(\x,\mu,\std,\alpha) = 2 * normal_pdf(\x, \std * \std, \mu) * cdfapp(\alpha * (\x - \mu) / \std);
+        }]
+        \begin{axis}[
+            height=10cm, width=10cm,
+            xmin=-1, xmax=7,
+            ymin=-0.05, ymax=0.5,
+            ticks=none,
+            axis line style=thick,
+            axis lines=middle,
+            enlargelimits=false
+            ]
+            \draw [dashed,black!50] (3,0) -- (3,0.4);
+            \addplot[very thick, color1, samples=100,domain=-1:7] {sknorm(x,3,1.9,-8)};
+            \addplot[very thick, color2, samples=100,domain=-1:7] {sknorm(x,3,1.9,8)};
+            \addplot[very thick, color3, samples=100,domain=-1:7] {sknorm(x,3,1,0)};
+            \legend{$\gamma_1<0$, $\gamma_1>0$, $\gamma_1=0$}
+        \end{axis}
+    \end{tikzpicture}
+\end{center}

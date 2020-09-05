@@ -1,0 +1,20 @@
+%sec2-11
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            height=8cm, width=15cm, 
+            xmin=-0.5, ymin=-0.008,
+            xmax=15, ymax=0.1, 
+            axis line style = thick,
+            axis lines = middle,
+            enlargelimits=false, axis on top, ticks=none,
+            ]
+            \addplot[name path=bell, very thick, blue, domain=0:15,samples=100]{exp(-x/2)*x/8};
+            \path [name path=flooor]
+            (\pgfkeysvalueof{/pgfplots/xmin},0) -- (\pgfkeysvalueof{/pgfplots/xmax},0);
+            \addplot [blue!20] fill between [of=bell and flooor, soft clip={domain=8:15}];
+            \addplot[only marks, color=blue, thick, mark=*] plot coordinates {(8, 0)} node[black, below]{$c_{1 - \alpha}$};
+            \node[draw=blue, text=blue, fill=white] at (9.4, 0.005) {\small$\alpha$};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}

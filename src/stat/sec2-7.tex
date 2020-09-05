@@ -1,0 +1,130 @@
+\section{Метод моментов. Свойства оценок, полученных методом моментов}
+
+Пусть $\Sample$~--- выборка объёма $n$ из параметрического семейства распределений $\Dist_\theta$. 
+Выберем функцию $g(y)\colon \Real \mapsto \Real$ так, чтобы существовал момент $\ExpTh g\left(X_{1}\right)=h(\theta)$ и функция $h(\theta)$ была обратима на $\Theta$. 
+Разрешим полученное уравнение относительно $\theta$, а затем вместо истинного момента возьмём выборочный:
+
+\begin{equation*}
+    \theta = h^{-1}\bigl(\ExpTh g\left(X_{1}\right)\bigr), \quad 
+    \theta^{*}=h^{-1}\bigl(\overline{g(\SampleX)}\bigr) = 
+    h^{-1}\left(\frac{1}{n} \sum\limits_{i=1}^{n} g\left(X_{i}\right)\right)
+\end{equation*}
+
+Полученная оценка $\theta^{*}$~--- \textit{оценка метода моментов} для параметра $\theta$. 
+Чаще всего берут $g(y)=y^{k}$. 
+В этом случае, при условии обратимости функции~$h$ на~$\Omega$:
+\begin{equation*}
+    \ExpTh X_{1}^{k}=h(\theta), \quad 
+    \theta = h^{-1}\left(\ExpTh X_{1}^{k}\right), \quad 
+    \theta^{*} = h^{-1}\bigl( \overline{X^{k}} \bigr) = 
+    h^{-1}\left(\frac{1}{n} \sum\limits_{i=1}^{n} X_{i}^{k}\right)
+\end{equation*}
+
+\begin{exmp}
+    Рассмотрим равномерное распределение $\Uniform_{[0, \theta]}$. 
+    Найдём оценку метода моментов для параметра $\theta$ по первому моменту:
+    \begin{equation*}
+        \ExpTh X_{1}=\frac{\theta}{2}, \quad 
+        \theta = 2\,\ExpTh X_{1}, \quad 
+        \theta_{1}^{*}=2 \SampleMean
+    \end{equation*}
+    Найдём оценку метода моментов k по $k$-му моменту:
+    \begin{equation*}
+        \ExpTh X_{1}^{k} =
+        \int\limits_{0}^{\theta} y^{k} \frac{1}{\theta} \, dy = 
+        \frac{\theta^{k}}{k+1}, \quad 
+        \theta=\sqrt[k]{(k+1) \ExpTh X_{1}^{k}}, \quad 
+        \theta_{k}^{*}=\sqrt[k]{(k+1) \overline{X^{k}}}
+    \end{equation*}
+\end{exmp}
+
+\begin{thm*}
+    Пусть $\theta^{*}=h^{-1}\bigl(\overline{g(\SampleX)}\bigr)$~--- оценка параметра $\theta$, полученная методом моментов, причём функция $h^{-1}$ непрерывна. 
+    Тогда оценка $\theta^{*}$ состоятельна.
+\end{thm*}
+
+\begin{proof}
+    По ЗБЧ Хинчина имеем:
+    \begin{equation*}
+        \overline{g(\SampleX)} = 
+        \frac{1}{n} \sum\limits_{i=1}^{n} g\left(X_{i}\right) 
+        \xrightarrow[n \to \infty]{\MyPr} \ExpTh g\left(X_{1}\right) = 
+        h(\theta)
+    \end{equation*}
+
+    Ввиду непрерывности функции $h^{-1}$:
+
+    \begin{equation*}
+        \theta^{*} = h^{-1}\bigl(\overline{g(\SampleX)}\bigr) 
+        \xrightarrow[n \to \infty]{\MyPr} h^{-1}\bigl(\ExpTh g\left(X_{1}\right)\bigr) = 
+        h^{-1}\bigl(h(\theta)\bigr) = \theta.
+    \end{equation*}
+\end{proof}
+
+\begin{defn}
+    \textit{Асимптотически нормальная оценка} параметра $\theta$ с коэффициентом $\sigma^{2}(\theta)$~--- оценка $\theta^{*}$, т.ч. при $n \to \infty$ имеет место слабая сходимость к стандартному нормальному распределению: 
+    \begin{equation*}
+        \cfrac{\sqrt{n}(\theta^{*}-\theta)}{\sigma(\theta)} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, 1}.
+    \end{equation*}
+\end{defn}
+
+\begin{lem}
+    Пусть функция $g(y)$ такова, что $0 \neq \VarTh g\left(X_{1}\right)<\infty$. 
+    Тогда статистика $\overline{g(\SampleX)}$ является асимптотически нормальной оценкой для $\ExpTh g\left(X_{1}\right)$ с коэффициентом $\sigma^{2}(\theta)=\VarTh g\left(X_{1}\right)$:
+
+    \begin{equation*}
+        \sqrt{n} \, \cfrac{\overline{g(\SampleX)}-\ExpTh g\left(X_{1}\right)}{\sqrt{\VarTh g\left(X_{1}\right)}} 
+        \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, 1}
+    \end{equation*}
+\end{lem}
+
+\begin{proof}
+    Следует непосредственно из ЦПТ.
+\end{proof}
+
+\begin{rmrk}
+    Следующая теорема утверждает асимптотическую нормальность оценок вида
+
+    \begin{equation*}
+        \theta^{*} = 
+        H \bigl( \overline{g(\SampleX)} \bigr) = 
+        H\left(\cfrac{g\left(X_{1}\right)+\ldots+g\left(X_{n}\right)}{n}\right)
+    \end{equation*}
+    которые обычно получаются при использовании метода моментов, при этом всегда $\theta = H \bigl(\ExpTh g\left(X_{1}\right) \bigr)$.
+\end{rmrk}
+
+\begin{thm*}
+    Пусть функция $g(y)$ такова, что $0 \neq \VarTh g\left(X_{1}\right)<\infty$, функция $H(y)$ дифференцируема в точке $a=\ExpTh g\left(X_{1}\right)$ и её производная в этой точке $H^{\prime}(a)=\left.H^{\prime}(y)\right|_{y=a}$ отлична от нуля. 
+    Тогда оценка $\theta^{*}=H\bigl(\overline{g(\SampleX)}\bigr)$ является асимптотически нормальной оценкой для параметра $\theta = H\bigl(\ExpTh g\left(X_{1}\right)\bigr) = H(a)$ с коэффициентом асимптотической нормальности $\sigma^{2}(\theta)=\bigl(H^{\prime}(a)\bigr)^{2} \cdot \VarTh g\left(X_{1}\right)$.
+\end{thm*}
+
+\begin{proof}
+    Согласно ЗБЧ последовательность $\overline{g(\SampleX)}$ стремится к $a=\ExpTh g\left(X_{1}\right)$ по вероятности с ростом $n$: Функция
+
+    \begin{equation*}
+        G(y)=\left\{\begin{array}{ll}
+        \cfrac{H(y)-H(a)}{y-a}, & y \neq a \\
+        H^{\prime}(a), & y=a
+        \end{array}\right.  
+    \end{equation*}
+    по условию непрерывна в точке $a$: 
+    поскольку сходимость по вероятности сохраняется под действием непрерывной функции, получим,
+    что $G\bigl(\overline{g(\SampleX)}\bigr) \xrightarrow[n \to \infty]{\MyPr} G(a)=H^{\prime}(a)$.
+
+    Заметим также, что по вышеприведённой лемме величина ${\sqrt{n}\bigl(\overline{g(\SampleX)} - a\bigr)}$ слабо сходится
+    к нормальному распределению $\Normal_{0, \VarTh g(X_{1})}$: 
+    пусть $\xi$~--- случайная величина из этого распределения. Тогда
+
+    \begin{equation*}
+        \sqrt{n} \Bigl(H\bigl(\overline{g(\SampleX)}\bigr) - H(a)\Bigr) = 
+        \sqrt{n} \bigl(\overline{g(\SampleX)} - a\bigr) \cdot G\bigl(\overline{g(\SampleX)}\bigr) 
+        \xrightarrow[n \to \infty]{\text{d}} \xi \cdot H^{\prime}(a)
+    \end{equation*}
+
+    Мы использовали следующее свойство слабой сходимости: если $\xi_{n} \xrightarrow[n \to \infty]{\text{d}} \xi$ и $\eta_{n} \xrightarrow[n \to \infty]{\MyPr} c=const$, то $\xi_{n} \eta_{n} \xrightarrow[n \to \infty]{\text{d}} c \xi$.
+    Но распределение случайной величины $\xi \cdot H^{\prime}(a)$ есть $\Normal_{0,(H^{\prime}(a))^{2} \cdot \VarTh g(X_{1})}$, откуда следует
+
+    \begin{equation*}
+        \sigma^{2}(\theta)=\bigl(H^{\prime}(a)\bigr)^{2} \cdot \VarTh g\left(X_{1}\right).
+    \end{equation*}
+\end{proof}

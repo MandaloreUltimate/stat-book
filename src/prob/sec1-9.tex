@@ -1,0 +1,54 @@
+\section{Испытания Бернулли. Теорема Муавра"--~Лапласа. Нормальное распределение}
+
+\begin{namedthm} [Локальная предельная теорема Муавра"--~Лапласа]
+    Пусть $S_n$~--- число успехов в $n$ испытаниях Бернулли с вероятностью успеха $0 < p < 1$. 
+    Пусть $n \to \infty$, тогда $n p(1-p) {\longrightarrow} \infty$, и 
+    \begin{equation*}
+        \forall m \in \Integer: 0 \leqslant m \leqslant n \quad \MyPr\left(S_{n}=m\right)=\frac{1}{\sigma \sqrt{2 \pi} } e^{-\frac{x^{2}}{2}}\left(1+\underline{O}\left(\frac{1}{\sigma}\right)\right),
+    \end{equation*}
+    где $x = \frac{m - np}{\sigma},$ а $\sigma=\sqrt{\Var S_{n}}=\sqrt{n p(1-p)}$.
+\end{namedthm}  
+
+\begin{namedthm}[Интегральная теорема Муавра"--~Лапласа]
+Если выполнено условие локальной теоремы и $C$~--- произвольная положительная константа, то равномерно по $a$ и $b$ из отрезка $[-C,C]$ (пусть $b \geqslant a$)
+\begin{equation*}
+    \MyPr\left(a \leqslant \frac{S_{n}-n p}{\sqrt{n p(1-p)}} \leqslant b\right) \xrightarrow[n \to +\infty]{} \frac{1}{\sqrt{2 \pi}} \int\limits_{a}^{b} e^{-\frac{x^{2}}{2}} dx.
+\end{equation*}
+\end{namedthm} 
+
+\begin{defn}
+    Случайная величина $\xi$ имеет \textit{нормальное (гауссовское) распределение} с параметрами $a$ и $\sigma^2$ ($\Normal_{a, \sigma^2}$), где $a \in \Real, \sigma > 0$, если $\xi$ имеет следующую плотность распределения: 
+\begin{equation*}
+    f(x)=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{(x-a)^{2}}{2 \sigma^{2}}}, \quad x \in \Real.
+\end{equation*}
+\end{defn}
+
+\subsubsection{Числовые характеристики $\Normal_{a, \sigma^2}$}
+
+Найдем матожидание и дисперсию для \textit{стандартного} нормального распределения ($\alpha = 0, \, \sigma^2 = 1$):
+\begin{multline*}
+    \Exp \xi = 
+    \int\limits_{-\infty}^{\infty} x f_{\xi}(x) dx =
+    \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} x e^{\frac{-x^2}{2}} dx = 
+    -\frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} d\left( e^{\frac{-x^2}{2}}\right) = 
+    \left. -e^{\frac{-x^2}{2}}\right|_{-\infty}^{\infty} = 0 \\
+    \Exp \xi^{2}=\frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} x^{2} e^{-x^{2} / 2} d x=\frac{2}{\sqrt{2 \pi}} \int\limits_{0}^{\infty} x^{2} e^{-x^{2} / 2} d x=-\frac{2}{\sqrt{2 \pi}} \int\limits_{0}^{\infty} x d e^{-x^{2} / 2}= \\
+    =-\left.\frac{2 x}{\sqrt{2 \pi}} e^{-x^{2} / 2}\right|_{0} ^{\infty}+2 \int\limits_{0}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-x^{2} / 2} d x=0+\int\limits_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} e^{-x^{2} / 2} d x=1.
+\end{multline*}
+
+Поэтому $\Var\xi = \Exp \xi^2 - (\Exp \xi)^2 = 1 - 0 = 1.$
+
+Теперь рассмотрим случайную величину $\eta$ с нормальным распределением в общем виде (с параметрами $\alpha$ и $\sigma^2$). Тогда $\xi = \frac{\eta - \alpha}{\sigma}$ - случайная величина со \textit{стандартным} нормальным распределением. Далее, т.к. $\Exp \xi = 0$, $\Var\xi = 1$, то 
+\begin{gather*}
+    \Exp \eta = \Exp (\sigma \xi + \alpha) = \sigma \Exp \xi + \alpha = \alpha, \\
+    \Var\eta = \Var(\sigma \xi + \alpha) = \sigma^2 \Var\xi = \sigma^2.
+\end{gather*}
+\input{src/figs/fig5}
+\vspace{1cm}
+\begin{rmrk}
+Формулу из теоремы Муавра"--~Лапласа можно переписать в следующем виде:
+\begin{equation*}
+    \MyPr\left(a \leqslant \frac{S_{n}-n p}{\sqrt{n p(1-p)}} \leqslant b\right) \xrightarrow[n \to +\infty]{} \Phi(b) - \Phi(a),
+\end{equation*}
+где $\Phi(x)=\frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{x} e^{-t^{2} / 2} d t$~--- функция распределения стандартного нормального распределения.
+\end{rmrk}

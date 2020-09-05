@@ -1,0 +1,86 @@
+\section{Теорема Рао"--~Блекуэлла"--~Колмогорова. Оптимальность оценок, являющихся функцией полной достаточной статистики}
+
+\begin{namedthm}[Теорема Рао"--~Блекуэлла"--~Колмогорова] 
+    Если существует оптимальная оценка для $\tau(\theta)$, то она является функцией от достаточной статистики.
+\end{namedthm}
+
+\begin{proof}
+    В доказательстве используются следующие свойства условного математического ожидания: 
+    \begin{gather*}
+        \Exp f(x, z)=\Exp \Bigl(\Exp \bigl( f(x, z) | z\bigr) \Bigr), \\
+        \Exp \bigl(g(z) | z\bigr) = g(z).
+    \end{gather*}
+
+    Мы докажем даже более сильное утверждение: для любой несмещённой оценки мы можем построить новую оценку, являющуюся функцией от достаточной статистики, при этом дисперсия построенной оценки будет не больше исходной.
+    Отсюда вытекает и утверждение теоремы~--- ведь оптимальная оценка является несмещённой, соответственно, мы можем построить новую оценку, которая будет равномерно по $\theta$ не хуже оптимальной.
+    Но оптимальная оценка единственна, а значит, она сама является функцией от достаточной статистики, что и требуется доказать.
+
+    \begin{enumerate}
+        \item 
+            Построим искомую оценку.
+            Пусть $T(\SampleX)$~--- достаточная статистика, $T_1(\SampleX)$~--- несмещённая оценка $\tau(\theta)$, т.е. $\ExpTh T_{1}(\SampleX)=\tau(\theta)$. 
+            Рассмотрим функцию $H(T)=\ExpTh\left(T_{1} | T\right)$. 
+            Тогда из первого свойства следует:
+            \begin{multline*}
+                \ExpTh H(T)=\ExpTh\bigl(\ExpTh\left(T_{1} | T\right)\bigr) = 
+                \ExpTh T_{1}=\tau(\theta) \implies \\ H(T) \text{~--- несмещённая оценка~} \tau(\theta).
+            \end{multline*}
+
+        \item 
+            Покажем, что её дисперсия не превосходит дисперсию исходной:
+            \begin{gather*}
+                \VarTh T_1 = \ExpTh \bigl(T_1 - \tau(\theta)\bigr)^2 = \\
+                \ExpTh \Bigl(T_1 - H(T) + H(T) - \tau(\theta) \Bigr)^2 = \\
+                \underbrace{\ExpTh \bigl(T_1 - H(T) \bigr)^2}_{\geqslant 0} + \underbrace{2 \, \ExpTh \Bigl[\bigl(T_1 - H(T)\bigr) \bigl(H(T) - \tau(\theta)\bigr)\Bigr]}_{?} + \, \VarTh H(T)
+            \end{gather*}
+            
+            Оценим второе слагаемое, пользуясь тем, что $H(T)$~--- функция от $T$ и может быть вынесена из под условного математического ожидания как константа:
+            \begin{gather*}
+                \ExpTh \Bigl[ \bigl((T_{1}-H(T)\bigr) \bigl( H(T) - \tau(\theta) \bigr) \Bigr] = \\
+                = \ExpTh\biggl( \ExpTh\Bigl[ \bigl(T_{1}-H(T)\bigr) \bigl( H(T)-\tau(\theta) \bigr) | \, T \Bigr] \biggr) = \\
+                = \ExpTh\biggl( \bigl( H(T)-\tau(\theta) \bigr) \, \ExpTh \Bigl[ \bigl(T_{1} - H(T)\bigr) | \, T \Bigr] \biggr) = \\
+                = \ExpTh\biggl( \bigl( H(T)-\tau(\theta) \bigr) \Bigl[ \ExpTh \bigl(T_{1} | T\bigr) - \ExpTh \bigl(H(T) | \, T \bigr) \Bigr] \biggr) = \\
+                = \ExpTh\biggl( \bigl( H(T)-\tau(\theta) \bigr) \Bigl[ H(T) - H(T) \Bigr] \biggr) = 0.
+            \end{gather*}
+
+            Отсюда и вытекает, что
+            \begin{equation*}
+                \VarTh T_{1} = \underbrace{\ExpTh \bigl(T_1 - H(T)\bigr)^2}_{\geqslant 0} + \VarTh H(T) \; \geqslant \; \VarTh H(T).
+            \end{equation*}
+    \end{enumerate}
+    Таким образом, если существует оптимальная оценка $T_1$, то $H(T)$ тоже оптимальна, но мы знаем, что оптимальная оценка единственна.
+    Осталось заметить, что $H(T) = \ExpTh \bigl( T_1 | T\bigr) \equiv f(T)$~--- функция от достаточной статистики.
+\end{proof}
+
+\begin{namedthm}[Теорема Колмогорова]
+    %Если $T(\SampleX)$~--- полная достаточная статистика, то она является оптимальной оценкой своего математического ожидания. (Можно сформулировать более сильный вариант)
+    Пусть $T(\SampleX)$~--- полная достаточная статистика.
+    Пусть $\varphi(x)$~--- борелевская функция, и $\ExpTh \varphi\bigl(T(\SampleX)\bigr) = \tau(\theta)$.
+    Тогда $\varphi\bigl(T(\SampleX)\bigr)$~--- оптимальная оценка для $\tau(\theta)$.
+\end{namedthm}
+
+\begin{proof}
+    Из теоремы Рао"--~Блекуэлла"--~Колмогорова следует, что если существует несмещённая оценка для $\tau(\theta)$, 
+    то существует также и несмещённая оценка $\tau(\theta)$, являющаяся функцией от достаточной статистики.
+
+    Пусть $T_1 = \varphi_1(T)$~--- несмещённая оценка $\tau(\theta)$ и $T$~--- полная достаточная статистика.
+    Допустим, что существует ещё одна несмещённая оценка $T_2 = \varphi_2(T)$.
+    Тогда $\AllTh$
+    \begin{equation*}
+        \ExpTh \Bigl(\varphi_1\bigl(T(\SampleX)\bigr) - \varphi_2\bigl(T(\SampleX)\bigr) \Bigr) = 0.
+    \end{equation*}
+    Но $T(\SampleX)$ полная, $\implies \; \varphi_1(y) \overset{\text{п.н.}}{=} \varphi_2(y)$ на области значений $T(\SampleX)$.
+    Таким образом, несмещённая оценка, являющаяся функцией от достаточной статистики, единственна.
+    Значит, она и будет оптимальной оценкой $\tau(\theta)$.
+
+    %Докажем, что $T(\SampleX)$ является единственной несмещённой оценкой для $\ExpTh T(\SampleX)$. (Несмещённых оценок много, единственна несмещённая оценка--функция от ПДС)
+    %Тогда $T(\SampleX)$ будет оптимальной оценкой. 
+    %Предположим, что $T_1(\SampleX)$~--- оптимальная оценка для $\ExpTh T(\SampleX)$. 
+    %Из теоремы Рао"--~Блекуэлла"--~Колмогорова получаем, что $T_{1}=H(T)$ и $\ExpTh T_{1}=\ExpTh T$. 
+    %Тогда:
+    %\begin{equation*}
+    %    \ExpTh \underbrace{\Bigl(T(\SampleX)-H\bigl(T(\SampleX)\bigr)\Bigr)}_{\varphi(T)}=0
+    %\end{equation*}
+    %
+    %Из условия полноты $T(\SampleX)$ следует, что $\varphi(T)=0$ с вероятностью 1, т.е. $T=H(T)$ с вероятностью 1.
+\end{proof}

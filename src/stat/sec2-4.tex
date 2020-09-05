@@ -1,0 +1,133 @@
+\section{Функция правдоподобия. Достаточные статистики, полные статистики. Теорема факторизации}
+
+В зависимости от типа семейства распределения $\Dist_\theta$ обозначим через $f_{\theta}(y)$ одну из следующих функций:
+\begin{equation*}
+    f_{\theta}(y) =
+    \left\{\begin{array}{ll}
+    \text { плотность } f_{\theta}(y), & \text { если } \Dist_{\theta} \text { абсолютно непрерывно, } \\
+    P_{\theta}\left(X_{1}=y\right), & \text { если } \Dist_{\theta} \text { дискретно. }
+    \end{array}\right.
+\end{equation*}
+
+\begin{defn}
+    \textit{Функция правдоподобия} выборки $\SampleX$:
+    \begin{equation*}
+        L(\SampleX, \theta)=f_{\theta}\left(X_{1}\right) \cdot f_{\theta}\left(X_{2}\right) \cdot \ldots \cdot f_{\theta}\left(X_{n}\right)=\prod_{i=1}^{n} f_{\theta}\left(X_{i}\right).
+    \end{equation*}
+\end{defn}
+
+В дискретном случае функция правдоподобия принимает вид:
+\begin{equation*}
+    \begin{aligned}
+        L(\SampleX, \theta)=\prod_{i=1}^{n} f_{\theta}(x_{i}) 
+        = \MyPrTh (X_{1}=x_{1}) \cdot \ldots \cdot \MyPrTh (X_{n}=x_{n}) = \\
+        = \MyPrTh (X_{1}=x_{1}, \ldots, X_{n}=x_{n}).
+    \end{aligned}
+\end{equation*}
+
+\begin{rmrk}
+    Функция правдоподобия зависит от выборки~$\SampleX$ и от параметра~$\theta$.
+    Если мы зафиксируем некоторое~$\theta_0$, то получим вероятностную меру над выборочным пространством~$\Real^n$.
+    Тогда значение функции правдоподобия~$L(\mathbf{x}, \theta_0)$ на некоторой реализации выборки~$x$~--- это вероятность этой реализации в предположении, что параметр~$\theta_0$~--- истинное значение. \\
+    Если же мы напротив, зафиксируем некоторую реализацию выборки~${\mathbf{x}^* = (x_1^*, \ldots, x_n^*)}$ (что соответствует реальным условиям~--- как правило, у нас есть некоторые наблюдения, а параметр неизвестен), то значение функции правдоподобия на некотором параметре~$\theta$~--- это "<правдоподобие">, "<вероятность"> этого параметра.
+    Но, строго говоря, при фиксированной реализации выборки~$x^*$ функция правдоподобия~$L(\mathbf{x}^*, \theta)$ не является вероятностной мерой над~$\Theta$.
+    Рассмотрим пример.
+\end{rmrk}
+
+\begin{exmp}
+    При двух последовательных независимых подбрасываниях монетки выпало два "<орла">.
+    Запишем функцию правдоподобия выборки $\SampleX= \bigl(X_1, X_2\bigr), \; X_i \in \{0, 1\}$.
+    Обозначим вероятность выпадения "<орла"> ${\bigl(\MyPrTh(X_i = 1)\bigr)}$ за $\theta, \; \theta \in [0, 1]$.
+    Тогда
+    \begin{equation*}
+        L(\SampleX, \theta) = \MyPrTh (X_1 = x_1) \cdot \MyPrTh (X_2 = x_2).
+    \end{equation*}
+    Для любого фиксированнного значения параметра $\theta_0$ функция правдоподобия $L(\SampleX, \theta_0)$ является функцией совместного распределения $(X_1, X_2)$:
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            & $X_1 = 1$ & $X_1 = 0$ \\
+            \hline
+            $X_2 = 1$ & $\theta^2_0$ & $(1-\theta_0)\theta_0$ \\
+            \hline
+            $X_2 = 0$ & $\theta_0(1-\theta_0)$ & $(1-\theta_0)^2$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    \begin{gather*}
+        \sum\limits_{x_1 = 0}^{1} \sum\limits_{x_2 = 0}^{1} L(\mathbf{x}, \theta_0) = 
+        \sum\limits_{x_1 = 0}^{1} \sum\limits_{x_2 = 0}^{1} \MyPr{\theta_0} (X_1 = x_1) \cdot \MyPr{\theta_0} (X_2 = x_2) = \\
+        = \theta_0^2 + (1 - \theta_0)\theta_0 + \theta_0(1-\theta_0) + (1 - \theta_0)^2 
+        = \theta_0^2 + 2\theta_0 - 2\theta_0^2 + (1 - 2\theta_0 + \theta_0^2)
+        = 1.
+    \end{gather*}
+    Но если мы зафиксируем реализацию выборки $x^* = (x_{1}^{*} = 1, x_{2}^{*} = 1)$ и проинтегрируем по $\Theta = [0, 1]$, то получим
+    \begin{equation*}
+        \int\limits_0^1 L(\mathbf{x}^*, \theta) \, d\theta = 
+        \int\limits_0^1 \MyPrTh(X_1 = 1) \cdot \MyPrTh(X_2 = 1) \, d\theta = 
+        \int\limits_0^1 \theta^2 \, d\theta = 
+        \left. \frac{\theta^3}{3} \right|_0^1 = 
+        \frac{1}{3}.
+    \end{equation*}
+
+    Выходит, что $L(\mathbf{x}^*, \theta)$ не может быть вероятностной мерой, так как интеграл по $\Theta$ не равен 1.
+    %А $L(\SampleX, \theta_0)$ определяет совместное распределение случайных величин $(X_1, X_2)$: если они абсолютно непрерывны~--- то это совместная плотность, а если дискретны~--- то вероятность принятия соответствующих значений.
+\end{exmp}
+
+%Таким образом, смысл функции правдоподобия~--- <<вероятность>>\footnote{Строго говоря, функция правдоподобия не является вероятностной мерой над $\theta$, хотя бы потому, что $\int\limits_{\Theta} L(\mathbf{x}, \theta) d\theta \neq 1$. 
+%Термин <<вероятность>> применён здесь в переносном смысле.} попасть в заданную точку при соответствующем параметре $\theta$ в дискретном случае; для абсолютно непрерывного аналогично~--- вероятность попасть в куб с центром в $x_1, \ldots, x_n$ и сторонами $dx_1, \ldots, dx_n$.
+
+\vspace{5mm}
+\begin{defn}
+    \textit{Достаточная статистика}~--- статистика $T(\SampleX)$ такая, что $\forall t \in \Real^m,$~\footnote{Напомним, что вообще говоря, статистика~--- 
+    это отображение $T(X)\colon \Real^n \mapsto \Real^m$ } $ \forall B \in \Borel^n$ условное распределение $\MyPrTh \Bigl(\Sample \in B | \, T=t\Bigr)$ не зависит от параметра $\theta$. Иными словами, статистика $T(\SampleX)$ называется достаточной, если $\ExpTh \bigl( \SampleX\, | \, T(\SampleX) \bigr)$ не зависит от $\theta$.
+\end{defn}
+
+Иными словами, достаточная статистика содержит в себе всю информацию о параметре, которую можно извлечь из выборки.
+
+Достаточная статистика всегда существует~--- например, сама выборка $\SampleX$ является достаточной статистикой.
+Однако этот тривиальный пример не очень полезен.
+Как правило, нас интересуют достаточные статистики малой размерности.
+Для того, чтобы проверить, является ли статистика достаточной, можно использовать критерий факторизации.
+\begin{namedthm}[Критерий факторизации]
+    $T(\SampleX)$~--- достаточная статистика $\iff$ её функция правдоподобия представима в виде 
+    \begin{equation*}
+        L(X_{1}, \ldots, X_{n} , \theta) \stackrel{\text{п.н.}}{=} g\bigl(T(\SampleX), \theta\bigr) \cdot h(\SampleX)
+    \end{equation*}
+\end{namedthm}
+
+\begin{proof}
+    Рассмотрим только дискретный случай. 
+    \begin{enumerate}
+        \item[$\implies$] Пусть $T(\SampleX)$~--- достаточная статистика. 
+            Возьмём произвольную реализацию выборки $\boldsymbol{x}$ и обозначим $t = T(\boldsymbol{x})$. Тогда
+            \begin{multline*}
+                L(\boldsymbol{x}, \theta) = \MyPrTh (\SampleX=\boldsymbol{x})=\MyPrTh (\SampleX=\boldsymbol{x}, T(\SampleX)=t) =\\
+                = \underbrace{\MyPrTh (T(\SampleX)=t)}_{g(T(\SampleX), \theta)} \underbrace{\MyPrTh (\SampleX=\boldsymbol{x} | T(\SampleX)=t)}_{h(\SampleX)}
+            \end{multline*}
+        \item[$\impliedby$] Пусть теперь функция правдоподобия имеет вид $L(\boldsymbol{x}, \theta)=g\bigl(T(\boldsymbol{x}), \theta\bigr) h(\boldsymbol{x})$. 
+            Тогда, если $x$ таково, что $T(\boldsymbol{x})=t$, то:
+            \begin{multline*}
+                \MyPrTh (\SampleX=\boldsymbol{x} | \, T(\SampleX)=t) =\frac{\MyPrTh (\SampleX=\boldsymbol{x}, T(\SampleX)=t)}{\MyPrTh (T(\SampleX)=t)}
+                =\frac{\MyPrTh (\SampleX=\boldsymbol{x})}{\sum\limits_{\boldsymbol{x}^{\prime}: T(\boldsymbol{x}^{\prime})=t} \MyPrTh(\SampleX=\boldsymbol{x}^{\prime})} = \\
+                = \frac{g(t, \theta) h(\boldsymbol{x})}{\sum\limits_{\boldsymbol{x}^{\prime}: T(\boldsymbol{x}^{\prime})=t} g(t, \theta) h(\boldsymbol{x}^{\prime})}
+                = \frac{h(\boldsymbol{x})}{\sum\limits_{\boldsymbol{x}^{\prime}: T(\boldsymbol{x}^{\prime})=t} h(\boldsymbol{x}^{\prime})}
+            \end{multline*}
+            Т.е. вероятность не зависит от $\theta$, а значит, $T(\SampleX)$ достаточная.
+    \end{enumerate}
+\end{proof}
+
+\begin{defn}
+    Статистика $T(\SampleX)$ называется \textit{полной}, если для любой борелевской функции $\varphi(T)$, для которой $\ExpTh \varphi(T)=0~\AllTh$, справедливо: $\varphi(T) \stackrel{\text{п.н.}}{=}0$.
+\end{defn}
+
+\begin{exmp}
+    Рассмотрим равномерное распределение $\Uniform_{[0,\theta]}$ и докажем, что статистика $T(\SampleX) = X_{(n)}$ является полной. 
+    Напоминаем, что плотность распредения $X_{(n)}$ для $U[0, \theta]$ - это $f(t) = \cfrac{n t^{n-1}}{\theta^n} \, \Ind(0 \leqslant t \leqslant \theta)$.
+    \begin{gather*}
+        \ExpTh \varphi(X_{(n)})= \int\limits_{0}^{\theta} \varphi(t) \cfrac{nt^{n-1}}{\theta^n} dt = 0 \implies \int\limits_{0}^{\theta} \varphi(t) t^{n-1} dt = 0 \implies \\
+        \{ \text{продифференцируем по}~ \theta\} \implies 
+        \varphi(\theta) \theta^{n-1} = 0  \implies \varphi(T) \equiv 0 ~~ \forall T > 0
+    \end{gather*}
+    Таким образом, $\varphi(T) \stackrel{\text{п.н.}}{=} 0$ при $T \geqslant 0$, и указанная статистика является полной.
+\end{exmp}
