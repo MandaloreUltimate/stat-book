@@ -20,7 +20,7 @@
 		\caption{Абсолютно непрерывные распределения.}
 		\begin{tabular}{|c|c|c|c|c|}
 			\hline Распределение & $f_{\xi}(x)$ & $\Exp \xi$ & $\Var \xi$ & $\varphi(t)$\\
-			\hline \mylinespace[7.5pt] \doublerow{Равномерное $\Uniform_{[a, b]}$}{$a<b$} & $\cfrac{1}{b-a} \cdot \Ind(x \in [a;b])$ & $\cfrac{a+b}{2}$ & $\cfrac{b-a}{12}$ & $\cfrac{e^{i t b}-e^{i t a}}{i t(b-a)}$\\[14pt]
+			\hline \mylinespace[7.5pt] \doublerow{Равномерное $\Uniform_{[a, b]}$}{$a<b$} & $\cfrac{1}{b-a} \cdot \Ind(x \in [a;b])$ & $\cfrac{a+b}{2}$ & $\cfrac{(b-a)^2}{12}$ & $\cfrac{e^{i t b}-e^{i t a}}{i t(b-a)}$\\[14pt]
 			\hline \doublerow{Показательное $\ExpDist_{\lambda}$}{$\lambda > 0$} & $\lambda e^{-\lambda x} \cdot \Ind(x > 0)$ & $\cfrac{1}{\lambda}$ & $\cfrac{1}{\lambda^{2}}$ & $\cfrac{1}{1 - it / \lambda}$\\[14pt]
 			\hline \mylinespace \doublerow{Гамма $\GammaDist_{\lambda, \alpha}$}{$\alpha>0, \lambda>0$} & $\cfrac{\lambda^{\alpha}}{\Gamma(\alpha)} \, x^{\alpha-1} e^{-\lambda x} \cdot \Ind(x > 0)$ & $\cfrac{\alpha}{\lambda}$ & $\cfrac{\alpha}{\lambda^{2}}$ & $\left(\cfrac{1}{1 - it / \lambda}\right)^{\alpha}$\\[15pt]
 			\hline \doublerow{Нормальное $\Normal_{a, \sigma^{2}}$}{$a \in \Real, \sigma>0$} & $\cfrac{1}{\sigma \sqrt{2 \pi}} \, e^{-(x-a)^{2}/2 \sigma^{2}}$ & $a$ & $\sigma^{2}$ & $\mathlarger{e^{a i t-\sigma^{2} t^{2}/2}}$\\[14pt]
@@ -48,7 +48,7 @@
 			\hline Модель & $\tau(\theta)$ & $\tau^*(\SampleX)$ & $\Var \tau^*(\SampleX)$\\
 			\hline $\Normal_{\theta, \sigma^2}$ & $\theta$ & $\SampleMean = \frac{1}{n} \sum\limits_{i=1}^{n} X_i$ & $\cfrac{\sigma^2}{n}$\\[12pt]
 			\hline \mylinespace[7.5pt] $\Normal_{\mu, \theta^2}$ & $\theta^2$ & $S^2 = \frac{1}{n} \sum\limits_{i=1}^{n} \left(X_i - \mu\right)^2$ & $\cfrac{2\theta^4}{n}$\\[12pt]
-			\hline \mylinespace[7.5pt] $\GammaDist_{\theta, \alpha}$ & $\theta$ & $\cfrac{\SampleMean}{\alpha}$ & $\cfrac{\theta^2}{\alpha n}$\\[12pt]
+			\hline \mylinespace[7.5pt] $\GammaDist_{\theta, \alpha}$ & $\cfrac{1}{\theta}$ & $\cfrac{\SampleMean}{\alpha}$ & $\cfrac{\theta^2}{\alpha n}$\\[12pt]
 			\hline \mylinespace[7.5pt] $\Binom_{k, \theta}$ & $\theta$ & $\cfrac{\SampleMean}{k}$ & $\cfrac{\theta(1 - \theta)}{kn}$\\[12pt]
 			\hline $\Pois_{\theta}$ & $\theta$ & $\SampleMean$ & $\cfrac{\theta}{n}$\\[12pt]
 			\hline \mylinespace[7.5pt] $\NegBinom_{r, \theta}$ & $\cfrac{\theta}{1 - \theta}$ & $\cfrac{\SampleMean}{r}$ & $\cfrac{\theta}{rn(1 - \theta)^2}$\\[12pt]
