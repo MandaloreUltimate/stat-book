@@ -24,7 +24,7 @@ jobs:
       run: |
         set -e
         # configure git
-        git config --global user.name "A. Rygin"
+        git config --global user.name "user"
         git config --global user.email "$EMAIL"
         # Copy and commit the PDF file
         mkdir -p "$GITHUB_WORKSPACE/deploy"
