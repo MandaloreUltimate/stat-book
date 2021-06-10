@@ -25,7 +25,7 @@ jobs:
         set -e
         # configure git
         git config --global user.name "user"
-        git config --global user.email "$EMAIL"
+        git config --global user.email "email"
         # Copy and commit the PDF file
         mkdir -p "$GITHUB_WORKSPACE/deploy"
         cp -f main.pdf "$GITHUB_WORKSPACE/deploy/main.pdf"
