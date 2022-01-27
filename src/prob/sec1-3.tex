@@ -1,0 +1,269 @@
+\section{Случайная величина. Порождённое и индуцированное вероятностные пространства. Функция распределения, ее свойства}
+
+\begin{defn}
+    \textit{$\text{Борелевская~} \sigma \text{-алгебра~} \Borel$}~--- $\sigma \text{-алгебра}$, \hyperlink{generated_sigma}{порождённая} множеством всех открытых интервалов на $\Real$ (иными словами, минимальная $\sigma$-алгебра, содержащая все открытые интервалы). 
+    Элемент $B \in \Borel$~--- \textit{борелевское множество}.
+\end{defn}
+
+\begin{defn}
+    \hypertarget{borel}{}
+    \textit{Борелевская функция}~--- функция $f\colon \Real \mapsto \Real$:
+    \begin{equation*}
+        \forall B \in \Borel \quad f^{-1}(B) \in \Borel.
+    \end{equation*}
+    
+    Т.е. борелевская функция~--- это функция, для которой прообраз (множество $f^{-1}(B) = \{x \colon f(x) \in B\}$) любого борелевского множества также является борелевским множеством.
+\end{defn}
+
+\begin{exmp}
+    Функция Дирихле $D\colon \Real \to \{0,1\}$
+    \begin{equation*}
+        D(x) =
+        \begin{cases}
+            1, & x \in \Rational ; \\
+            0, & x \in \Real \setminus \Rational ,
+        \end{cases}
+    \end{equation*}
+является борелевской. 
+
+В самом деле, прообразом любого борелевского множества ${A, \text{ такого что } 1 \in A, \, 0 \notin A}$ является множество рациональных чисел; 
+прообразом борелевского множества ${B \colon 0 \in B, \, 1 \notin B}$~--- множество иррациональных чисел; 
+прооборазом борелевского множества ${C \colon 0 \in C, \, 1 \in C}$~--- вся вещественная прямая, 
+наконец, прообразом борелевского множества ${E \colon 0 \notin E, \, 1 \notin E}$~--- пустое множество. 
+Но $\Rational, \, \Irrational, \, \Real, \, \varnothing $~--- борелевские множества, а значит, выполняется определение борелевской функции.
+\end{exmp}
+
+
+\begin{defn}
+    Пусть $\SigAlg$~--- $\sigma$-алгебра на некотором непустом множестве $\Omega$.
+    Функция $\xi$: $\Omega \mapsto \Real$ называется \textit{измеримой относительно $\sigma$-алгебры $\SigAlg$}, если полный прообраз борелевского множества $B$ лежит в $\SigAlg$, т.е. 
+    \begin{equation*}
+        \xi^{-1}(B) = \{\omega \colon \xi(\omega) \in B \} \in \SigAlg \quad \forall B \in \Borel.
+    \end{equation*}
+\end{defn}
+
+\begin{rmrk}
+    %Борелевская функция~--- это функция, измеримая относительно борелевской ${\sigma \text{-алгебры}}$.
+    Если в определении измеримой функции положить $\Omega = \Real$ и выбрать борелевскую $\sigma$-алгебру $\Borel$, то мы получим в точности определение борелевской функции. 
+    Т.е. борелевские функции~--- это подмножество измеримых функций.
+\end{rmrk}
+
+\subsubsection{Случайные величины}
+\begin{defn}
+    Пара $(X,\, \mathcal{U})$, где $X$~-- произвольное множество, а \\ $\mathcal{U}$~-- $\sigma$-алгебра над ним~--- \textit{измеримое пространство}. 
+    Например, $(\Omega, \SigAlg)$ и $(\Real, \Borel)$~--- измеримые пространства. 
+    Элементы $\sigma$-алгебры $\mathcal{U}$ называются \textit{измеримыми множествами}.
+\end{defn}
+
+\begin{defn}
+    Пусть даны измеримые пространства $(\Omega, \SigAlg)$ и $(\Real, \Borel)$. 
+    Тогда измеримая относительно $\SigAlg$ функция $\xi \colon \Omega \to \Real$ называется \textit{случайной величиной}.
+\end{defn}
+\begin{rmrk}
+    Если мы вспомним, что элементы $\sigma$-алгебры $\SigAlg$ называются событиями, то определение можно переформулировать следующим образом: 
+    
+    Пусть даны измеримые пространства $(\Omega, \SigAlg)$ и $(\Real, \Borel)$. 
+    Функция $\xi \colon \Omega \mapsto \Real$ называется \textit{случайной величиной}, если прообраз любого борелевского множества $B \in \Borel$ является событием.
+\end{rmrk}
+\begin{exmp} Пусть дана функция $\xi$:
+\begin{equation*}
+    \xi(\omega) = 
+    \begin{cases}
+        1, & \omega \in \left[0, \frac{1}{2}\right]; \\
+        0, & \omega \in \left(\frac{1}{2}, 1\right],
+    \end{cases}
+\end{equation*}
+
+$\Omega = [0, 1], \SigAlg = \{\varnothing, \Omega\}$~--- минимальная ${\sigma \text{-алгебра}}$.  
+
+Докажем неизмеримость функции $\xi$; для этого достаточно найти такое борелевское множество, прообраз которого не будет принадлежать ${\sigma \text{-алгебре}}$. 
+В данном случае $\SigAlg$ состоит всего лишь из двух множеств~--- $\{[0, 1], \varnothing\}$.
+
+Как и в примере с функцией Дирихле, попробуем перебрать борелевские множества, содержащие значения $\xi(\omega)$. 
+Тогда мы увидим, что для любого борелевского множества $A \colon 0 \in A, \, 1 \notin A$~--- например, множества ${A_1 = \left(-\infty, \frac{1}{3}\right)}$~--- его прообразом является множество $\left(\frac{1}{2}, 1\right]$. 
+Но это множество не входит в $\SigAlg$, а значит, $\xi(\omega)$ неизмерима относительно $\SigAlg$.
+
+Отсюда можно сделать несколько выводов. Во-первых, измеримость функции зависит от выбора ${\sigma \text{-алгебры}}$ (как и было подчёркнуто в определении). 
+Например, если мы рассмотрим ту же функцию $\xi(\omega)$ на том же $\Omega = [0, 1]$, 
+но с другой $\sigma$-алгеброй ${\widehat{\SigAlg} = \{[0, 1], \left[0; \frac{1}{2}\right], \left(\frac{1}{2}, 1\right], \varnothing\}}$, то наша функция будет измеримой, а следовательно~--- случайной величиной (проверьте!).
+
+Во-вторых (забегая немного вперёд), именно из-за неизмеримости $\xi(\omega)$ относительно $\SigAlg$ мы не можем посчитать вероятность попадания значений этой функции в некоторые интервалы, к примеру, $\MyPr\left({\xi < \frac{1}{3}}\right)$. 
+Ведь $\MyPr\left(\xi < \frac{1}{3} \right) = \MyPr\left(\xi \in A_1\right) = \MyPr\left(\omega \in \left(\frac{1}{2}, 1\right] \right)$, но множество $\left(\frac{1}{2}, 1\right] \notin \SigAlg$, 
+а вероятность~--- это отображение $\MyPr: \SigAlg \mapsto \Real$, и она не определена для этого множества.
+\end{exmp} 
+
+\begin{thm*}
+    Пусть $\xi$~--- случайная величина, $g: \Real \to \Real$~--- борелевская функция. 
+    Тогда $g(\xi)$~--- случайная величина.
+\end{thm*}
+
+\begin{proof}
+    Напомним, что функция является случайной величиной, если прообраз любого борелевского множества принадлежит $\sigma$-алгебре, то есть
+    \begin{equation*}
+        \xi^{-1}(B) = \{\omega \colon \xi(\omega) \in B \} \in \SigAlg \qquad \forall B \in \Borel.
+    \end{equation*}
+    Рассмотрим прообраз произвольного борелевского множества для $\eta = g(\xi)$:
+    \begin{equation*}
+        \eta^{-1}(B) = \{\omega \colon g(\xi(\omega)) \in B) \} = \{\omega \colon \xi(\omega) \in g^{-1}(B)\}.
+    \end{equation*}
+    Функция $g$ по предположению борелевская, следовательно, прообраз борелевского множества тоже будет борелевским: $g^{-1}(B) = C \in \Borel$. 
+    В свою очередь, $\xi$~--- случайная величина, и прообраз борелевского множества $C$ лежит в $\sigma$-алгебре $\SigAlg$. 
+    Таким образом, 
+    \begin{equation*}
+        \eta^{-1}(B) = \{\omega \colon g(\xi(\omega)) \in B) \} = \{\omega \colon \xi(\omega) \in C) \} \in \SigAlg.
+    \end{equation*}
+    Мы получили, что прообораз произвольного борелевского множества принадлежит $\sigma$-алгебре. 
+    Значит, $\eta = g(\xi)$~--- случайная величина.
+\end{proof}
+
+\begin{thm*}
+    Пусть $\mathcal{E}$~--- класс подмножеств $\Real$, $\sigma(\mathcal{E}) = \Borel$ (например, $\mathcal{E}$~--- класс интервалов).
+
+    Тогда $\xi$~--- случайная величина\ \ $\iff$\ \ $\forall E \in \mathcal{E}\colon ~\xi^{-1}(E) \in \SigAlg$.
+\end{thm*}
+
+\begin{proof}
+    \begin{compactlist}
+        \item[$\impliedby$] Пусть $\mathcal{D} = \{D \colon D \in \Borel, \, \xi^{-1}(D) \in \SigAlg \}$. Тогда $\mathcal{E} \subseteq \mathcal{D}$. Далее, в силу свойств прообразов\footnote{Свойства нетрудно проверить исходя из определения прообраза: ${\xi^{-1}(B) = \{\omega \in \Omega \colon \xi(\omega) \in B\}}$.} и случайной величины $\xi$:
+    \begin{gather*}
+        \xi^{-1}\left(\bigcup\limits_i A_i\right) 
+        = \bigcup\limits_i \xi^{-1}(A_i), \quad
+        \xi^{-1}(\overline{A}) 
+        = \overline{\xi^{-1}(A)}, \\
+        \xi^{-1}\left(\bigcap\limits_i A_i\right) = \bigcap\limits_i \xi^{-1}(A_i) \quad \forall A_i \in \mathcal{D}.
+    \end{gather*}
+    % что за A_i??
+    % Ответ: A_i – это произвольные множества, принадлежащие классу D.
+    Следовательно, $\mathcal{D}$~--- ${\sigma \text{-алгебра}}$. $\Borel = \sigma(\mathcal{E}) \subseteq \sigma(\mathcal{D}) = \mathcal{D} \subseteq \Borel \implies \\ \implies \Borel = \mathcal{D}.$
+    
+    \item[$\implies$] Следует непосредственно из определения случайной величины, т.к. ${\mathcal{E} \subseteq \Borel}$.
+    \end{compactlist}
+\end{proof}
+
+\begin{crlr}
+    $\xi$~--- случайная величина $\iff$ $\forall x \in \Real \colon \{\omega \colon \xi(\omega) < x \} \in \SigAlg$. 
+    Причем вместо знака $<$ может стоять любой другой знак неравенства, как строгого, так и нестрогого.
+\end{crlr}
+
+\subsubsection{Порождённое и индуцированное вероятностные пространства}
+\begin{defn}
+    $\sigma\text{-алгебра}$, порожденная случайной величиной $\xi$:
+    \begin{equation*}
+        \SigAlg_\xi = \{\xi^{-1}(B), \, B \in \Borel \}.
+    \end{equation*}
+\end{defn}
+
+Отметим следующие факты:
+\begin{enumerate}
+    \item $\SigAlg_\xi \subset \SigAlg$;
+    \item $\SigAlg_\xi$~--- ${\sigma \text{-алгебра}}$. Действительно:
+    \begin{equation*}
+        \xi^{-1}(\overline{B}) = \overline{\xi^{-1}(B)}, \quad
+        \xi^{-1}\left(\, \bigcup\limits_{i=1}^{\infty}B_i \right) = \bigcup\limits_{i=1}^\infty \xi^{-1}(B_i),
+    \end{equation*}
+   если $B_i$ попарно не пересекаются.
+\end{enumerate}
+
+\begin{defn}
+    Вероятностное пространство $(\Omega,\SigAlg_\xi,\MyPr)$ называется \textit{порожденным случайной величиной $\xi$}.
+\end{defn}
+
+\begin{defn}
+    \textit{Распределение случайной величины} $\xi$~--- функция ${P_\xi: \Borel \mapsto \Real}$:
+    \begin{equation*}
+        P_\xi(B) = \MyPr(\xi^{-1}(B)) = \MyPr(\xi \in B)
+    \end{equation*}
+\end{defn}
+
+\begin{rmrk}
+    Распределение~--- это композиция отображений. Если ${\xi\colon \Omega \mapsto \Real}$, то полный прообраз~--- это отображение ${\xi^{-1}\colon \Borel \mapsto \SigAlg}$. В свою очередь, ${\MyPr\colon \SigAlg \mapsto \Real}$. Тогда
+    \begin{equation*}
+        P_{\xi} = \MyPr \circ \xi^{-1}, \quad P_{\xi}\colon \Borel \mapsto \Real.
+    \end{equation*}
+\end{rmrk}
+
+\hypertarget{induced_prob_space}{}
+\begin{defn}
+    Вероятностное пространство $(\Real, \Borel, P_\xi)$ называется \textit{индуцированным случайной величиной $\xi$}. 
+        \footnote{Нетрудно убедиться в том, что тройки $\left(\Omega, \SigAlg_{\xi}, \MyPr\right)$ и $\left(\Real, \Borel, P_{\xi}\right)$ удовлетворяют \hyperlink{prob_space}{определению вероятностного пространства}.}
+\end{defn}
+
+\subsubsection{Функция распределения, её свойства}
+\begin{defn}
+    \textit{Функция распределения} $F_\xi (x)$ случайной величины $\xi$~--- функция $F_\xi \colon \Real \mapsto \Real$:
+    \begin{equation*}
+        F_{\xi}(x) = P_{\xi}\left((-\infty, x)\right) = \MyPr(\xi<x)
+    \end{equation*}
+\end{defn}
+
+\begin{thm*}
+    $F_\xi(x)$ однозначно определяет $P_\xi(B)$.
+\end{thm*}
+\begin{proof}
+    Действительно, любое борелевское множество может быть представлено в виде разности числовой оси, одной или двух полупрямых и не более чем счётного объединения отрезков. 
+    В силу однозначности определения $P_\xi([a;b]) = F_\xi(b + 0) - F_\xi(a)$ утверждение теоремы справедливо.
+\end{proof}
+
+\begin{namedthm}[Свойства функции распределения]\leavevmode
+\begin{enumerate}
+    \item $\forall x \quad 0 \leqslant F_\xi(x) \leqslant 1$;
+    \item $x_1 < x_2 \implies F_\xi(x_1) \leqslant F_\xi(x_2) \quad \forall x_1, x_2$ (монотонно неубывает);
+    \item $\lim\limits_{x \to +\infty} F_\xi(x) = 1, \lim\limits_{x \to -\infty} F_\xi(x) = 0$;
+    \item $F_\xi(x_0 - 0) = \lim\limits_{x \to x_0 - 0}F_\xi(x) = F_\xi(x_0)$ (непрерывна слева).
+\end{enumerate}
+\end{namedthm}
+
+\begin{proof}
+\begin{enumerate}
+    \item 
+        Следует из свойств вероятности.
+    \item 
+        $x_1 < x_2 \implies \{\xi < x_1 \} \subseteq \{\xi < x_2\}$. Из монотонности вероятности следует:
+        \begin{equation*}
+            F_\xi(x_1) = \MyPr(\xi < x_1) \leqslant \MyPr(\xi < x_2) = F_\xi(x_2).
+        \end{equation*}
+    \item 
+        Пределы существуют в силу монотонности и ограниченности $F_\xi(x)$. 
+        Докажем, что $F_\xi(-n) \xrightarrow[n \to +\infty]{} 0$.
+        
+        Рассмотрим последовательность вложенных событий 
+        $B_n = \{\xi < -n \}$, 
+        $B_{n+1} = \{\xi < -(n+1) \} \subseteq B_n = \{\xi < -n \} ~ \forall n ~ \geqslant 1$:
+        \begin{equation*}
+            \bigcap\limits_{j = 1}^{\infty}B_j = \{\omega \colon \xi(\omega) < x, \forall x \in \Real \} \implies \bigcap\limits_{j = 1}^{\infty}B_j = \varnothing.
+        \end{equation*}
+    
+        $F_\xi(-n) = \MyPr(B_n) \xrightarrow[n \to +\infty]{} \MyPr(B) = 0$ (в силу непрерывности вероятностной меры). Отсюда следует: 
+        
+        \begin{equation*}
+            F_\xi(n) \xrightarrow[n \to +\infty]{} 1 \iff 1 - F_\xi(n) = \MyPr(\xi \geqslant n) \xrightarrow[n \to +\infty]{} 0.
+        \end{equation*}
+        
+    \item
+        Достаточно показать, что $F_\xi(x_0 - 1/n) \xrightarrow[n \to +\infty]{} F_\xi(x_0)$. 
+        Это равносильно 
+        \begin{multline*}
+            F_\xi(x_0) - F_\xi \left(x_0 - \frac{1}{n} \right) 
+            = \MyPr(\xi < x_0) - \MyPr\left( \xi < x_0 - \frac{1}{n} \right) = \\ 
+            = \MyPr\left( x_0 - \frac{1}{n} \leqslant \xi < x_0 \right) \xrightarrow[n \to +\infty]{} 0.
+        \end{multline*}
+        Рассмотрим последовательность множеств $B_n = \{ x_0 - \frac{1}{n} \leqslant \xi < x_0 \} $. 
+        ${B_1 \supset B_2 \supset \ldots \supset B_n \supset \ldots}$; 
+        $\bigcap\limits_{k=1}^{n}B_k = B_n$;
+        $\bigcap\limits_{k=1}^{\infty}B_k = \varnothing$.
+        В силу непрерывности вероятностной меры 
+        $\lim\limits_{n \to \infty} \MyPr(B_n) = 
+        \lim\limits_{n \to \infty} \MyPr\left( \bigcap\limits_{k=1}^{n}B_k \right) = 
+        \MyPr(\varnothing) = 0$.
+\end{enumerate}
+\end{proof}
+
+\begin{task}
+Пусть есть не более чем счётное множество элементарных исходов $\Omega$. 
+Рассмотрим функции ${f(\omega) \colon \Omega \mapsto \Real}$.
+
+Какая функция всегда измерима (т.е. измерима относительно любой ${\sigma \text{-алгебры}}$)? 
+% Константа
+Относительно какой ${\sigma \text{-алгебры}}$ измерима любая функция ${f(\omega) \colon \Omega \mapsto \Real}$?
+% Полной сигма-алгебры (2 ^ Omega)
+\end{task}

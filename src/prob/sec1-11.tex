@@ -1,0 +1,96 @@
+\section{Неравенства Маркова, Чебышёва и Гаусса. Правило «трех сигм». Закон больших чисел в форме Чебышёва}
+\begin{namedthm}[Неравенство Маркова]
+    Если $\Exp |\xi| < \infty$, то для любого $x > 0$
+    \begin{equation*}
+        \MyPr\bigl( |\xi| \geqslant x \bigr) \leqslant \frac{\Exp |\xi|}{x}.
+    \end{equation*}
+\end{namedthm}
+
+\begin{proof} $\Ind(A) \sim \Bernoulli_{p},~ p = \MyPr(\Ind(A) = 1) = \MyPr(A) = \Exp \,\Ind(A)$.
+    
+    Индикаторы прямого и противоположного событий связаны равенством $\Ind(A) + \Ind(\overline{A}) = 1$, поэтому
+    \begin{equation*}
+        |\xi|=|\xi| \cdot \Ind\bigl(|\xi|<x\bigr) + |\xi| \cdot \Ind\bigl(|\xi| \geqslant x \bigr) \geqslant
+        |\xi| \cdot \Ind\bigl( |\xi| \geqslant x \bigr) \geqslant 
+        x \cdot \Ind\bigl(|\xi| \geqslant x \bigr).
+    \end{equation*}
+    
+    Тогда $\Exp |\xi| \geqslant \Exp \bigl(x \cdot \Ind(|\xi| \geqslant x) \bigr) = x \cdot \MyPr \bigl( |\xi| \geqslant x \bigr)$. 
+    Осталось разделить обе части этого неравенства на положительное число $x$.
+\end{proof}
+
+\begin{namedthm}[Неравенство Чебышёва]
+    Если $\Var\xi$ существует, то для любого $\varepsilon > 0$
+    \begin{equation*}
+        \MyPr(|\xi-\Exp \xi| \geqslant \varepsilon) \leqslant \frac{\Var \xi}{\varepsilon^{2}}.
+    \end{equation*}
+\end{namedthm}
+
+\begin{proof}
+    Для $\varepsilon > 0$ неравенство $|\xi - \Exp \xi| \geqslant \varepsilon \iff (\xi - \Exp \xi)^2 \geqslant \varepsilon^2$, поэтому $\MyPr(|\xi-\Exp \xi| \geqslant \varepsilon) = 
+        \MyPr\left((\xi-\Exp \xi)^{2} \geqslant \varepsilon^{2}\right) \leqslant 
+        \cfrac{\Exp (\xi-\Exp \xi)^{2}}{\varepsilon^{2}} =
+        \cfrac{\Var \xi}{\varepsilon^{2}}$.
+\end{proof}
+
+\begin{defn}
+    В неравенстве Чебышёва в качестве $\varepsilon$ можно брать любое положительное число. 
+    Если взять в качестве $\varepsilon$ величину $3\sigma$, где $\sigma$~--- стандартное отклонение, то получим
+    \begin{equation*}
+        \MyPr\bigl( |\xi-\Exp \xi|> 3 \sigma \bigr) \leqslant 
+        \frac{\Var \xi}{9 \sigma^2} = 
+        \frac{\Var \xi}{9 \, \Var \xi} =
+        \frac{1}{9} \iff 
+        \MyPr\bigl( |\xi-\Exp \xi| \leqslant 3 \sigma \bigr) \geqslant 
+        1-\frac{1}{9} = 
+        \frac{8}{9}.
+    \end{equation*}
+    Это соотношение называется \textit{правилом трёх сигм}.
+\end{defn}
+
+\begin{namedthm}[Неравенство Гаусса]
+    Пусть $X$~--- одномодальная случайная величина с модой $m$, $a^2$~--- математическое ожидание $(X - m)^2.$ Тогда
+    \begin{equation*}
+        \MyPr(|X-m|>k) \leq
+        \begin{cases}
+            \left(\cfrac{2 a}{3 k}\right)^{2}, & \text{если $k \geqslant \cfrac{2 a}{\sqrt{3}}$;} \\
+            1 - \cfrac{k}{a \sqrt{3}}, & \text{если $0 \leqslant k \leqslant \cfrac{2 a}{\sqrt{3}}$.}
+        \end{cases}
+    \end{equation*}
+\end{namedthm}
+
+\begin{defn}
+    Говорят, что последовательность случайных величин $\xi_1, \xi_2, \ldots$ с конечными первыми моментами \textit{удовлетворяет закону больших чисел}, если
+    \begin{equation*}
+        \frac{\biggl( \xi_{1}+\ldots+\xi_{n} \biggr) - \biggl(\Exp \xi_{1}+\ldots+\Exp \xi_{n} \biggr)}{n} \xrightarrow[n \to +\infty]{\text{P}} 0 %\: \text {при} \: n \to +\infty.
+    \end{equation*}
+\end{defn}
+\begin{namedthm}[Закон больших чисел в форме Чебышёва]
+    Для любой последовательности $\xi_1, \xi_2, \ldots$ попарно независимых и одинаково распределённых случайных величин с конечным вторым моментом $\Exp \xi_1^2 < \infty$ имеет место сходимость
+    \begin{equation*}
+        \frac{\xi_{1}+\ldots+\xi_{n}}{n} \xrightarrow[]{\text{p}} \Exp \xi_{1}.
+    \end{equation*}
+\end{namedthm}
+
+\begin{proof}
+    Обозначим через $S_n = \xi_1 + \ldots + \xi_n$ сумму первых $n$ случайных величин. Из линейности матожидания получим
+    \begin{equation*}
+        \Exp \left(\frac{S_{n}}{n}\right)=\frac{\Exp \xi_{1}+\ldots+\Exp \xi_{n}}{n}=\frac{n \Exp \xi_{1}}{n}=\Exp \xi_{1}.
+    \end{equation*}
+    
+    Пусть $\varepsilon > 0.$ Воспользуемся неравенством Чебышёва:
+    \begin{multline*}
+        \MyPr\left(\left|\frac{S_{n}}{n}-\Exp \left(\frac{S_{n}}{n}\right)\right| \geqslant \varepsilon\right) \leqslant \frac{\Var\left(\frac{S_{n}}{n}\right)}{\varepsilon^{2}}
+        = \frac{\Var S_{n}}{n^{2} \varepsilon^{2}}
+        = \frac{\Var \xi_{1}+\ldots+\Var \xi_{n}}{n^{2} \varepsilon^{2}}= \\
+        = \frac{n \Var \xi_{1}}{n^{2} \varepsilon^{2}}
+        = \frac{\Var \xi_{1}}{n \varepsilon^{2}} \xrightarrow[n \to +\infty]{} 0,
+    \end{multline*}
+    так как $\Var\xi_1 < \infty$. Дисперсия суммы превратилась в сумму дисперсий в силу попарной независимости слагаемых, из-за которой все ковариации $\operatorname{cov}(\xi_i, \xi_j)$ по свойству ковариации обратились в нуль при $i \neq j$.
+\end{proof}
+
+\begin{rmrk}
+    Условие попарной независимости является избыточным~--- достаточно равенства нулю ковариций, т.е. некоррелированности случайных величин.
+    Интересно, что даже это условие можно ослабить и потребовать только неотрицательности ковариаций.
+    Доказательство этого факта оставим читателю в качестве упражнения.
+\end{rmrk}

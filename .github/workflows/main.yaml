@@ -1,0 +1,41 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**.tex'
+      - '**.bib'
+      - '**.yaml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Git repository
+      uses: actions/checkout@v1
+    - name: Compile LaTeX document
+      uses: xu-cheng/latex-action@master
+      with:
+        root_file: main.tex
+    - name: Check pdf file
+      run: |
+        file main.pdf | grep -q ' PDF '
+    - name: Upload
+      run: |
+        set -e
+        # configure git
+        git config --global user.name "user"
+        git config --global user.email "email"
+        # Copy and commit the PDF file
+        mkdir -p "$GITHUB_WORKSPACE/deploy"
+        cp -f main.pdf "$GITHUB_WORKSPACE/deploy/main.pdf"
+        cd "$GITHUB_WORKSPACE/deploy"
+        git init
+        git checkout --orphan gh-pages
+        git add main.pdf
+        git commit -m "[github actions] deploy"
+        git remote add origin https://MandaloreUltimate:$PASS@github.com/MandaloreUltimate/stat-book.git
+        git push --force --set-upstream origin gh-pages
+      env:
+        PASS: ${{ secrets.PASS }}
+        EMAIL: ${{ secrets.EMAIL }} 

@@ -1,0 +1,128 @@
+\section{Испытания Бернулли. Геометрическое распределение. Теорема Реньи. Показательное распределение}
+Рассмотрим бесконечную схему экспериментов Бернулли с вероятностью успеха $p$, неудачи~--- $q = 1 - p$. 
+Вероятность того, что первый успех произойдёт в испытании с номером $k \in \Natural$, очевидно, равна $\MyPr(\tau = k) = pq^{k-1}$.
+Действительно, это событие равносильно тому, что $\xi_1 = \xi_2 = \ldots = \xi_{k-1} = 0,\: \xi_k = 1$. 
+В силу независимости~$\xi_i$
+\begin{multline*}
+    \MyPr(\xi_1 = 0,\, \xi_2 = 0, \ldots, \xi_{k-1} = 0,\, \xi_k = 1) = \\
+    \MyPr(\xi_1 = 0) \cdot \MyPr(\xi_2 = 0) \cdot \ldots \cdot \MyPr(\xi_{k-1} = 0) \cdot \MyPr(\xi_k = 1) =
+    q^{k-1}p.
+\end{multline*}
+
+\begin{defn}
+    Набор вероятностей $\{p q^{k-1}\}$, где $k$ принимает любые значения из множества натуральных чисел, называется \textit{геометрическим распределением} вероятностей ($\Geom_{p}$).
+\end{defn}
+
+Аналогично можно ввести геометрическое распределение как <<число неудач до первого успеха>>. 
+Тогда $k$ будет принимать значения из множества $\{0, 1, 2, \ldots\}$, и $\MyPr(\tau^{\prime} = k) = pq^k$.
+
+\subsubsection{Числовые характеристики $\Geom_{p}$}
+\begin{enumerate}
+    \item Математическое ожидание:
+    \begin{multline*}
+        \Exp \xi=\sum\limits_{k=1}^{\infty} k p q^{k-1}=p \sum\limits_{k=1}^{\infty} k q^{k-1}=p \sum\limits_{k=1}^{\infty} \frac{d q^{k}}{d q} = \\
+        = p \frac{d}{d q}\left(\sum\limits_{k=1}^{\infty} q^{k}\right)=p \frac{d}{d q}\left(\frac{q}{1-q}\right)=p \frac{1}{(1-q)^{2}}=\frac{1}{p}.
+    \end{multline*}
+    \item Дисперсия:
+    \begin{multline*}
+        \Exp \xi(\xi-1)=\sum\limits_{k=1}^{\infty} k(k-1) p q^{k-1}=p q \sum\limits_{k=0}^{\infty} \frac{d^{2} q^{k}}{d q^{2}} =p q \frac{d^{2}}{d q^{2}}\left(\sum\limits_{k=0}^{\infty} q^{k}\right) = \\
+        =p q \frac{d^{2}}{d q^{2}}\left(\frac{1}{1-q}\right)=p q \frac{2}{(1-q)^{3}}=\frac{2 q}{p^{2}} \\
+        \Var \xi=\Exp \xi(\xi-1)+\Exp \xi-(\Exp \xi)^{2}=\frac{2 q}{p^{2}}+\frac{1}{p}-\frac{1}{p^{2}}=\frac{2 q-1+p}{p^{2}}=\frac{q}{p^{2}}.
+    \end{multline*}
+\end{enumerate}
+
+\begin{rmrk}
+    Если определять геометрическое распределение как количество неудач до первого успеха, его математическое ожидание изменится:
+    \begin{multline*}
+        \Exp \xi=\sum\limits^{\infty}_{\color{red}k=0} k p q^{\color{red}k}= {\color{red}q}p \sum\limits_{k=1}^{\infty} k q^{k-1}= {\color{red}q}p \sum\limits_{k=1}^{\infty} \frac{d q^{k}}{d q} = \\
+        = {\color{red}q}p \frac{d}{d q}\left(\sum\limits_{k=1}^{\infty} q^{k}\right)={\color{red}q} p \frac{d}{d q}\left(\frac{q}{1-q}\right)= {\color{red}q}p \frac{1}{(1-q)^{2}}=\frac{{\color{red}q}}{p}
+    \end{multline*}
+    Так как $q \in (0,1)$, математическое ожидание станет меньше, и это логично~--- ведь количество неудач до первого успеха всегда на единицу меньше номера первого успеха. 
+    (Используя это наблюдение, можно посчитать матожидание ещё проще~--- $\Exp (\xi - 1) = \frac{1}{p} - 1 = \frac{1-p}{p} = \frac{q}{p}$). 
+    Дисперсия же не зависит от сдвига и останется прежней.
+\end{rmrk}
+
+\begin{defn}
+    Случайная величина $\xi$ имеет \textit{показательное (экспоненциальное) распределение} с параметром $\lambda > 0$ ($\ExpDist_{\lambda}$), 
+    если $\xi$ имеет следующие плотность и функцию распределения:
+    \begin{equation*}
+        f(x) = 
+        \begin{cases}
+            0, & \text{если $x < 0$;} \\
+            \lambda e^{-\lambda x}, & \text{если $x \geqslant 0$.}
+        \end{cases}
+        \quad 
+        F(x) = 
+        \begin{cases}
+            0, & \text{если $x < 0$;} \\
+            1 - e^{-\lambda x}, & \text{если $x \geqslant 0$.}
+        \end{cases}
+    \end{equation*}
+\end{defn}
+
+\begin{rmrk}
+    Показательное распределение моделирует время между двумя последовательными свершениями одного и того же события. 
+    К примеру, пусть есть магазин, в который время от времени заходят покупатели. 
+    При определённых допущениях время между появлениями двух последовательных покупателей будет случайной величиной с экспоненциальным распределением. 
+    Среднее время ожидания нового покупателя равно $\frac{1}{\lambda}$. 
+    Сам параметр $\lambda$ тогда может быть интерпретирован как среднее число новых покупателей за единицу времени. 
+\end{rmrk}
+
+\subsubsection{Числовые характеристики $\ExpDist_{\lambda}$}
+
+Найдём для произвольного $k \in \Natural$ момент порядка $k$:
+\begin{equation*}
+    \Exp \xi^{k}=\int\limits_{-\infty}^{\infty} x^{k} f_{\xi}(x) d x=\int\limits_{0}^{\infty} x^{k} \lambda e^{-\lambda x} d x=\frac{1}{\lambda^{k}} \int\limits_{0}^{\infty}(\lambda x)^{k} e^{-\lambda x} d(\lambda x)=\frac{k !}{\lambda^{k}}
+\end{equation*}
+
+В последнем равенстве была использована формула для гамма-функции:
+\begin{equation*}
+    \Gamma(k+1)=\int\limits_{0}^{\infty} u^{k} e^{-u} d u=k !
+\end{equation*}
+\begin{enumerate}
+    \item Математическое ожидание: $\Exp \xi=\frac{1}{\lambda}$.
+    \item Дисперсия: $\Exp \xi^{2}=\frac{2}{\lambda^{2}}, ~ \Var \xi=\Exp \xi^{2}-(\Exp \xi)^{2}=\frac{1}{\lambda^{2}}$.
+\end{enumerate}
+
+Важным требованием в схеме Бернулли является однородность, т.е. постоянство параметра $p$ на протяжении всех испытаний.
+Но иногда есть желание посмотреть, например, что получится, если устремить вероятность успеха к нулю, а количество испытаний к бесконечности. В этом случае придётся прибегнуть к нетривиальной модели эксперимента.
+\begin{thm*}
+    Рассмотрим серию схем Бернулли~--- последовательность схем Бернулли с количеством испытаний $n$ и вероятностями успеха $p_n$ (т.е. в первой схеме~--- одно испытание с вероятностью успеха $p_1$, в второй~--- два испытания с вероятностью успеха $p_2$ и т.д.). В каждой схеме рассмотрим случайную величину $\tau_n \sim \Geom_{p_n}$.
+    Пусть $n p_n \xrightarrow[n \to \infty]{} \lambda > 0$.
+
+    Тогда распределение случайной величины $\frac{\tau_n}{n}$ сходится к показательному с параметром $\lambda$ при $n \to +\infty$.
+\end{thm*}
+
+\begin{proof}
+    Пусть $F_n$~--- функция распределения случайной величины $\frac{\tau_n}{n}$.
+    Тогда для $x \geqslant 0$:
+    \begin{multline*}        
+        F_{n}(x)=\MyPr\left(\frac{\tau_{n}}{n} \leqslant x\right)=
+        \MyPr\left(\tau_{n} \leqslant n x\right) = 
+        \MyPr\left(\tau_{n} \leqslant \lfloor n x\rfloor\right) = \\
+        = \sum\limits_{k = 1}^{\lfloor nx \rfloor} p_n q_n^{k-1} = 
+        p_n \, \frac{1 - q_n^{\lfloor nx \rfloor + 1}} {1-q_n} = 
+        1-\left(1-p_{n}\right)^{\lfloor nx \rfloor + 1}
+    \end{multline*}
+    
+    Далее, т.к. $\left(1-p_{n}\right)^{n}=\left(1-\frac{n p_{n}}{n}\right)^{n} \xrightarrow[n \to +\infty]{} e^{-\lambda}$, 
+    то $(1 - p_n)^{nx} \xrightarrow[n \to +\infty]{} e^{-\lambda x}.$ 
+    По определению, $\lfloor n x\rfloor \leqslant n x<\lfloor n x\rfloor\,+\,1$, 
+    или, что эквивалентно, $nx < \lfloor nx \rfloor \leqslant nx\,+\,1$. 
+    Таким образом верно $(1 - p_n)^{\lfloor nx \rfloor + 1} \xrightarrow[n \to +\infty]{} e^{-\lambda x}$. 
+    Следовательно, $F_n(x) \xrightarrow[n \to +\infty]{} 1 - e^{-\lambda x}$, что есть функция показательного распределения. 
+\end{proof}
+
+\input{src/figs/fig4}
+
+\begin{namedthm}[Теорема Реньи]
+Пусть даны случайная величина $N \sim \Geom_{p}$, $\xi_1, \xi_2, \ldots$~--- независимые одинаково распределённые случайные величины, 
+$\xi_i \geqslant 0$ и $0 < a = \Exp \xi_i < \infty$, $S_n = \sum\limits_{i=1}^N \xi_i$. Тогда
+\begin{equation*}
+    \sup\limits_{x}\left|\MyPr\left(\frac{p}{a} S_{N}<x\right)-G(x)\right| \underset{p \to 0}{\longrightarrow} 0,
+\end{equation*}
+
+где $G(x)=\left(1-e^{-x}\right) \Ind(x \geqslant 0)$~--- функция стандартного показательного распределения $\ExpDist_{1}$.
+
+Если $b^2 = \Exp \xi_i^2$, то $\sup\limits_{x}\left|\MyPr\left(\frac{p}{a} S_{N}<x\right)-G(x)\right| \leqslant \frac{p b^{2}}{(1-p) a^{2}}$.
+\end{namedthm}

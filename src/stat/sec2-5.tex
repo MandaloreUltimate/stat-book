@@ -1,0 +1,157 @@
+\section{Неравенство Рао"--~Крамера. Эффективные оценки}
+Пусть $X_1, \ldots, X_n$  —  некоторая выборка с функцией правдоподобия $L(\mathbf{X}, \theta)$ относительно некоторой меры $\mu$. Введём функцию ${\varphi(\theta)=\int\limits_{\mathbf{R}^{n}} T(x) L(\mathbf{x}, \theta) \mu(d x)<\infty}$, в дальнейшем считая, что она дифференцируема необходимое число раз.
+
+\begin{defn}
+    Функция правдоподобия $L(\SampleX, \theta)$ \textit{удовлетворяет условиям регулярности для $m$-й производной}, если существует
+    \begin{equation*}
+        \cfrac{d^{m} \varphi(\theta)}{d \theta^{m}}=\int\limits_{\Real^{n}} T(x) \cfrac{\partial^{m}}{\partial \theta^{m}}L(\mathbf{x}, \theta) \mu(d x),
+    \end{equation*}
+    причём множество $\left\{ {x\colon L(\mathbf{x},\theta) > 0} \right\}$ не зависит от параметра $\theta$.
+\end{defn}
+
+\begin{exmp}
+    Условиям регулярности удовлетворяют многие модели: биномиальная, пуассоновская, нормальная, гамма-распределение (а следовательно, и экспоненциальная, и $\chi^2$) и т.д.
+    Требование независимости множества значений исследуемой случайной величины от параметра $\theta$ существенно: например, равномерное распределение $\Uniform_{[0, \theta]}$ относится к нерегулярным моделям.
+    Это происходит из-за того, что при дифференцировании интеграла, пределы интегрирования которого зависят от параметра, появляются дополнительные слагаемые. 
+    Т.е. менять местами интегрирование и дифференцирование нельзя, и к нерегулярным моделям изложенная ниже теория неприменима.
+\end{exmp}
+
+\begin{defn}
+    Функция $U(\SampleX, \theta) = \cfrac{\partial \ln L(\SampleX, \theta)}{\partial \theta}$ называется \textit{функцией вклада}.
+\end{defn}
+\textbf{Утверждение.} 
+    Если функция правдоподобия удовлетворяет условиям регулярности для первой производной, то $\ExpTh U(\SampleX, \theta) = 0$. 
+    В самом деле,
+    \begin{multline*}
+        \ExpTh U(\SampleX, \theta) = \int\limits_{\Real^n} U(x, \theta) L(\mathbf{x}, \theta) \mu(dx) = 
+        \int\limits_{\Real^n} \cfrac{\partial \ln L(\mathbf{x}, \theta)}{\partial \theta} L(\mathbf{x}, \theta) \mu(dx) = \\
+        \int\limits_{\Real^n} \cfrac{1}{L(\mathbf{x}, \theta)} \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta} L(\mathbf{x}, \theta) \mu(dx) = 
+        \int\limits_{\Real^n} \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta} \mu(dx) = \{\text{регулярность}\}\\
+        = \cfrac{\partial}{\partial \theta} \int\limits_{\Real^n} L(\mathbf{x}, \theta) \mu(dx) 
+        = \cfrac{\partial}{\partial \theta} ~ 1 = 0.
+    \end{multline*}
+Из этого, в частности, вытекает, что для регулярных моделей ${\VarTh U(\SampleX, \theta) = \ExpTh U^2(\SampleX, \theta)}$.
+
+\vspace{5mm}
+Посчитаем дисперсию функции вклада:
+\begin{multline*}
+    \VarTh U(\SampleX, \theta) = 
+    \VarTh \cfrac{\partial \ln L(\SampleX, \theta)}{\partial \theta} = 
+    \VarTh \cfrac{\partial \ln\prod\limits_{i = 1}^n { f_{\theta}(X_i)} }{\partial \theta}  = \\
+    \VarTh \cfrac{\partial \sum\limits_{i = 1}^n {\ln f_{\theta}(X_i)} }{\partial \theta}  = 
+    \VarTh \sum\limits_{i = 1}^n \cfrac{\partial {\ln f_{\theta}(X_i)} }{\partial \theta}  =
+    \{\text{независимость выборки}\} = \\
+    \sum\limits_{i = 1}^n \VarTh \cfrac{\partial {\ln f_{\theta}(X_i)} }{\partial \theta}  = 
+    \{\text{однородность выборки}\} = \\
+    n \,\VarTh \cfrac{\partial {\ln \,f_{\theta}(X_1)} }{\partial \theta}  = 
+    n \,\VarTh U(X_1, \theta) = n \, i_1(\theta).
+\end{multline*}
+Здесь за $i_1(\theta)$ обозначена дисперсия функции вклада от выборки из одного элемента.
+\hypertarget{fisher}{}
+\begin{defn}
+    Пусть $\SampleX= \Sample$~--- выборка объёма $n$.
+    Величину $i_n(\theta) = \VarTh U(\SampleX, \theta)$ называют \textit{фишеровской информацией, содержащейся в выборке размера $n$}.
+\end{defn}
+
+\begin{namedthm}[Неравенство Рао"--~Крамера]
+    Пусть $\Sample$ — выборка, $L(\SampleX, \theta)$ удовлетворяет условиям регулярности для первой производной и $\tau(\theta)$  —  дифференцируемая функция $\theta$. Тогда:
+    \begin{enumerate}
+        \item Для любой $~T(\SampleX)$~--- несмещённой оценки $\tau(\theta)$, справедливо неравенство:
+        \begin{gather*}
+            \VarTh T(\SampleX) \geqslant 
+            \cfrac{\bigl( \tau'(\theta) \bigr)^2}{n \, i_1(\theta)} = 
+            \cfrac{\bigl( \tau'(\theta) \bigr)^2}{\VarTh U(\SampleX, \theta)}
+            \quad \AllTh
+        \end{gather*}
+        
+        \item Равенство достигается $\iff \; \exists a_n(\theta)\colon ~ T(\SampleX)-\tau(\theta)=a_{n}(\theta) \cdot U(\SampleX, \theta)$
+    \end{enumerate}
+\end{namedthm}
+
+\begin{proof}
+    Из условий регулярности $L(\SampleX, \theta)$ для следует:
+    \begin{gather*}
+        \int L(\mathbf{x}, \theta) \mu(d x)=1 
+        \quad \implies \quad
+        \int \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta} \mu(d x)=0 \\
+        \int T(x) L(\mathbf{x}, \theta) \mu(d x)=\ExpTh T(\SampleX)=\tau(\theta) 
+        \quad \implies \quad
+        \int T(x) \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta} \mu(d x)=\tau'(\theta)
+    \end{gather*}
+
+    Заметим, что
+    \begin{equation*}
+        \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta}=\cfrac{\partial \ln L(\mathbf{x}, \theta)}{\partial \theta} \cdot L(\mathbf{x}, \theta)
+    \end{equation*}
+
+    Откуда следует:
+    \begin{gather*}
+        \int U(x, \theta) L(\mathbf{x}, \theta) \mu(d x) = 0 \; \iff \; \ExpTh \bigl[U(\SampleX, \theta)\bigr]=0 \\
+        \int T(x) U(x, \theta) L(\mathbf{x}, \theta) \mu(d x) = \tau'(\theta) \; \iff \; \ExpTh \bigl[ T(\SampleX) U(\SampleX, \theta) \bigr] = \tau'(\theta)
+    \end{gather*}
+
+    Вычитая из второго равенства первое, умноженного на $\tau(\theta) = \ExpTh \left[ T(\SampleX) \right]$, получаем:
+    \begin{equation*}
+        \ExpTh\left[T(\SampleX) U(\SampleX, \theta)\right] - \ExpTh\left[T(\SampleX)\right] \, \ExpTh\left[U(\SampleX, \theta)\right] = 
+        \tau'(\theta) - 0 \cdot \tau(\theta) = 
+        \tau'(\theta)
+    \end{equation*}
+
+    В левой части полученного равенства стоит ковариация случайных величин $T(\SampleX)$ и $U(\SampleX,\theta)$:
+    \begin{equation*}
+        \operatorname{cov}_{\theta}\bigl(T(\SampleX), U(\SampleX, \theta)\bigr)=\tau'(\theta)
+    \end{equation*}
+
+    Из неравенства Коши-Буняковского:
+    \begin{equation*}
+        \bigl(\tau'(\theta)\bigr)^{2}=\operatorname{cov}_{\theta}^{2} \bigl(T(\SampleX), \, U(\SampleX, \theta)\bigr) \leqslant 
+        \VarTh T(\SampleX) \,\VarTh U(\SampleX, \theta) = 
+        \VarTh T(\SampleX) \, n \, i_1(\theta),
+    \end{equation*}
+
+    что равносильно п.1 теоремы:
+    \begin{equation*}
+        \VarTh T(\SampleX) \geqslant \cfrac{\bigl(\tau'(\theta)\bigr)^{2}}{n \, i_1(\theta)}
+    \end{equation*}
+
+    Равенство достигается, если статистика и функция вклада линейно связаны (опять же, следствие неравенства Коши-Буняковского):
+    \begin{equation}
+        \label{connection_of_efficient_estimator_and_score}
+        T(\SampleX)=\varphi(\theta) U(\SampleX, \theta)+\psi(\theta) 
+        \; \implies \;
+        \tau(\theta)=\psi(\theta), \; a_{n}(\theta)=\varphi(\theta).
+    \end{equation}
+\end{proof}
+
+\iffalse
+% Определение Черновой, конфликтующее с обозначениями в нашем курсе
+    Рассмотрим некоторый класс оценок $K=\left\{\hat{\theta}\left(\SampleX\right)\right\}$ параметра $\theta$.
+    \begin{defn}
+        Говорят, что оценка $\theta^{*}\left(\SampleX\right) \in K$ является эффективной оценкой параметра $\theta$ в классе $K$, если для любой другой оценки $\hat{\theta} \in K$ имеет место неравенство:
+        \begin{equation*}
+            E\left(\theta^{*}-\theta\right)^{2} \leqslant \ExpTh(\hat{\theta}-\theta)^{2}~ \forall \theta \in \Theta
+        \end{equation*}
+    \end{defn}
+    Обозначим класс несмещённых оценок:
+    \begin{equation*}
+        K_{0}=\left\{\hat{\theta}\left(\SampleX\right): E \hat{\theta}=\theta, \forall \theta \in \Theta\right\}
+    \end{equation*}
+    Оценка, эффективная в $K_0$ называется просто \textit{эффективной}.
+
+    Для оценки $\theta^{*} \in K_{0}$ по определению дисперсии
+    \begin{equation*}
+        \ExpTh\left(\theta^{*}-\theta\right)^{2}=\ExpTh\left(\theta^{*}-\ExpTh \theta^{*}\right)^{2}=\VarTh \theta^{*}
+    \end{equation*}
+\fi
+
+Оценки, обращающие неравенство Рао"--~Крамера в равенство, выделяются в отдельный класс.
+\begin{defn}
+    \textit{Эффективная оценка} $T(\SampleX)$~--- это несмещённая оценка параметра $\theta$ (или функции $\tau(\theta)$), дисперсия которой совпадает с нижней гранью в неравенстве Рао"--~Крамера.
+\end{defn}
+
+\begin{rmrk}
+    Если существует эффективная оценка для функции $\tau(\theta)$, то ни для какой другой функции от $\theta$, кроме линейного преобразования $\tau(\theta)$, эффективной оценки существовать не будет. 
+    Это следует из \eqref{connection_of_efficient_estimator_and_score}.
+\end{rmrk}
+Так как дисперсия любой оценки в регулярной модели не может быть меньше нижней грани, определяемой неравенством Рао"--~Крамера, то каждая эффективная оценка является оптимальной.
+Обратное, в силу предыдущего замечания, неверно.

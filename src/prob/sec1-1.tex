@@ -1,0 +1,197 @@
+\section{Вероятностное пространство. Операции над событиями. Свойства вероятности}
+\begin{defn}
+	\textit{Пространство элементарных исходов} $\Omega$~--- любое непустое множество, содержащее все возможные результаты случайного эксперимента.
+	Элементы $\omega \in \Omega$~--- \textit{элементарные исходы}.
+\end{defn}
+
+\begin{defn}
+	\textit{Алгебра} $\Alg$~--- множество подмножеств $\Omega$, обладающее следующими свойствами:
+	
+	\begin{enumerate}
+		\item 
+		      $\Omega \in \Alg$;
+		\item 
+		      $A \in \Alg \implies \overline{A} \in \Alg$; \footnote{Здесь и в дальнейшем $\overline{A} \equiv \Omega \setminus A$~--- \textit{дополнение} к $A$.}
+		\item 
+		      $A, B \in \Alg \implies A \cup B \in \Alg$ 
+		      (по индукции: $A_1, A_2, \ldots, A_n \in \Alg \implies \\ \implies \bigcup\limits_{i=1}^n A_i \in \Alg$).
+	\end{enumerate}
+\end{defn}
+
+\begin{rmrk}
+	Если $A, B \in \Alg$, то $A \cap B \equiv \overline{\overline{A} \cup \overline{B}} \in \Alg$.
+\end{rmrk}
+
+\begin{defn}
+	$\sigma \textit{{-алгебра~}} \SigAlg$~--- множество подмножеств $\Omega$, обладающее следующими свойствами:
+	
+	\begin{enumerate}
+		\item 
+		      $\Omega \in \SigAlg$;
+		\item 
+		      $A \in \SigAlg \implies \overline{A} \in \SigAlg$;
+		\item 
+		      $A_1, A_2,\ldots, A_n,\ldots \in \SigAlg \implies \bigcup\limits_{i=1}^\infty A_i \in \SigAlg$.
+	\end{enumerate}
+\end{defn}
+\begin{exmp}
+	Множество всех подмножеств $2^{\Omega}$ и множество $\{\varnothing, \Omega\}$~--- $\sigma$-алгебры над $\Omega$.
+\end{exmp}
+\begin{rmrk}
+	Любая $\sigma \text{-алгебра}$ является алгеброй. 
+	Первые два пункта определений идентичны, рассмотрим третий. 
+	Для любой конечной последовательности $A_1, A_2,\ldots, A_n \in \Alg$ составим соответствующую счётную последовательность $A_1, A_2, \ldots, A_n, A_{n+1}=\varnothing, A_{n+2}=\varnothing,\ldots \in \Alg$. 
+	Пустое множество $\varnothing$ принадлежит $\sigma$-алгебре (т.к. $\varnothing = \overline{\Omega}$).
+	По определению $\sigma \text{-алгебры}$: $\bigcup\limits_{i=1}^\infty A_i \in \SigAlg \implies \bigcup\limits_{i=1}^n A_i \in \SigAlg$, следовательно, выполнен третий пункт определения алгебры.
+\end{rmrk}
+
+\begin{defn}
+	\textit{Случайное событие} $A$~--- элемент $\sigma \text{-алгебры~} \SigAlg$, т.е. некоторое подмножество элементарных исходов. 
+	$A=\varnothing$~---\textit{невозможное событие}, $A=\Omega$~--- \textit{достоверное событие}. 
+	Событие $\overline{A}$~--- \textit{противоположное} $A$, т.е. происходит тогда и только тогда, когда не происходит $A$.
+	
+	Операции над событиями:
+	
+	\begin{compactlist}
+		\item 
+		\textit{Объединение} $A \cup B$~--- происходит или $A$, или $B$, или оба вместе.
+		\item 
+		\textit{Пересечение} $A \cap B$ (или $AB$)~--- происходят и $A$ и $B$ вместе. Если $AB = \varnothing$, то события $A$ и $B$ называются \textit{несовместными}.
+		\item 
+		\textit{Разность} $A \setminus B$~--- происходит $A$ и не происходит $B$.
+		\item 
+		\textit{Симметрическая разность} $A \triangle B$~--- либо происходит $A$ и не происходит $B$, либо происходит $B$ и не происходит $A$.
+	\end{compactlist}
+\end{defn}
+
+\hypertarget{generated_sigma}{}
+\begin{defn}
+	$\sigma \text{-алгебра}$ \textit{порождена классом $K$}, если она является пересечением всех $\sigma \text{-алгебр}$, содержащих $K$, т.е. является \textit{минимальной $\sigma \text{-алгеброй}$}, содержащей $K$.
+\end{defn}
+
+\begin{exmp}
+	Пусть $K = \{A\}$, тогда $\sigma (K) = \{\varnothing, A, \overline{A}, \Omega\}$.
+\end{exmp}
+
+\begin{defn}
+	\textit{Вероятностная мера} или \textit{вероятность}~--- функция \\
+	${\MyPr\colon \SigAlg \mapsto \Real}$, обладающая следующими свойствами:
+	
+	\begin{enumerate}
+		\item 
+		      $\MyPr(A) \geqslant 0 \quad \forall A \in \SigAlg$ (\textit{неотрицательность});
+		\item 
+		      $\MyPr(\Omega) = 1$ (\textit{нормировка});
+		\item 
+		      $\forall A_1, A_2, \ldots, A_n, \ldots \in \SigAlg~ A_{i}A_{j} = \varnothing~ (i \ne j) \colon \MyPr\left( \bigcup\limits_{i=1}^\infty A_i \right) = \sum\limits_{i=1}^\infty \MyPr(A_i)$ \\
+		      (\textit{счётная аддитивность}).
+	\end{enumerate}
+\end{defn}
+
+\begin{rmrk}
+	Из счётной аддитивности, очевидно, следует и конечная аддитивность, достаточно рассмотреть последовательность событий $A_1, A_2, \ldots, A_n, A_{n+1}=\varnothing, A_{n+2}=\varnothing,\ldots \in \SigAlg$.
+\end{rmrk}
+\begin{namedthm}[Свойства вероятности]\leavevmode
+	\begin{enumerate}
+		\item 
+		      $\MyPr(\varnothing)=0$;
+		\item 
+		      $A, B \in \SigAlg, \, B \subset A \implies \MyPr(A) \geqslant \MyPr(B)$ (монотонность);
+		\item 
+		      $\MyPr(A \setminus B) = \MyPr(A) - \MyPr(AB)$;
+		\item 
+		      $\MyPr(A \cup B) = \MyPr(A) + \MyPr(B) - \MyPr(AB)$;
+		\item 
+		      $\forall A_1 \supseteq A_2 \supseteq \ldots \supseteq A_n \supseteq \ldots, \; \bigcap\limits_{n = 1}^{\infty} A_n = A \colon \lim\limits_{n \to \infty}\MyPr(A_n) = \MyPr(A)$ \\
+		      (непрерывность).
+	\end{enumerate}
+\end{namedthm}
+
+\begin{proof}\leavevmode
+	\begin{enumerate}
+		\item 
+		      Рассмотрим последовательность событий $A_{1} = \Omega, A_{2} = \varnothing, \ldots, \\ 
+		      A_{n} = \varnothing, \ldots$ \, :
+		      \begin{equation*}
+		      	\bigcup\limits_{i=1}^\infty A_i = \Omega \implies \MyPr \left(\, \bigcup\limits_{i=1}^\infty A_i \right) = \MyPr(\Omega) = 1.
+		      \end{equation*}
+		      При этом $A_{i}A_j = \varnothing~(i \ne j)$, следовательно, по пункту 3 определения вероятности: $\sum\limits_{i=2}^\infty \MyPr(\varnothing) = 0 \implies \MyPr(\varnothing) = 0$.
+		\item 
+		      $B \subset A \implies A = (A \setminus B) \cup B$. 
+		      Из неотрицательности вероятности и того, что $(A \setminus B) \cap B = \varnothing$, следует, что $\MyPr(A) = \MyPr(A \setminus B) + \MyPr(B) \geqslant \MyPr(B)$. 
+		      Кроме того, в этом случае $\MyPr(A \setminus B) = \MyPr(A) - \MyPr(B)$.
+		\item 
+		      Доказательство аналогично пункту 2 при представлении $A$ в виде \\
+		      $A = (A \setminus B) \cup AB$.
+		\item 
+		      Представим объединение событий $A$ и $B$ в виде $A \cup B = (A \setminus AB) \cup B$. 
+		      Очевидно, что $(A \setminus AB) \cap B = \varnothing$, откуда по пункту 3 определения вероятности следует:
+		      \begin{gather*}
+		      	\MyPr(A \cup B) = \MyPr((A \setminus AB) \cup B) = \MyPr(A \setminus AB) + \MyPr(B), \\
+		      	\MyPr(A \setminus AB) = \MyPr(A) - \MyPr(A \cap AB) = \MyPr(A) - \MyPr(AB).
+		      \end{gather*}
+		      Следовательно, $\MyPr(A \cup B) = \MyPr(A) + \MyPr(B) - \MyPr(AB)$.
+		\item 
+		      Рассмотрим множества $C_n = A_n \setminus A_{n+1}, \, n \in \Natural$. 
+		      Они несовместны (пусть $l < m$, тогда $C_m = (A_m \setminus A_{m+1}) \subset A_m \subset A_{m-1} \subset \ldots \subset A_{l+1},$ но $C_l = A_l \setminus A_{l+1} \implies C_l \cap C_m = \varnothing$). 
+		      Тогда
+		      \begin{gather*}
+		      	A_1 = \bigcup\limits_{n = 1}^{\infty} C_n \cup A, \quad \MyPr(A_1) = \MyPr\left(\, \bigcup\limits_{n = 1}^{\infty} C_n \cup A \right) = \sum\limits_{n=1}^{\infty} \MyPr(C_n) + \MyPr(A), \\
+		      	\sum\limits_{n=1}^{\infty} \MyPr(C_n) = \MyPr(A_1) - \MyPr(A).
+		      \end{gather*}
+		      Таким образом, ряд из вероятностей событий $C_n$ сходится. 
+		      Это равносильно тому, что его остаток $\sum\limits_{n=k}^{\infty} \MyPr(C_n)$ стремится к нулю при $k \to \infty$. 
+		      Но при этом
+		      \begin{equation*}
+		      	\bigcup\limits_{n = k}^{\infty} C_n \cup A = A_k, \quad \MyPr(A_k) = \MyPr\left(\, {\bigcup\limits_{n = k}^{\infty} C_n \cup A} \right) = \sum\limits_{n=k}^{\infty} \MyPr(C_n) + \MyPr(A).
+		      \end{equation*}
+		      Перейдя в последнем равенстве к пределу при $k \to \infty$, получим
+			  \begin{equation*}
+				\lim\limits_{k \to \infty} \MyPr(A_k) = \MyPr(A).
+			  \end{equation*}
+	\end{enumerate}
+\end{proof}
+
+\begin{rmrk}
+	Можно показать, что счётная аддитивность равносильна одновременному наличию конечной аддитивности и непрерывности. 
+	Иными словами, третью аксиому в определении вероятности можно заменить на пару утверждений:
+	\begin{compactlist}
+		\item 
+		      $\forall A, B, \: A \cap B = \varnothing \colon \MyPr(A \cup B) = \MyPr(A) + \MyPr(B)$ 
+		      (по индукции можно показать аддитивность для любого конечного $n$);
+		\item 
+		      $\forall A_1 \supseteq A_2 \supseteq \ldots \supseteq A_n \supseteq \ldots; \bigcap\limits_{n = 1}^{\infty} A_n = A \colon \lim\limits_{n \to \infty}\MyPr(A_n) = \MyPr(A)$.
+	\end{compactlist}
+\end{rmrk}
+
+\hypertarget{prob_space}{}
+\begin{defn}
+	\textit{Вероятностное пространство}~--- тройка $(\Omega, \SigAlg \MyPr)$, где $\Omega$~--- множество элементарных исходов, 
+	$\SigAlg$~--- $\sigma$-алгебра над $\Omega$, вероятность $\MyPr$ определена на $\SigAlg$.
+\end{defn}
+\begin{rmrk}
+	Вероятностное пространство не является пространством в функциональном смысле.
+\end{rmrk}
+
+\begin{exmp}
+	Тройка $([0, 1], \Borel_{[0, 1]}, \lambda_{[0, 1]})$, где $\lambda$~--- мера Лебега, $\Borel$~--- \hyperlink{borel}{борелевская $\sigma$-алгебра}, является вероятностным пространством. 
+	В самом деле:
+	\begin{compactlist}
+		\item $\Omega = [0, 1]$~--- непустое множество;
+		\item $\Borel_{[0, 1]}$~--- $\sigma$-алгебра над $\Omega = [0, 1]$;
+		\item $\lambda(\Omega) = \lambda\bigl( {[0, 1]} \bigr) = 1, \; \forall A \in \Borel_{[0, 1]} \; \lambda(A) \geqslant 0$ и мера счётного объединения непересекающихся множеств есть счётная сумма их мер, т.е. выполняются три аксиомы вероятности.
+	\end{compactlist}
+	В то же время тройка $([-1, 1], \Borel_{[-1, 1]}, \lambda_{[-1, 1]})$ не будет вероятностым пространством, т.к. нарушается свойство нормировки вероятностной меры: $\lambda(\Omega) = 2$, следовательно, вероятность не задана.
+\end{exmp}
+
+\begin{defn}
+	Пусть $\Omega = \{\omega_1, \omega_2, \ldots, \omega_n\}$~--- конечное непустое множество, $\SigAlg$~--- множество всех подмножеств $\Omega$. 
+	Положим $\MyPr \bigl(\{\omega_i\}\bigr) = p_i$. 
+	Вероятностное пространство, определённое таким образом,~--- \textit{дискретное вероятностное пространство}. 
+	При этом для любого события $A = \{\omega_{i_1}, \ldots, \omega_{i_k}\}$ его вероятность $\MyPr(A) = \sum\limits_{j=1}^k p_{i_j}$. 
+	Таким образом вводится \textit{классическое определение вероятности} на дискретном вероятностном пространстве:
+	\begin{equation*}
+		p_1 = p_2 = \ldots =p_n=\cfrac{1}{n}, \quad \MyPr(A) = \cfrac{k}{n},~ k=|A|,
+	\end{equation*}
+	т.е. все элементарные исходы считаются \textit{равновозможными}.
+\end{defn}

@@ -1,0 +1,270 @@
+\section{Числовые характеристики случайных величин: моменты, математическое ожидание, дисперсия. Их свойства}
+
+\subsubsection{Математическое ожидание случайной величины}
+
+\begin{defn}
+    Пусть задано вероятностное пространство $(\Omega, \SigAlg \MyPr)$ и случайная величина $\xi \colon \Omega \mapsto \Real$. 
+    Если существует интеграл Лебега от $\xi$ по мере $\MyPr$ по множеству $\Omega$, то он называется \textit{математическим ожиданием} случайной величины $\xi$ и обозначается как $\Exp \xi$ или $\operatorname{M} \! \xi$.
+    \begin{equation*}
+        \Exp \xi = \int\limits_{\Omega} \xi(\omega) \MyPr(d\omega).
+    \end{equation*}
+\end{defn}
+
+\begin{defn}
+    \textit{Математическое ожидание (среднее значение, первый момент)} случайной величины $\xi$, 
+    имеющей дискретное распределение со значениями $a_1, a_2, \ldots$~--- сумма абсолютно\footnote{Согласно теореме Римана, члены условно сходящегося ряда можно переставить так, что он будет сходиться к любому наперёд заданному числу. 
+        Таким образом, если допустить условную сходимость, то математическое ожидание зависит от способа вычисления.} 
+    сходящегося ряда.
+    \begin{equation*}
+        \Exp \xi=\sum\limits_{i} a_{i} p_{i}=\sum\limits_{i} a_{i} \MyPr(\xi=a_{i}).
+    \end{equation*}
+\end{defn}
+
+\begin{defn}
+    \textit{Математическое ожидание} случайной величины $\xi$, имеющей абсолютно непрерывное распределение с плотностью распределения $f(x)$~--- значение абсолютно сходящегося интеграла
+    \begin{equation*}
+        \Exp \xi=\int\limits_{\Real} x \, f(x) \, dx.
+    \end{equation*}
+\end{defn}
+
+Матожидание имеет простой физический смысл: если на прямой разместить единичную массу, поместив в точки $a_i$ массу $p_i$ (для дискретного распределения) или «размазав» её с плотностью $f_\xi(x)$ (для абсолютно непрерывного), то точка $\Exp \xi$ будет координатой <<центра тяжести>> прямой.
+
+\begin{namedthm}[Свойства математического ожидания]
+    Везде далее предполагается, что рассматриваемые математические ожидания существуют.
+\begin{enumerate}
+    \item 
+        Для произвольной борелевской функции $g(x)$ со значениями в $\Real$:
+        \begin{equation*}
+        \Exp g(\xi) =
+        \begin{cases}
+            \sum\limits_{k} g\left(a_{k}\right) \MyPr\left(\xi=a_{k}\right), & \text {если~} P_{\xi} \text {~дискретно}; \\
+            \int\limits_{-\infty}^{+\infty} g(x) f_{\xi}(x) \, dx, & \text {если~} P_{\xi} \text{~абсолютно непрерывно.}
+        \end{cases}
+        \end{equation*}
+
+        Такое же свойство верно и для числовых функций нескольких аргументов $g(x_1, \ldots, x_n)$, если $\xi$~--- вектор из $n$ случайных величин, а в сумме и в интеграле участвует их совместное распределение. Например, для $g(x,y) = x + y$ и для случайных величин $\xi$ и $\eta$ с плотностью совместного распределения $f(x,y)$ верно: 
+        \begin{equation}
+            \label{expectation_of_sum}
+            \Exp (\xi+\eta)=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty}(x+y) f(x, y) d x d y;
+        \end{equation}
+    \item 
+        Математическое ожидание линейно:
+        \begin{equation*}
+            \Exp (a \xi + b) = a \Exp \xi + b \quad \forall a, b \in \Real;
+        \end{equation*}
+    \item
+        $\Exp (\xi + \eta) = \Exp \xi + \Exp \eta$;
+    
+    \item 
+        Если $\xi \overset{\text{п.н.}}{\geqslant} 0$, то $\Exp \xi \geqslant 0$;
+    
+        \textbf{Следствие.}
+        \begin{compactlist}
+            \item Если $\xi \overset{\text{п.н.}}{\leqslant} \eta$, то $\Exp \xi \leqslant \Exp \eta$;
+            \item Если $a \overset{\text{п.н.}}{\leqslant} \xi \overset{\text{п.н.}}{\leqslant} b$, то $a \leqslant \Exp \xi \leqslant b$.
+        \end{compactlist}
+    
+    \item 
+        Если $\xi$ и $\eta$~--- независимые случайные величины, то $\Exp (\xi \eta) = \Exp \xi \, \Exp \eta$;
+        
+        \textbf{Замечание.}
+        Обратное, вообще говоря, \hyperlink{counter_exmp_independence}{неверно}.
+    \item 
+        $\left| \Exp \xi \right| \leqslant \Exp |\xi|$;
+    
+    \item 
+        $\xi \overset{\text{п.н.}}{\geqslant} 0, \: \Exp \xi = 0 \implies \xi \overset{\text{п.н.}}{=} 0$;
+    
+    \item 
+        $\MyPr(A) = \Exp \bigl( \Ind(\omega \in A) \bigr)$, где $\Ind(\omega \in A)$~--- индикатор:
+        \begin{equation*}
+            \Ind(\omega \in A) =
+            \begin{cases}
+            1, & \omega \in A \\
+            0, & \text{иначе};
+            \end{cases}
+        \end{equation*}
+        
+    \item 
+        Если функция $g(x)$ выпукла, то $\Exp g(\xi) \geqslant g(\Exp \xi)$ (неравенство Йенсена).
+    
+\end{enumerate}
+\end{namedthm}
+
+\begin{proof}
+\begin{enumerate}
+    \item 
+        Достаточно рассмотреть случайную величину $\eta = g(\xi)$ на том же вероятностном пространстве и заметить, что $\forall \omega \in \Omega \colon \eta(\omega) = g(\xi(\omega))$. 
+        Тогда 
+        \begin{equation*}
+            \Exp \eta = \int\limits_{\Omega} \eta(\omega) \MyPr(d\omega) = \int\limits_{\Omega} g(\xi(\omega)) \MyPr(d\omega).
+        \end{equation*}
+        Отсюда и вытекают формулы для дискретного и абсолютного случая.
+        
+    \item 
+        Рассмотрим функцию $g(x) \equiv ax + b$ и произвольную случайную величину $\xi$. Тогда 
+        \begin{multline*}
+            \Exp (a \xi + b) 
+            = \Exp g(\xi) 
+            = \int\limits_{\Omega}g(\xi(\omega))\MyPr(d\omega)
+            = a \int\limits_{\Omega}\xi(\omega)\MyPr(d\omega) + b \int\limits_{\Omega}\MyPr(d\omega) = \\
+            = a \, \Exp \xi + b \, \MyPr(\Omega) 
+            = a \, \Exp \xi + b.
+        \end{multline*}
+        
+    \item 
+        Воспользуемся равенством \eqref{expectation_of_sum} и теоремой о совместном распределении:
+        \begin{equation*}
+            \begin{aligned}
+                \Exp (\xi+\eta) &=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty}(x+y) f(x, y) \, dx dy=\\
+                &=\int\limits_{-\infty}^{\infty} x \, dx \int\limits_{-\infty}^{\infty} f(x, y) \, dy + \int\limits_{-\infty}^{\infty} y \, dy \int\limits_{-\infty}^{\infty} f(x, y) \, dx=\\
+                &=\int\limits_{-\infty}^{\infty} x f_{\xi}(x) \, dx + \int\limits_{-\infty}^{\infty} y f_{\eta}(y) \, dy=\Exp \xi+\Exp \eta.
+            \end{aligned}
+        \end{equation*}
+    \item 
+        Неотрицательность $\xi$ означает, что $a_i \geqslant 0$ при всех $i \colon p_i > 0$ в случае дискретного распределения, либо $f_\xi(x) = 0$ при $x < 0$ (кроме, может быть, множества меры нуль) - для абсолютно непрерывного распределения. 
+        И в том, и в другом случае имеем:
+        \begin{equation*}
+            \Exp \xi=\sum a_{i} p_{i} \geqslant 0 \quad \text {или} \quad \Exp \xi=\int\limits_{0}^{\infty} x f(x) \, dx \geqslant 0.
+        \end{equation*}
+        
+    \item 
+        В равенстве \eqref{expectation_of_sum} заменим сложение умножением и плотность совместного распределения произведением плотностей (это возможно в силу независимости случайных величин):
+        \begin{equation*}
+            \begin{aligned}
+                \Exp (\xi \eta) &=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty} x y f_{\xi}(x) f_{\eta}(y) \,  dx dy = \\
+                &=\int\limits_{-\infty}^{\infty} x f_{\xi}(x) \, dx \int\limits_{-\infty}^{\infty} y f_{\eta}(y) \, dy = \Exp \xi \Exp \eta.
+            \end{aligned}
+        \end{equation*}
+        
+    \item 
+        Это верно в силу неравенства треугольника (для дискретного случая) и аналогичного неравенства для интегралов (для непрерывного случая).
+    
+    \item 
+        %Это свойство мы докажем, заранее предполагая, что $\xi$ имеет дискретное распределение с неотрицательными значениями $a_k \geqslant 0$. 
+        \begin{compactlist}
+            \item Дискретный случай:
+
+                Учитывая то, что $a_k \geqslant 0$, равенство $\Exp \xi = \sum a_k p_k = 0$ означает, что все слагаемые в этой сумме равны нулю, т. е. все вероятности $p_k$ нулевые, кроме вероятности, соответствующей значению $a_k = 0$.
+            \item Абсолютно непрерывный случай:
+                
+                Условие $\xi \overset{\text{п.н.}}{\geqslant} 0$ говорит о том, что при $x < 0$ плотность равна нулю всюду, кроме, может быть, множества меры нуль по Лебегу.
+                В самом деле, если существует борелевское множество $B \subset \{x \: | \: x < 0\}$ ненулевой меры и при этом ${f_{\xi}(x) > 0 \; \forall x \in B}$, 
+                то ${\MyPr\left(\xi \in B\right) = \int\limits_{B} f_{\xi}(x) \, dx > 0}$, т.е. случайная величина принимает отрицательные значения с ненулевой вероятностью, что противоречит ограничению.
+                Учитывая это, можем написать
+                \begin{equation*}
+                    \Exp \xi = \int\limits_{-\infty}^{+\infty} x f_{\xi}(x) \, dx = \int\limits_{0}^{+\infty} x f_{\xi}(x) \, dx \geqslant 0,
+                \end{equation*}
+                так как на промежутке интегрирования $x \geqslant 0$, а плотность по определению неотрицательна.
+        \end{compactlist}
+    \item 
+        Следует непосредственно из определений индикатора и матожидания.
+    
+    \item 
+        Начнём со следующего утверждения: если функция $g$ выпукла, то для любого ${y \in \Real} \; {\exists c = c(y) \colon} \forall x \in \Real \; g(x) \geqslant g(y) + c(y)(x - y)$. Это вытекает из того, что график выпуклой функции лежит не ниже любой из касательной к нему. \footnote{Вообще говоря, выпуклая функция может не иметь первой производной и, следовательно, касательной на не более чем счётном множестве точек, но тогда её можно заменить на опорную гиперплоскость.} Положим в этом неравенстве $y = \Exp \xi$. 
+        Тогда
+        \begin{equation*}
+            g(\xi) \geqslant g(\Exp \xi) + c(\Exp \xi)(\xi - \Exp \xi), \quad \Exp g(\xi) \geqslant \Exp g(\Exp \xi) +  \Exp c(\Exp \xi)(\xi - \Exp \xi)
+        \end{equation*}
+        Здесь $g(\Exp \xi), c(\Exp \xi)$~--- константы, а $\Exp (\xi - \Exp \xi) = 0$, а значит, \\ $ \Exp g(\xi) \geqslant g(\Exp \xi)$.
+\end{enumerate}
+\end{proof}
+
+\subsubsection{Дисперсия и моменты старших порядков}
+
+\begin{defn}
+    Пусть ${\Exp |\xi|^k < \infty}$. 
+    \begin{enumerate}
+        \item 
+            ${\Exp \xi^k}$~--- \textit{момент порядка $k$ или $k$-й момент} случайной величины $\xi$;
+        \item 
+            ${\Exp |\xi|^k}$~--- \textit{абсолютный $k$-й момент};
+        \item 
+            $\mu_k = {\Exp (\xi - \Exp \xi)^k}$~--- \textit{центральный $k$-й момент};
+        \item 
+            ${\Exp |\xi - \Exp \xi|^k}$~--- \textit{абсолютный центральный $k$-й момент} случайной величины $\xi$
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}
+    Число $\Var\xi = \Exp (\xi - \Exp \xi)^2$ (центральный момент второго порядка) называется \textit{дисперсией} случайной величины $\xi$, $\sigma = \sqrt{\Var\xi}$~--- её \textit{среднеквадратичным отклонением}.
+\end{defn} 
+
+\begin{thm*}
+    Если существует момент порядка $t > 0$ случайной величины $\xi$, то существует и ее момент порядка $s$, где $0 < s < t$.
+\end{thm*}
+
+\begin{proof} 
+Заметим, что $|\xi|^s \leqslant |\xi|^t + 1.$ 
+В силу следствия из свойства 4 для математического ожидания можно получить из неравенства для случайных величин такое же неравенство для их математических ожиданий: $\Exp |\xi|^s \leqslant \Exp |\xi|^t + 1 < \infty.$
+\end{proof}
+
+\begin{namedthm}[Свойства дисперсии]
+    Везде далее предполагается, что вторые моменты рассматриваемых случайных величин существуют. Тогда, в силу вышеописанной теоремы, существуют и матожидания.
+    \begin{enumerate}
+        \item Дисперсия может быть вычислена по формуле: $\Var\xi = \Exp \xi^2 - (\Exp \xi)^2$;
+        \item При умножении случайной величины на постоянную $c$ дисперсия увеличивается в $c^2$ раз: $\Var(c\xi) = c^2\Var\xi$;
+        \item Дисперсия всегда неотрицательна: $\Var\xi \geqslant 0$;
+        \item Дисперсия обращается в нуль лишь для вырожденного распределения: если $\Var\xi = 0$, то $\xi \overset{\text{п.н.}}{=} \text{const}$, и наоборот;
+        \item Если $\xi$ и $\eta$ независимы, то $\Var(\xi + \eta) = \Var\xi + \Var\eta, ~ \Var(\xi-\eta)=\Var \xi+\Var \eta$;
+        \item Дисперсия не зависит от сдвига случайной величины на постоянную: $\Var(\xi + c) = \Var\xi$;
+    \end{enumerate}
+\end{namedthm}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Обозначим для удобства $a = \Exp \xi.$ Тогда
+        \begin{equation*}
+            \Var\xi=\Exp (\xi-a)^{2}=\Exp \left(\xi^{2}-2 a \xi+a^{2}\right)=\Exp \xi^{2}-2 a \Exp \xi+a^{2}=\Exp \xi^{2}-a^{2}.
+        \end{equation*}
+        \item $\Var(c\xi) = \Exp (c\xi)^2 - (\Exp (c\xi))^2 = c^{2} \Exp \xi^2 - (c \Exp \xi)^2 = c^{2} (\Exp \xi^2 - (\Exp \xi)^2) = c^2\Var\xi$
+        \item Пусть $a = \Exp \xi.$ Дисперсия есть математическое ожидание неотрицательной случайной величины $(\xi - a)^2$, откуда (и из свойства (4) матожидания) следует неотрицательность дисперсии.
+        \item $\Var\xi = 0 \implies (\xi - a)^2 \overset{\text{п.н.}}{=} 0, \, \xi \overset{\text{п.н.}}{=} a =\text{const}$. И наоборот: если $\xi \overset{\text{п.н.}}{=} c$, то $\Var \xi=\Exp (c-\Exp c)^{2}=0.$
+        \item Действительно, применяя свойство (5) матожидания, получим:
+        \begin{equation*}
+            \begin{aligned}
+                \Var(\xi+\eta) &=\Exp (\xi+\eta)^{2}-(\Exp (\xi+\eta))^{2}=\\
+                &=\Exp \xi^{2}+\Exp \eta^{2}+2 \Exp (\xi \eta)-(\Exp \xi)^{2}-(\Exp \eta)^{2}-2 \Exp \xi \, \Exp \eta=\Var \xi+\Var \eta.
+                \end{aligned}
+        \end{equation*}
+        
+        Обратное, аналогично замечанию к свойству (5) матожидания, \hyperlink{counter_exmp_independence}{неверно}.
+        Для разности, соответственно, имеем:
+            \begin{equation*}
+                \Var(\xi-\eta)=\Var(\xi+(-\eta))=\Var \xi+\Var(-\eta)=\Var \xi+(-1)^{2} \Var \eta=\Var \xi+\Var \eta.
+            \end{equation*}
+        \begin{crlr}
+            Для произвольных случайных величин $\xi$ и $\eta$ имеет место равенство:
+            \begin{equation*}
+                \Var(\xi \pm \eta)=\Var \xi+\Var \eta \pm 2(\Exp (\xi \eta)-\Exp \xi\, \Exp \eta),
+            \end{equation*}
+            где величина $\Exp (\xi \eta)-\Exp \xi \, \Exp \eta$ называется \textit{ковариацией} случайных величин $\xi$ и $\eta$ ($\text{cov}(\xi, \eta)$).
+        \end{crlr}
+        \item $\Var(\xi + c) = \Var\xi + \Var c = \Var\xi$
+    \end{enumerate}
+\end{proof}
+
+\subsubsection{Прочие числовые характеристики}
+
+\begin{defn}
+    \textit{Коэффициент асимметрии} случайной величины $\xi$:
+    \begin{equation*}
+        \gamma_1=\Exp \left(\frac{\xi - \Exp \xi}{\sqrt{\Var\xi}}\right)^3 = \frac{\mu^3}{\sigma^3}
+    \end{equation*}
+    Характеризует <<скошенность>> графика плотности распределения: \medskip\hfill\break
+    \input{src/figs/fig1}
+\end{defn}
+
+\begin{defn}
+    \textit{Коэффициент эксцесса} случайной величины $\xi$:
+    \begin{equation*}
+        \gamma_2=\Exp \left(\frac{\xi - \Exp \xi}{\sqrt{\Var\xi}}\right)^4 - 3 = \frac{\mu^4}{\sigma^4} - 3
+    \end{equation*}
+    Характеризует <<островершинность>> графика плотности распределения:
+    \medskip\hfill\break
+    \input{src/figs/fig2}
+\end{defn}
+
+\begin{rmrk}
+    Слагаемое $-3$ добавлено, чтобы коэффициент эксцесса стандартного нормального распределения был равен нулю. Иногда его не учитывают и считают, что коэффициент эксцесса $\Normal_{0,1}$ равен 3.
+\end{rmrk}

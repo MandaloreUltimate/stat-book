@@ -1,0 +1,177 @@
+\section{Статистические выводы о параметрах нормального распределения. Распределения \texorpdfstring{$\chi^{2}$}{хи-квадрат} и Стьюдента. Теорема Фишера}
+
+\begin{defn}
+    Говорят, что случайная величина $\xi$ имеет \textit{гамма-распределение} с параметрами $\lambda > 0,~ \alpha > 0$ (или $\xi \sim \GammaDist_{\lambda, \alpha}$), 
+    если $\xi$ имеет следующую плотность распределения:
+    \begin{equation*}
+        p_{\xi}(x) = \begin{cases}
+            0, & x \leqslant 0; \\
+            c \cdot x^{\alpha-1} e^{-\lambda x}, & x > 0,
+        \end{cases}
+    \end{equation*}
+    где постоянная $c$ вычисляется из свойства нормировки плотности:
+    \begin{equation*}
+        1 = 
+        \int\limits_{-\infty}^{\infty} p_{\xi}(x) d x = 
+        c \int\limits_{0}^{\infty} x^{\alpha-1} e^{-\lambda x} d x = 
+        \frac{c}{\lambda^{\alpha}} \int\limits_{0}^{\infty}(\lambda x)^{\alpha-1} e^{-\lambda x} d(\lambda x) = 
+        \frac{c}{\lambda^{\alpha}} \Gamma(\alpha),
+    \end{equation*}
+    откуда $c=\lambda^{\alpha} / \Gamma(\alpha)$.
+\end{defn}
+
+\begin{lem}
+    Пусть $\xi_{1}, \ldots, \xi_{n}$ независимы, и $\xi_i \sim \GammaDist_{\lambda, \alpha_i}, i=\overline{1,n}$. 
+    Тогда их сумма $S_{n}=\xi_{1}+\ldots+\xi_{n} \sim \GammaDist_{\lambda, \alpha_1 + \ldots + \alpha_n}$.
+\end{lem}
+\begin{proof}
+    Найдём для начала характеристическую функцию гамма-распределения:
+    \begin{multline*}
+        \int\limits_{-\infty}^{\infty} p_{\xi}(x) e^{itx} \, dx = 
+        \int\limits_{-\infty}^{\infty} \frac{\lambda^\alpha \, x^{\alpha - 1}}{\Gamma(\alpha)} \, e^{-\lambda x}\, e^{itx} \,dx = 
+        \left| \begin{array}{c}
+            y  = -(\lambda - it)x \\
+            dy = -(\lambda - it)dx
+        \end{array} \right| = \\
+        \int\limits_{-\infty}^{\infty} \frac{\lambda^\alpha \, y^{\alpha - 1}}{(\lambda - it)^{\alpha - 1} \, \Gamma(\alpha)} \, e^{-y} \frac{1}{\lambda - it} \,dy = 
+        \frac{\lambda^\alpha}{(\lambda - it)^{\alpha}} \int\limits_{-\infty}^{\infty} \frac{y^{\alpha - 1}}{\Gamma(\alpha)} \, e^{-y} \, dy = 
+        \left(\frac{1}{1 - \frac{it}{\lambda}} \right)^\alpha \!.
+    \end{multline*}
+    Теперь вспомним, что если $\xi$ и $\eta$ независимы, то $f_{\xi + \eta}(t) = f_{\xi}(t) f_{\eta}(t)$.
+    Тогда, если у нас есть независимые случайные величины $\xi_1, \ldots, \xi_n, \: \xi_i \sim \Gamma(\lambda, \alpha_i)$, 
+    то характеристическая функция суммы выражаются следующим образом:
+    \begin{equation*}
+        \left(\frac{1}{1 - \frac{it}{\lambda}} \right)^\alpha_1 \cdot \ldots \cdot \left(\frac{1}{1 - \frac{it}{\lambda}} \right)^\alpha_n = 
+        \left(\frac{1}{1 - \frac{it}{\lambda}} \right)^{\alpha_1 + \ldots + \alpha_n}
+    \end{equation*}
+
+    По теореме Леви о непрерывности заключаем, что сумма имеет распределение $\Gamma(\lambda, \alpha_1 + \ldots + \alpha_n)$.
+\end{proof}
+
+\begin{lem}
+    Если $\xi \sim \Normal_{0,1}$, то $\xi^2 \sim \GammaDist_{1/2, 1/2}$.
+\end{lem}
+
+\begin{proof}
+    Найдём функцию распределения случайной величины~${\eta = \xi^2}$:
+    \begin{gather*}
+        \MyPr(\xi^2 < x) = \MyPr(|\xi| < \sqrt{x}) = 2 \, \MyPr(0 < x < \sqrt{x}) = \\
+        2 \int\limits_{0}^{\sqrt{x}} \frac{1}{\sqrt{2 \pi}}\,  e^{u^2 /2} \,du = 
+        \left| \begin{array}{cc}
+            z = u^2    & u = \sqrt{z} \\
+            dz = 2u du & du = \frac{dz}{2 \sqrt{z}} \\
+            u = 0 \implies z = 0 & u = \sqrt{x} \implies z = x
+        \end{array} \right| = \\
+        = 2 \int\limits_{0}^{x} \frac{1}{\sqrt{2 \pi}} \, e^{-\frac{1}{2}z} \frac{dz}{2 \sqrt{z}} = 
+        \int\limits_{0}^{x} \frac{\left(\frac{1}{2}\right)^{\frac{1}{2}} z^{\frac{1}{2} - 1}}{\sqrt{\pi}} e^{-z/2} dz.
+    \end{gather*}
+    Но это в точности функция гамма-распределения с параметрами $\lambda = \frac{1}{2}, \alpha = \frac{1}{2}$ (ведь $\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}$).
+\end{proof}
+
+\begin{crlr}
+    Если $\xi_{1}, \ldots, \xi_{k}$ независимы и $\xi_i \sim \Normal_{0,1}$, то случайная величина $\chi^{2}=\xi_{1}^{2}+\ldots+\xi_{k}^{2} \sim \GammaDist_{1/2, k/2}$
+\end{crlr}
+
+\begin{defn}
+    Распределение суммы $k$ квадратов независимых случайных величин со стандартным нормальным распределением называется \textit{распределением хи-квадрат} с $k$ степенями свободы (обозначение: $\chi^{2}_{k}$).
+\end{defn}
+Плотность распределения $\chi^{2}_{k}$ имеет вид
+\begin{equation*}
+    f(y) = \begin{cases}
+        \cfrac{1}{2^{x / 2} \Gamma(k / 2)} \, x^{\frac{k}{2}-1} e^{-x / 2}, & \text { если } x>0 \\
+        0, & \text { если } x \leqslant 0
+    \end{cases}
+\end{equation*}
+\begin{rmrk}
+    $\chi^{2}_{2} = \GammaDist_{1/2,1} = \ExpDist_{1/2}$.
+\end{rmrk}
+
+\begin{namedthm}[Свойства распределения $\chi^{2}$]\leavevmode
+\begin{enumerate}
+    \item Если случайные величины $\xi_1 \sim \chi^{2}_{k}$ и $\xi_2 \sim \chi^{2}_{m}$ независимы, то их сумма $\xi_1+\xi_1 \sim \chi^{2}_{k+m}$;
+    \item $\Exp \chi^{2}=k, \quad \Var \chi^{2}=2 k$.
+    \item Пусть дана последовательность случайных величин $\chi_{n}^{2}$. Тогда при $n \to \infty$:
+    \begin{equation*}
+        \frac{\chi_{n}^{2}}{n} \xrightarrow[n \to \infty]{p} 1, 
+        \quad \frac{\chi_{n}^{2}-n}{\sqrt{2 n}} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0,1}
+    \end{equation*}
+    \item Пусть случайные величины $\xi_1, \ldots, \xi_n$ независимы и $\xi_i \sim \Normal_{a,\sigma^{2}}$. Тогда
+    \begin{equation*}
+        \sum\limits_{i=1}^{k}\left(\frac{\xi_{i}-a}{\sigma}\right)^{2} \sim \chi^{2}_{k}.
+    \end{equation*}
+\end{enumerate}
+\end{namedthm}
+
+\begin{defn}
+    Пусть $\xi_{0}, \xi_{1}, \ldots, \xi_{k}$ независимы и $\xi_i \sim \Normal_{0,1}$. Распределение случайной величины
+    \begin{equation*}
+        t_{k}
+        = \frac{\xi_{0}}{\sqrt{\frac{\xi_{1}^{2} + \ldots + \xi_{k}^{2}}{k}}} 
+        = \frac{\xi_0}{\sqrt{x_{k}^{2} / k}}
+    \end{equation*}
+    называется \textit{распределением Стьюдента ($t$-распределением} с $k$ степенями свободы ($St(k)$ или $\Student_{k}$).
+\end{defn}
+Плотность распределения $\Student_{k}$ имеет вид
+\begin{equation*}
+    f_{k}(y)=\frac{\Gamma\bigl((k+1) / 2\bigr)}{\sqrt{\pi k} \, \Gamma(k / 2)}\left(1+\frac{y^{2}}{k}\right)^{-(k+1) / 2}
+\end{equation*}
+
+\begin{namedthm}[Свойства распределения Стьюдента]\leavevmode
+\begin{enumerate}
+    \item Распределение Стьюдента симметрично, т.е. если $t_k \sim \Student_{k}$, то $-t_k \sim \Student_{k}$.
+    \item $\Student_{k} \xrightarrow[k \to \infty]{} \Normal_{0,1}$.
+    \item У распределения Стьюдента $\Student_{k}$ существуют только моменты порядка $m < k$, при этом все существующие моменты нечётного порядка равны нулю.
+\end{enumerate}
+\end{namedthm}
+
+\begin{namedthm}[Теорема Фишера]
+Пусть случайные величины $X_1, \ldots, X_n$ независимы и ${X_i \sim \Normal_{a,\sigma^{2}}}$. Тогда:
+\begin{enumerate}
+    \item $\sqrt{n} \frac{\SampleMean-a}{\sigma} \sim \Normal_{0,1}$
+    \item $\frac{(n-1) S_{0}^{2}}{\sigma^{2}}=\sum\limits_{i=1}^{n} \frac{\left(X_{i}-\SampleMean\right)^{2}}{\sigma^{2}} \sim \chi^{2}_{n-1}$
+    \item Случайные величины $\SampleMean$ и $S_{0}^{2}$ независимы.
+\end{enumerate}
+\end{namedthm}
+\begin{crlr}
+    Пусть случайные величины $X_1, \ldots, X_n$ независимы и ${X_i \sim \Normal_{a,\sigma^{2}}}$. Тогда:
+    \begin{enumerate}
+        \item $\sqrt{n} \frac{\SampleMean-a}{\sigma} \sim \Normal_{0,1}$ (для $a$ при известном $\sigma^{2}$)
+        \item $\sum\limits_{i=1}^{n}\left(\frac{X_{i}-a}{\sigma}\right)^{2} \sim \chi^{2}_{n}$ (для $\sigma^{2}$ при известном $a$)
+        \item $\frac{(n-1) S_{0}^{2}}{\sigma^{2}} \sim \chi^{2}_{n-1}$ (для $\sigma^{2}$ при неизвестном $a$)
+        \item $\sqrt{n} \frac{\SampleMean-a}{S_{0}} \sim \Student_{n-1}$ (для $a$ при неизвестном $\sigma^{2}$)
+    \end{enumerate}
+\end{crlr}
+
+\subsubsection{Статистические выводы о параметрах нормального распределения}
+
+Пусть $X_{1}, \ldots, X_{n}$~--- выборка объёма $n$ из распределения $\Normal_{a, \sigma^{2}}$. Построим точные доверительные интервалы (ДИ) с уровнем доверия $\alpha$ для параметров нормального распределения, используя следствие из теоремы Фишера.
+\begin{enumerate}
+    \item ДИ для $a$ при известном $\sigma^{2}$:
+    \begin{equation*}
+        \MyPr\left(\SampleMean-\frac{\tau \sigma}{\sqrt{n}}<a<\SampleMean+\frac{\tau \sigma}{\sqrt{n}}\right)=\alpha, ~ \text {где} ~ \varphi_{0,1}(\tau)=\frac{1 + \alpha}{2}
+    \end{equation*}
+    \item ДИ для $\sigma^{2}$ при известном $a$:
+    \begin{equation*}
+        \frac{n S_{1}^{2}}{\sigma^{2}} \sim \chi^{2}_{n},~ \text {где}~ S_{1}^{2}=\frac{1}{n} \sum\limits_{i=1}^{n}\left(X_{i}-a\right)^{2}
+    \end{equation*}
+    Пусть $g_1$ и $g_2$~--- квантили распределения $\chi^{2}_{n}$ уровней $\frac{1-\alpha}{2}$ и $\frac{1+\alpha}{2}$ соответственно. Тогда
+    \begin{equation*}
+        \frac{(n-1) S_{0}^{2}}{\sigma^{2}} \sim \chi^{2}_{n-1},~ \text {где}~ S_{0}^{2}=\frac{1}{n-1} \sum\limits_{i=1}^{n}\left(X_{i}-\SampleMean\right)^{2}
+    \end{equation*}
+    \item ДИ для $\sigma^{2}$ при неизвестном $a$:
+    \begin{equation*}
+        \frac{(n-1) S_{0}^{2}}{\sigma^{2}} \sim \chi^{2}_{n-1},~ \text {где}~ S_{0}^{2}=\frac{1}{n-1} \sum\limits_{i=1}^{n}\left(X_{i}-\SampleMean\right)^{2}
+    \end{equation*}
+    Пусть $g_1$ и $g_2$~--- квантили распределения $\chi^{2}_{n-1}$ уровней $\frac{1-\alpha}{2}$ и $\frac{1+\alpha}{2}$ соответственно. Тогда
+    \begin{equation*}
+        \alpha=\MyPr\left(g_{1}<\frac{(n-1) S_{0}^{2}}{\sigma^{2}}<g_{2}\right)=\MyPr\left(\frac{(n-1) S_{0}^{2}}{g_{2}}<\sigma^{2}<\frac{(n-1) S_{0}^{2}}{g_{1}}\right)
+    \end{equation*}
+    \item ДИ для $a$ при неизвестном $\sigma^{2}$:
+    \begin{equation*}
+        \sqrt{n} \frac{\SampleMean-a}{S_{0}} \sim \Student_{n-1}
+    \end{equation*}
+    Пусть $c$~--- квантиль распределения $\Student_{n-1}$ уровня $\frac{1-\alpha}{2}$. Распределение Стьюдента симметрично, поэтому
+    \begin{equation*}
+        \alpha=\MyPr\left(-c<\sqrt{n} \frac{\SampleMean-a}{S_{0}}<c\right)=\MyPr\left(\SampleMean-\frac{c S_{0}}{\sqrt{n}}<a<\SampleMean+\frac{c S_{0}}{\sqrt{n}}\right)
+    \end{equation*}
+\end{enumerate}

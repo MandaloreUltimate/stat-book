@@ -1,0 +1,201 @@
+\section {Условная вероятность. Независимость событий. Критерий независимости. Формула полной вероятности. Формула Байеса}
+
+\begin{defn}
+	Пусть задано вероятностное пространство $(\Omega, \SigAlg, \MyPr), \\ \text{события } {A, B \in \SigAlg,~ \MyPr(B) > 0}$. 
+	\textit{Условная вероятность события $A$ при событии $B$}:
+	\begin{equation*}
+		\MyPr(A|B)=\cfrac{\MyPr(AB)}{\MyPr(B)}.
+	\end{equation*}
+\end{defn}
+
+\begin{thm*}
+	Условная вероятность $\MyPr(A|B)$~--- вероятность, заданная на $\sigma$-алгебре $\SigAlg$.
+\end{thm*}
+
+\begin{proof}
+	Проверим три аксиомы из определения вероятности.
+	
+	\begin{enumerate}
+		\item 
+		      $\forall A \in \SigAlg \;\; \MyPr(A|B) \geqslant 0, \text{т.к.}~ \MyPr(AB) \geqslant 0,~ \MyPr(B) > 0$;
+		\item 
+		      $\MyPr(\Omega|B) = \cfrac{\MyPr(B \cap \Omega)}{\MyPr(B)} = \cfrac{\MyPr(B)}{\MyPr(B)} = 1$;
+		\item 
+		      Пусть дана некоторая последовательность событий $\it A_1, A_2, \ldots A_n, \ldots$; $A_i A_j = \varnothing~ (i \ne j)$. 
+		      Тогда: 
+		      \begin{multline*}
+		      	\MyPr\left(\,\left. \bigcup\limits_{i=1}^\infty A_i \right| B\right) 
+		      	= \cfrac{\MyPr\left(\left(\, \bigcup\limits_{i=1}^\infty A_i\right) \cap B \right)}{\MyPr(B)} 
+		      	= \cfrac{\MyPr\left(\, \bigcup\limits_{i=1}^\infty\left(A_i \cap B\right) \right)}{\MyPr(B)} = \\
+		      	= \cfrac{\sum\limits_{i=1}^\infty \MyPr(A_i \cap B)}{\MyPr(B)}
+		      	= \sum\limits_{i=1}^\infty \MyPr(A_i | B).
+		      \end{multline*}
+	\end{enumerate}
+\end{proof}
+\begin{rmrk}
+	Некоторые свойства условной вероятности:
+	\begin{enumerate}
+		\item 
+		      Если $A \cap B = \varnothing,$ то $\MyPr(A | B) = 0.$ 
+		\item 
+		      Если $B \subset A$, то $\MyPr(A|B) = 1.$ 
+		      Например, $\MyPr(B|B) = 1.$
+	\end{enumerate}
+\end{rmrk}
+
+\subsubsection{Независимость событий}
+\begin{defn}
+	Пусть есть вероятностное пространство $(\Omega, \SigAlg, \MyPr)$. 
+	События $A_1, \ldots, A_n \in \SigAlg$ называются \textit{независимыми в совокупности}, если 
+	$\forall k = \overline{2, n}$ $\forall i_{1}, \ldots, i_{k} \colon 1 \leqslant i_1 < i_2 < \ldots < i_k \leqslant n$ выполняется:
+	\begin{equation*}
+		\MyPr\left(\, \bigcap\limits_{j=1}^k A_{i_j}\right) = \prod\limits_{j=1}^k \MyPr(A_{i_j)}.
+	\end{equation*}
+	
+	Иными словами, события независимы в совокупности, если вероятность одновременного наступления \textit{любого набора} из этих событий равна \textit{произведению вероятностей} событий, входящих в этот набор. 
+	В частности, при $n = 2$ события $A$ и $B$ независимы, если $\MyPr(AB) = \MyPr(A)\MyPr(B)$.
+\end{defn}
+
+\begin{namedthm}[Свойства независимых событий]\leavevmode
+	\begin{enumerate}
+		\item 
+		      Если $A = \varnothing$ или $\MyPr(A) = 0$, то $\forall B \colon \MyPr(B) > 0$ события $A$ и $B$ независимы.
+		\item 
+		      Пусть $A$ и $B$ независимы. Тогда события $\overline{A}$ и $B$, $A$ и $\overline{B}$, $\overline{A}$ и $\overline{B}$ также независимы. 
+		\item 
+		      Пусть $A \subset B$ и $\MyPr(A) > 0, \, \MyPr(B) < 1$. Тогда $A$ и $B$ зависимы. 
+		\item 
+		      Если события $A$ и $B$ независимы и $\MyPr(B) > 0$, то $\MyPr(A|B) = \MyPr(A)$.
+	\end{enumerate}
+\end{namedthm}
+
+\begin{proof}
+	\begin{enumerate} 
+		\item 
+		      Если $A = \varnothing$, то $AB = \varnothing \implies \MyPr(AB) = 0.$ Но $ \MyPr(A)\MyPr(B) = 0 \cdot \MyPr(B) = 0 \implies \MyPr(AB) = \MyPr(A) \MyPr(B)$.
+		              
+		      Если же ${\MyPr(A) = 0}$, то ${AB \subset A \implies \MyPr(AB) \leqslant \MyPr(A) = 0}$. 
+		      В то же время ${0 = \MyPr(AB) = 0 \cdot \MyPr(B) = \MyPr(A) \MyPr(B)}$.
+		\item 
+		      Докажем независимость $\overline{A}$ и $B$, представив последнее в виде \\
+		      $B = AB \cup \overline{A}B$. Тогда
+		      \begin{multline*}
+		      	\MyPr(B) = \MyPr(AB) + \MyPr(\overline{A)B} = \MyPr(A)\MyPr(B) + \MyPr(\overline{A}B) \implies \\
+		      	\implies \MyPr(\overline{A}B) = \MyPr(B) - \MyPr(A)\MyPr(B) = \MyPr(B) (1 - \MyPr(A)) = \MyPr(\overline{A)}\MyPr(B).
+		      \end{multline*}
+		      Независимость $\overline{A}$ и $B$ доказана. 
+		      Аналогично доказываются остальные утверждения.
+		\item 
+		      Предположим, что события независимы. 
+		      Тогда $\MyPr(AB) = \MyPr(A)\MyPr(B),$ но в силу вложенности $A \subset B$: $\MyPr(AB) = \MyPr(A) > 0$, следовательно, $\MyPr(B) = 1$, что противоречит условию.
+		\item 
+		      $\MyPr(A | B) = \cfrac{\MyPr(AB)}{\MyPr(B)} = \cfrac{\MyPr(A)\MyPr(B)}{\MyPr(B)} = \MyPr(A)$.
+	\end{enumerate}
+\end{proof}
+
+\begin{rmrk}
+	В общем случае из попарной независимости событий $A_1, \ldots, A_n$ не следует их независимость в совокупности.
+	\begin{exmp}
+		Рассмотрим правильный тетраэдр, три грани которого окрашены соответственно в красный, синий, зелёный цвета, а четвёртая грань содержит все три цвета. 
+		Событие $R$ (соответственно, $G$, $B$) означает, что выпала грань, содержащая красный (соответственно, зелёный, синий) цвета.
+		
+		Т.к. каждый цвет есть на двух гранях из четырёх, то
+		\begin{equation*}
+			\MyPr(R) = \MyPr(G) = \MyPr(B) = \cfrac{1}{2}.
+		\end{equation*}
+		Вероятность пересечения, соответственно:
+		\begin{equation*}
+			\MyPr(RG) = \MyPr(GB) = \MyPr(RB) = \cfrac{1}{4} = \cfrac{1}{2} \cdot \cfrac{1}{2},
+		\end{equation*}
+		следовательно, все события попарно независимы. 
+		Однако вероятность пересечения всех трёх:
+		\begin{equation*}
+			\MyPr(RGB)  = \cfrac{1}{4} \neq \MyPr(R) \MyPr(G) \MyPr(B),
+		\end{equation*}
+		т.е. события не являются независимыми в совокупности. 
+	\end{exmp}
+\end{rmrk}
+
+\begin{symb}
+	\begin{equation*}
+		A_{i}^{(\delta)} =
+		\begin{cases}
+			A_{i},            & \delta = 1; \\
+			\overline{A_{i}}, & \delta = 0. 
+		\end{cases}
+	\end{equation*}
+\end{symb}
+
+\begin{namedthm}[Критерий независимости]
+	События $A_1, \ldots, A_n$ независимы в совокупности $\iff \forall \delta_1, \delta_2, \ldots \delta_n \in \{0, 1\}$ выполнено равенство
+	\begin{equation*}
+		\MyPr\left(\, \bigcap_{i=1}^{n} A_{i}^{\left( \delta_{i} \right)} \right)
+		= \prod_{i=1}^{n}\MyPr\left( A_{i}^{\left(\delta_{i}\right)} \right).
+	\end{equation*}
+\end{namedthm}
+
+\begin{namedthm}[Формула полной вероятности]
+	Пусть даны события $A, B_1, \ldots, B_n, \ldots$; $\MyPr(B_i) > 0$, причём $B_i B_j = \varnothing~(i \neq j)$ и $\bigcup\limits_{i=1}^{\infty}B_i \supset A~$ (например, $\bigcup\limits_{i=1}^{\infty}B_i = \Omega$). 
+	Тогда справедлива формула:
+	\begin{equation*}
+		\MyPr(A)=\sum\limits_{i=1}^{\infty} \MyPr\left(B_{i}\right) \MyPr\left(A | B_{i}\right).
+	\end{equation*}
+\end{namedthm}
+
+\begin{proof}
+	Достаточно заметить, что при вышеперечисленных условиях $A = \bigcup\limits_{i=1}^{\infty}(AB_i),$ и $AB_i \cap AB_j = \varnothing ~(i \neq j).$ 
+	Тогда, учитывая $\MyPr(B_i) > 0$, получаем
+	\begin{equation*}
+		\MyPr(A)=\sum\limits_{i=1}^{\infty} \MyPr\left(A B_{i}\right)=\sum\limits_{i=1}^{\infty} \MyPr\left(B_{i}\right) \frac{\MyPr\left(A B_{i}\right)}{\MyPr\left(B_{i}\right)}=\sum\limits_{i=1}^{\infty} \MyPr\left(B_{i}\right) \MyPr\left(A | B_{i}\right).
+	\end{equation*}
+\end{proof}
+
+\begin{namedthm}[Формулы Байеса]
+	Пусть даны события $A, H_1, \ldots, H_n, \ldots$; ${\MyPr(A) > 0}$, ${\MyPr(H_i) > 0}$, причём $H_i H_j = \varnothing ~(i \neq j)$ и $\bigcup\limits_{i=1}^\infty H_i \supset A$ (например, $\bigcup\limits_{i=1}^{\infty}H_i = \Omega$). Тогда справедливы \textit{формулы Байеса}:
+	\begin{equation*}
+		\MyPr\left(H_{i} | A\right)= \frac{\MyPr\left(H_{i}\right) \MyPr\left(A | H_{i}\right)}{\sum\limits_{j=1}^{\infty} \MyPr\left(H_{j}\right) \MyPr\left(A | H_{j}\right)}, \quad i = \overline{1,n}.
+	\end{equation*}
+\end{namedthm}
+\begin{proof}
+	Согласно формуле полной вероятности, в знаменателе дроби стоит вероятность события $A$. 
+	Тогда
+	\begin{equation*}
+		\frac{\MyPr\left(H_{i}\right) \MyPr\left(A | H_{i}\right)}{\MyPr(A)}=\frac{\MyPr\left(H_{i}\right) \MyPr\left(A H_{i}\right)}{\MyPr(A) \MyPr\left(H_{i}\right)}=\frac{\MyPr\left(A H_{i}\right)}{\MyPr(A)}=\MyPr\left(H_{i} | A\right). 
+	\end{equation*}
+\end{proof}
+
+Вероятности $P(H_i)$, вычисленные заранее, до проведения эксперимента, называют \textit{априорными вероятностями} (a’priori~--- «до опыта»). 
+Условные вероятности $\MyPr(H_i | A)$ называют \textit{апостериорными вероятностями} (a’posteriori~--- «после опыта»). 
+Формула Байеса позволяет переоценить заранее известные вероятности после того, как получено знание о результате эксперимента.
+
+\begin{exmp}
+	Тест на рак имеет надёжность $99\%$ (т.е. вероятность как положительной, так и отрицательной ошибки равна $0{,}01$), рак появляется у $1\%$ населения. 
+	Какова вероятность того, что человек болен раком, если у него позитивный результат теста?
+	    
+	Составим таблицу для вероятностей всех возможных событий:
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline \multirow{2}{*} {Результат теста} & \multicolumn{2}{|c|} {Пациент реально болен} \\
+			\cline {2-3}                      & Да                  & Нет                \\
+			\hline Положительный & $0{,}99 \cdot 0{,}01$ & $0{,}01 \cdot 0{,}99$ \\
+			\hline Отрицательный & $0{,}01 \cdot 0{,}01$ & $0{,}99 \cdot 0{,}99$ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	    
+	Введём следующие обозначения для событий: $H_{+} = \{\text{пациент болен}\}$, $H_{-} = \{\text{пациент здоров}\}$, $R_{+} = \{\text{положительный результат теста}\}$, \\ $R_{-} = \{\text{отрицательный результат теста}\}$. Найдём вероятность события $H_{+}$ при условии $R_{+}$ по формуле Байеса:
+	\begin{multline*}
+		\MyPr(H_{+}|R_{+}) = \cfrac{\MyPr(H_{+})\MyPr(R_{+}|H_{+})}{\MyPr(H_{+})\MyPr(R_{+}|H_{+}) + \MyPr(H_{-})\MyPr(R_{+}|H_{-})} = \\
+		= \cfrac{0{,}99 \cdot 0{,}01}{(0{,}99 \cdot 0{,}01) + (0{,}01 \cdot 0{,}99)} = 0{,}5
+	\end{multline*}
+	    
+	Иными словами, вероятность того, что пациент болен, равна отношению вероятности правильного положительного результата теста к вероятности любого положительного результата.
+	    
+	Рассмотрим более общий случай. Пусть $q$~--- вероятность неправильного результата теста, $p$~--- вероятность заболеть раком, тогда
+	\begin{equation*}
+		\MyPr(H_{+}|R_{+}) 
+		= \cfrac{(1-q) p}{(1-q) p+q(1-p)} 
+		= \cfrac{p-q p}{p+q-2 q p}
+	\end{equation*}
+	Эта функция принимает значение $0{,}5$ на диагонали $p = q$; ниже диагонали~--- вероятность выше $0{,}5$, т.е. чтобы верить результатам теста, вероятность болезни должна превышать вероятность его ошибки.
+\end{exmp}

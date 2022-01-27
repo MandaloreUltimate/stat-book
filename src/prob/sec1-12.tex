@@ -1,0 +1,177 @@
+\section{Виды сходимости последовательностей случайных величин}
+Пусть случайные величины $\xi, \: \xi_1, \ldots, \: \xi_n, \ldots$ определены на одном вероятностном пространстве $\left(\Omega, \SigAlg \MyPr\right)$.
+
+\begin{defn}
+    Последовательность случайных величин $\{\xi_n\}_{n = 1}^{+\infty}$ \\ 
+    \textit{почти наверное сходится} к случайной величине $\xi$ ($\xi_n \xrightarrow[]{\text{п.н.}} \xi$), если
+    \begin{equation*}
+        \MyPr\biggl(\left\{\omega \colon \lim\limits _{n \to \infty} \xi_{n}(w)=\xi(w)\right\}\biggr)=1.
+    \end{equation*}
+\end{defn}
+
+\begin{defn}
+    Последовательность случайных величин $\{\xi_n\}_{n = 1}^{+\infty}$ \\
+    \textit{сходится по вероятности} к случайной величине $\xi$ ($\xi_n \xrightarrow[]{\text{P}} \xi$), если
+    \begin{equation*}
+        \forall \varepsilon>0 \quad \MyPr \biggl( \Bigl\{ \omega \colon |\xi_{n}(\omega)-\xi(\omega)|>\varepsilon \Bigr\} \biggr) \xrightarrow[n \to +\infty]{} 0.
+    \end{equation*}
+\end{defn}
+
+\begin{defn}
+    Последовательность случайных величин $\{\xi_n\}_{n=1}^{+\infty}$ \\
+    \textit{сходится в среднем} к случайной величине $\xi$ ($\xi_n \xrightarrow[]{\text{(r)}} \xi$ или $\xi_n \xrightarrow[]{L_p} \xi$), если
+    \begin{equation*}
+        \Exp \left|\xi_{n}-\xi\right|^{r} \xrightarrow[n \to +\infty]{} 0, \quad r \geqslant 1.
+    \end{equation*}
+\end{defn}
+
+В последующих опеределениях случайные величины могут принадлежать разным вероятностным пространствам.
+\begin{defn}
+    Последовательность случайных величин $\{\xi_n\}_{n=1}^{+\infty}$ \\
+    \textit{сходится по распределению} к случайной величине $\xi$ ($\xi_n \xrightarrow[]{\text{d}} \xi$), если
+    \begin{equation*}
+        F_{\xi_n}(x) \xrightarrow[n \to +\infty]{} F_{\xi}(x) \quad \forall x, \text{ в которых } F_{\xi} \text{ непрерывна}.
+    \end{equation*}
+\end{defn}
+
+\begin{defn}
+    Последовательность случайных величин $\{\xi_n\}_{n=1}^{+\infty}$ \\
+    \textit{слабо сходится} к случайной величине $\xi$ ($\xi_n \stackrel{\text{w}}{\implies} \xi$), если
+    \begin{equation*}
+        \Exp f\left(\xi_{n}\right) \to \Exp f(\xi) \quad \forall \text{ непрерывной ограниченной } f(x).
+    \end{equation*}
+\end{defn}
+\begin{thm*}
+    Вышеуказанные виды сходимости последовательностей случайных величин связаны следующими отношениями:
+\end{thm*}
+\input{src/figs/fig6}
+\begin{proof}
+    \begin{compactlist}
+    \item[$\text{(r)} \implies \text{p}$] 
+        %Из \hyperlink{cheb}{обобщённого неравенства Чебышёва}:
+        %\begin{equation*}
+        %    \MyPr(|\xi_n - \xi| \geqslant \varepsilon) \leqslant \cfrac{\Exp |\xi_n - \xi|^{r}}{\varepsilon^{r}} \xrightarrow[n \to +\infty]{} 0
+        %\end{equation*}
+        Используем неравенство Маркова:
+        \begin{equation*}
+            \MyPr\bigl(|\xi_n - \xi| \geqslant \varepsilon\bigr) = \MyPr\bigl(|\xi_n - \xi|^r \geqslant \varepsilon^r\bigr) \leqslant \cfrac{\Exp |\xi_n - \xi|^r}{\varepsilon^r} \xrightarrow[n \to +\infty]{} 0.
+        \end{equation*}
+    \item[$\text{(r)} \notimpliedby \text{p}$]
+        Рассмотрим последовательность случайных величин:
+        \begin{gather*}
+            \xi_n = 
+            \begin{cases}
+                0, & \frac{1}{n} \leqslant \omega \leqslant 1; \\
+                \sqrt[r]{n}, & 0 \leqslant \omega \leqslant \frac{1}{n}.
+            \end{cases}
+            \implies p_1 = 1 - \frac{1}{n},~ p_2 = \frac{1}{n} \\
+            \MyPr\bigl( |\xi_n| > \varepsilon \bigr) \xrightarrow[n \to +\infty]{} 0,~ \text{однако $~\Exp |\xi_n|^{r} = 1$}.
+        \end{gather*}
+        
+    \item[$\text{п.н.} \implies \text{p}$]
+        От противного: допустим, что выполняется определение сходимости почти наверное, но нет сходимости по вероятности.
+        Распишем определение сходимости по вероятности (обратите внимание, что здесь есть $\varepsilon^\prime$ и $\varepsilon$~--- один из определения предела, другой~--- из определения сходимости):
+        \begin{equation*}
+            \forall \varepsilon > 0, \: \varepsilon^\prime > 0 \quad \exists N \in \Natural\colon \forall n \geqslant N \quad \MyPr \biggl( \Bigl\{ \omega \colon \bigl| \xi_n(\omega) - \xi(\omega) \bigr| > \varepsilon  \Bigr\}\biggr) < \varepsilon^\prime.
+        \end{equation*}
+        По предположению сходимость по вероятности отсутствует:
+        \begin{equation*}
+            \exists \varepsilon_0 > 0, \: \varepsilon_0^\prime > 0 \colon \; \forall N \in \Natural \; \exists n \geqslant N \quad \MyPr \biggl( \Bigl\{ \omega \colon \bigl| \xi_n(\omega) - \xi(\omega) \bigr| > \varepsilon_0 \Bigr\}\biggr) \geqslant \varepsilon_0^\prime > 0.
+        \end{equation*}
+
+        Распишем теперь определение сходимости почти наверное:
+        \begin{equation*}
+            \forall \varepsilon > 0 \quad \exists N \in \Natural \colon \forall n \geqslant N \quad \MyPr \biggl( \Bigl\{ \omega \colon \bigl| \xi_n(\omega) - \xi(\omega) \bigr| < \varepsilon \Bigr\} \biggr) = 1.
+        \end{equation*}
+        Подставив $\varepsilon_0$ и поменяв знак неравенства, получим
+        \begin{equation*}
+            \MyPr \biggl(\Bigl\{ \omega \colon \bigl| \xi_n(\omega) - \xi(\omega) \bigr| \geqslant \varepsilon_0 \Bigr\} \biggr) = 0.
+        \end{equation*}
+        Но это противоречит второму неравенству. 
+        Значит, наше предположение неверно, и из сходимости почти наверное следует сходимость по вероятности, что и требовалось доказать.
+
+    \item[$\text{п.н.} \notimpliedby \text{p}$]
+    
+        Рассмотрим вероятностное пространство $([0, 1], \Borel_{[0, 1]}, \lambda)$ ($\lambda$~--- мера Лебега). Положим $\xi \equiv 0, \, \xi_{2^{k}}=\Ind\bigl(\left[0, \frac{1}{2^{k}}\right]\bigr), \, \xi_{2^{k}+p}=\Ind\bigl(\left[\frac{p}{2^{k}}, \frac{p+1}{2^{k}}\right]\bigr), 1 \leqslant p<2^{k}.$ 
+        Тогда $\xi_n \xrightarrow[]{\text{p}} 0$, т.к. $\MyPr(\xi_{2^k + p} > 0) \leqslant \lambda\bigl(\left[\frac{p}{2^{k}}, \frac{p+1}{2^{k}}\right]\bigr) \leqslant \frac{1}{2^k} \to 0$, но $\xi_n \overset{\text{п.н.}}{\nrightarrow} 0$, т.к. для любого $\omega$ существует бесконечно много $n$, таких что $\xi_n(\omega) = 1.$
+
+        % Данное доказательство легче понять, если нарисовать графики соответствующих случайных величин~--- это возможно, так как мы задали их сами, как явные функции от $\omega \in [0, 1]$.
+    
+    \item[$\text{(r)} \notimpliedby \text{п.н.}$]
+    
+        Рассмотрим то же вероятностное пространство $([0, 1], \Borel_{[0, 1]}, \lambda)$.
+        Определим для $k \geqslant 1 \; \xi_k = 2^{k} \cdot \Ind\bigl(\left[0, \frac{1}{2^{k}}\right]\bigr).$ 
+        Тогда $\forall k \;\; \Exp \xi_k = 1$, но $\xi = \Ind(\omega = 0)$.
+    
+    \item[$\text{p} \implies \text{w}$]
+    
+        Пусть $f$ - ограниченная и непрерывная функция, $|f| \leqslant C$. 
+        Зафиксируем $\varepsilon > 0$. 
+        %Т.к. $\MyPr(|\xi| = \infty) = 0$, то 
+        $\exists N, \exists \delta$:
+    
+        \begin{enumerate}
+            \item $\MyPr(|\xi| > N) \leqslant \frac{\varepsilon}{6C}$, (это возможно, т.к. $\MyPr(\xi > x) \xrightarrow[x \to +\infty]{} 0$)
+            \item $\MyPr(|\xi_n - \xi| > \delta) \leqslant \frac{\varepsilon}{6C} \quad \forall n \geqslant N$ (из сходимости по вероятности)
+            \item $\forall x, y \colon |x| < N, |x - y| < \delta \implies |f(x) - f(y)| \leqslant \frac{\varepsilon}{3}$, т.к. $f$ по теореме Кантора равномерно непрерывна на отрезке $[-N, N]$.
+        \end{enumerate}
+        
+        Рассмотрим следующие события:
+        \begin{gather*}
+            A_{1}=\left\{\left|\xi_{n}-\xi\right| \leqslant \delta\right\} \cap\{|\xi|<N\}, \\
+            A_{2}=\left\{\left|\xi_{n}-\xi\right| \leqslant \delta\right\} \cap\{|\xi| \geqslant N\}, \\
+            A_{3}=\left\{\left|\xi_{n}-\xi\right|>\delta\right\}.
+        \end{gather*}
+        
+        Эти события образуют разбиение $\Omega=A_{1} \cup A_{2} \cup A_{3} $. 
+        
+        Оценим $|\Exp f(\xi_n) - \Exp f(\xi)|$:
+        \begin{multline*}
+            \bigl| \Exp f\left(\xi_{n}\right)-\Exp f(\xi) \bigr|=
+            \bigl| \Exp \bigl( f\left(\xi_{n}\right)-f(\xi) \bigr) \bigr|\leqslant 
+            \Exp \bigl| f\left(\xi_{n}\right)-f(\xi) \bigr| = \\
+            = \Exp \biggl[ \bigl| f\left(\xi_{n}\right)-f(\xi)\bigr| \cdot \left(\Ind(A_{1})+\Ind(A_{2})+\Ind(A_{3})\right) \biggr]\leq \\
+            \leqslant \frac{\varepsilon}{3} \, \MyPr\left(A_{1}\right)+2 C\bigl(\MyPr\left(A_{2}\right) + \MyPr\left(A_{3}\right)\bigr) \leqslant 
+            \frac{\varepsilon}{3}+2 C\left(\frac{\varepsilon}{6 C}+\frac{\varepsilon}{6 C}\right)=\varepsilon,
+        \end{multline*}
+        откуда следует, что $\bigl|\Exp f(\xi_n) - \Exp f(\xi)\bigr| \to 0 \implies \xi_n \xrightarrow[]{\text{w}} \xi$.
+        
+    \item[p $\notimpliedby d$]
+    
+        Пусть $\xi_n = \begin{cases}
+        1, \; p_1 = \frac{1}{2} \\
+        0, \; p_0 = \frac{1}{2}
+        \end{cases} \negthickspace \negthickspace \negthickspace , \; 
+        \xi = \begin{cases}
+        0, \; p_1 = \frac{1}{2} \\
+        1, \; p_0 = \frac{1}{2}
+        \end{cases} \negthickspace \negthickspace \negthickspace .$ \\
+        Тогда $|\xi_n - \xi| = \begin{cases}
+        1, \; p_1 = \frac{1}{2} \\
+        0, \; p_0 = \frac{1}{2}
+        \end{cases} \negthickspace \negthickspace \negthickspace ,$ и не выполняется определение сходимости по вероятности, например, при $\varepsilon_0 = \frac{1}{3}$, т.к. 
+        \begin{equation*}
+            \MyPr\left({|\xi_n - \xi| > \frac{1}{3}}\right) = 1 \; {\nrightarrow} \; 0 \text{ при } n \to \infty.
+        \end{equation*}
+        
+   \item[$\text{p} \notimpliedby \text{w}$]
+    
+        Пусть $\Omega = \{\omega_1, \omega_2 \}, \MyPr\bigl(\{\omega_1\}\bigr) = \MyPr\bigl(\{\omega_2\}\bigr) = \frac{1}{2}.$ 
+        
+        Определим для любого $n$ $\xi_n(\omega_1) = 1, \xi_n(\omega_2) = -1.$ 
+        Положим $\xi = -\xi_n.$ Тогда:
+        
+        $$ \Exp f(\xi_n) = \frac{f(1) + f(-1)}{2} = \Exp f(\xi),$$
+        
+        но $\forall n \quad |\xi_n - \xi| = 2 \implies \xi_n \overset{\text{p}}{\nrightarrow} \xi.$
+    
+\end{compactlist}    
+\end{proof}
+
+\begin{rmrk}
+    Cлабая сходимость всё же не есть сходимость случайных величин, и ею нельзя оперировать как сходимостями п.н. и по вероятности, для которых предельная случайная величина единственна (с точностью до значений на множестве нулевой вероятности).
+\end{rmrk}
+
+\begin{rmrk}
+    Во многих источниках слабая сходимость и сходимость по распределению вводятся как один и тот же вид сходимости. Те немногие доказательства эквивалентности, которые удалось найти авторам, слишком техничны и предоставляются читателю.
+\end{rmrk}

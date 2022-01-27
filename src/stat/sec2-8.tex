@@ -1,0 +1,108 @@
+\section{Метод максимального правдоподобия. Свойства оценок максимального правдоподобия}
+
+\begin{defn}
+    \textit{Оценка максимального правдоподобия $\theta^{*}(\SampleX)$ параметра $\theta$}~--- точка параметрического множества $\Theta$, в которой функция правдоподобия $L(\SampleX,\theta)$ при заданной реализации выборки $\boldsymbol{x}$ достигает максимума, т.е.:
+    \begin{equation*}
+        L(\boldsymbol{x}, \theta^{*})=\max\limits_{\theta \in \Theta} L(\boldsymbol{x}, \theta)
+    \end{equation*}
+\end{defn}
+
+\begin{rmrk}
+    Поскольку функция $\ln y$ монотонна, то точки максимума функций $L(\SampleX,\theta)$ и $\ln L(\SampleX,\theta)$ совпадают.
+\end{rmrk}
+
+Если для каждого $X$ максимум функции правдоподобия достигается во внутренней точке $\Theta$, и $L(\SampleX,\theta)$ дифференцируема по $\theta$, то оценка максимального правдоподобия $\theta^{*} = \theta^{*}(\SampleX)$ удовлетворяет уравнению:
+
+\begin{equation*}
+    \frac{\partial \ln L(\boldsymbol{x}, \theta)}{\partial \theta} = 0
+\end{equation*}
+
+Если $\theta$~--- векторный параметр: $\theta=\left(\theta_{1}, \ldots, \theta_{n}\right)$, то это уравнение заменяется системой уравнений:
+
+\begin{equation*}
+    \frac{\partial \ln L(\boldsymbol{x}, \theta)}{\partial \theta_{i}}=0,~ i=\overline{1, n} 
+\end{equation*}
+
+\begin{exmp}
+    Пусть дана выборка $\SampleX= \Sample, \: X_i \sim \Binom_{1, \theta}$.
+    Найдём оценку максимального правдоподобия для $\theta$.
+    Для этого запишем функцию правдоподобия и исследуем её (точнее, её логарифм) на экстремум:
+    \begin{gather*}
+        L(\SampleX, \theta) = \prod\limits_{i = 1}^{n} \MyPrTh\bigl(X_i = x_i\bigr)= \theta^{\sum\limits_{i=1}^{n} X_i} (1 - \theta)^{n - \sum\limits_{i=1}^{n} X_i} \\
+        \ln L(\SampleX, \theta) = \sum\limits_{i=1}^{n} X_i \ln \theta + \left(n - \sum\limits_{i=1}^{n} X_i\right) \ln(1 - \theta) \\
+        \frac{\partial}{\partial \theta} \ln L(\SampleX, \theta) = \frac{\sum\limits_{i=1}^{n} X_i}{\theta} - \frac{n - \sum\limits_{i=1}^{n} X_i}{1 - \theta} = \\
+        = \frac{(1 - \theta)\sum\limits_{i=1}^{n} X_i - \theta\left(n - \sum\limits_{i=1}^{n} X_i\right)}{\theta (1 - \theta)} = \\
+        = \frac{\sum\limits_{i=1}^{n} X_i - n\theta}{\theta(1 - \theta)}
+    \end{gather*}
+    Приравнивая числитель к нулю, получаем, что $\theta^{*} = \SampleMean$~--- стационарная точка.
+    При этом если $\theta > \SampleMean$, то производная отрицательна, а если $\theta < \SampleMean$~--- положительна, т.е. это локальный максимум.
+    Значит, это в самом деле оценка максимального правдоподобия для параметра $\theta$.
+\end{exmp}
+
+\begin{thm*}
+    Если существует эффективная оценка $\widetilde{T}(\SampleX)$ скалярного параметра $\theta$, то она совпадает с оценкой максимального правдоподобия.
+\end{thm*}
+
+\begin{proof}
+    Если оценка $\widetilde{T}(\SampleX)$ скалярного параметра $\theta$ эффективна, то $\widetilde{T}(\SampleX)$ линейно выражается через функцию вклада (следствие неравенства Рао"--~Крамера):
+
+    \begin{gather*}
+        \widetilde{T}(\SampleX) - \theta = a_n(\theta) U(\SampleX, \theta) = a_n(\theta) \frac{\partial \ln L(\SampleX, \theta)}{\partial \theta}
+    \end{gather*}
+    Но если мы подставим вместо $\theta$ оценку максимального правдоподобия $\theta^{*}$, то правая часть обнулится.
+    А значит, $\widetilde{T}(\SampleX) = \theta^{*}$.
+\end{proof}
+
+\begin{thm*}
+    Если $T(\SampleX)$~--- достаточная статистика, а оценка максимального правдоподобия $\theta^{*}$ существует и единственна, то она является функцией от $T(\SampleX)$.
+\end{thm*}
+
+\begin{proof}
+    Из критерия факторизации следует, что если $T=T(\SampleX)$ достаточная статистика, то имеет место представление:
+    \begin{equation*}
+        L(\SampleX, \theta)=g(T(\SampleX), \theta) h(\SampleX)
+    \end{equation*}
+
+    Таким образом, максимизация~$L(\SampleX,\theta)$ сводится к максимизации $g\bigl(T(\SampleX), \theta\bigr)$ по~$\theta$.
+    Следовательно, $\theta^{*}$ есть функция от~$T(\SampleX)$.
+\end{proof}
+
+\begin{namedthm}[Инвариантность метода максимального правдоподобия]
+    Пусть $f\colon \Theta \mapsto Y$~--- некоторая биективная функция.
+    Тогда, если $\theta^*$ есть оценка максимального правдоподобия для $\theta$, то $f(\theta^*)$~--- оценка максимального правдоподобия для $f(\theta)$.
+\end{namedthm}
+
+\begin{proof}
+    \begin{equation*}
+        L(\boldsymbol{x}, \theta^*) = 
+        \sup_{\theta \in \Theta} L(\boldsymbol{x}, \theta) =
+        \sup_{y \in Y} L(\boldsymbol{x}, f^{-1}(y)) =
+        L(\boldsymbol{x}, f^{-1}(y^*))
+    \end{equation*}
+    Тогда $\theta^* = f^{-1}(y^*)$ и $y^* = f(\theta^*)$.
+\end{proof}
+
+\begin{defn}
+    \textit{Асимптотически эффективная оценка} параметра $\tau(\theta)$~--- оценка $\tau^{*}$:
+    \begin{equation*}
+        \VarTh \tau^{*} \cdot \frac{i_{n}(\theta)}{\bigl(\tau^{\prime}(\theta)\bigr)^{2}} 
+        \xrightarrow[n \to \infty]{} 1,~ \text{где}~ i_{n}(\theta) = 
+        \ExpTh\left(\frac{\partial \ln L(X, \theta)}{\partial \theta}\right)^{2} = 
+        \ExpTh(U^{2}\bigl(X, \theta)\bigr)
+    \end{equation*}
+\end{defn}
+
+\begin{thm*}
+    Пусть выполнены следующие условия:
+    \begin{enumerate}
+        \item Функция правдоподобия $L(\SampleX, \theta)$ удовлетворяет условиям регулярности для первых двух производных;
+        \item Существует единственная оценка максимального правдоподобия $\theta^{*}$ для всех $\theta$, которая достигается во внутренней точке $\Theta$.
+    \end{enumerate}
+    Тогда оценка $\theta^{*}$:
+    \begin{enumerate}
+        \item асимптотически несмещена;
+        \item состоятельна;
+        \item асимптотически эффективна;
+        \item асимптотически нормальна.
+    \end{enumerate}
+\end{thm*}

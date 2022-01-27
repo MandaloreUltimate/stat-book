@@ -1,0 +1,29 @@
+%sec1-9
+\begin{center}
+    \begin{tikzpicture}[
+        declare function={
+            normal_pdf(\x,\sstd,\mu) = 1 / sqrt(2 * pi * \sstd) * exp(-(\x - \mu)^2 / (2 * \sstd));
+            binom_pmf(\x,\n,\p) = \n! / (\x! * (\n - \x)!) * \p^(\x) * (1 - \p)^(\n - \x);
+            pois_pmf(\x,\l) = \l^(\x) * exp(-\l) / (\x!);
+        }]
+        \begin{axis}[
+            height=11cm, width=18cm,
+            xmin=0, xmax=11,
+            ymin=-0.05, ymax=0.45,
+            xlabel={$x$},
+            ylabel={$f(x)$},
+            xtick={1, ..., 10},
+            ytick={0.1, 0.2, ..., 0.4},
+            axis line style=thick,
+            axis lines=middle,
+            enlargelimits=false
+            ]
+            \addplot[very thick, color1, samples=100,domain=0:10] {normal_pdf(x,2.5,5)};
+            \addplot[color=red, domain=0:10, samples=11, mark=*] {binom_pmf(x,10,0.5)};
+            \addplot[color=color2, domain=0:10, samples=11, mark=*] {pois_pmf(x,1)};
+            \addplot[color=blue, domain=0:10, samples=11, mark=*] {pois_pmf(x,3)};
+            \addplot[color=black, domain=0:10, samples=11, mark=*] {pois_pmf(x,5)};
+            \legend{$\Normal_{5;2.5}$, $\Binom_{10;0.5}$, $\Pois_{1}$, $\Pois_{3}$, $\Pois_{5}$}
+        \end{axis}
+    \end{tikzpicture}
+\end{center}

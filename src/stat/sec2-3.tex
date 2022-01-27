@@ -1,0 +1,174 @@
+\section{Выборочные моменты. Их свойства}
+
+В параграфе 2.1 мы предположили, что все случайные величины выборки $\SampleX= \Sample$ имеют одно и то же распределение, т.е. $X_i \sim \xi~~\forall i = \overline{1, n}$ для некоторой случайной величины $\xi$. 
+Попробуем найти приближения некоторых числовых характеристик этой случайной величины.
+\begin{defn}
+    \textit{Выборочное математическое ожидание:} 
+    \begin{equation*}
+        \tilde{\Exp } \xi =
+        \sum\limits_{i=1}^{n} \frac{1}{n} X_{i} =
+        \frac{1}{n} \sum\limits_{i=1}^{n} X_{i} =
+        \SampleMean
+    \end{equation*}
+
+    Выборочное матожидание функции $g(\xi)$:
+    \begin{equation*}
+        \tilde{\Exp } g\left(\xi \right) = 
+        \frac{1}{n} \sum\limits_{i=1}^{n} g\left(X_{i}\right) =
+        \overline{g(X)}
+    \end{equation*}
+\end{defn}
+
+\begin{defn}
+    \textit{Выборочная дисперсия:}
+    \begin{equation*}
+        \tilde{\Var } \xi = 
+        \sum\limits_{i=1}^{n} \frac{1}{n} \bigl(X_{i}-\tilde{\Exp } \xi \bigr)^{2} = 
+        \frac{1}{n} \sum\limits_{i=1}^{n} \bigl(X_{i}-\SampleMean \bigr)^{2} =
+        \SampleVar
+    \end{equation*}
+\end{defn}
+
+\begin{defn}
+    \textit{Несмещённая выборочная дисперсия:} 
+    \begin{equation*}
+        S_{0}^{2} = 
+        \frac{1}{n-1} \sum\limits_{i=1}^{n}\left(X_{i}-\SampleMean\right)^{2} =
+        \frac{n}{n-1} S^2
+    \end{equation*}
+\end{defn}
+
+\begin{defn}
+    \textit{Выборочный момент $k$-го порядка:}
+    \begin{equation*}
+        \tilde{\Exp } \left[ \xi^{k} \right] = 
+        \sum\limits_{i=1}^{n} \frac{1}{n} X_{i}^{k} =
+        \frac{1}{n} \sum\limits_{i=1}^{n} X_{i}^{k} =
+        \overline{X^{k}}
+    \end{equation*}
+\end{defn}
+
+Все вышеперечисленные характеристики являются случайными величинами как функции от выборки $\Sample$ и оценками для истинных моментов искомого распределения.
+
+Введём ещё одно определение.
+\begin{defn}
+    Статистика $T(\SampleX)$ называется \textit{асимптотически нормальной}, если существуют такие 
+    $a_n(\theta), \sigma_n(\theta)$, что $\cfrac{T_n(\SampleX) - a_n(\theta)}{\sigma_n(\theta)} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, 1}$.
+    Иными словами, оценка называется асимптотически нормальной, если с ростом объёма выборки её функция распределения (оценка, будучи функцией от выборки, сама является случайной величиной) стремится к функции нормального распределения. %Забегая вперёд, отметим, что это свойство бывает полезным при построении доверительных интервалов.
+\end{defn}
+
+\begin{thm*}
+    Выборочное среднее $\SampleMean$ является несмещённой, состоятельной и асимптотически нормальной оценкой для теоретического среднего (математического ожидания), то есть:
+
+    \begin{enumerate}[label={\arabic*.}]
+        \item Если $\ExpTh |X_{1}|<\infty$, то $\ExpTh \SampleMean = \ExpTh X_{1}=a$;
+        \item Если $\ExpTh |X_{1}|<\infty$, то $\SampleMean \xrightarrow[n \to \infty]{\text{p}} \ExpTh X_{1}=a$;
+        \item Если $\VarTh  X_{1}<\infty,~ \VarTh X_{1} \neq 0$, 
+        
+        то $\cfrac{\SampleMean - \ExpTh \SampleMean }{\sqrt{\VarTh \SampleMean}} = \sqrt{n} \,\cfrac{\SampleMean - \ExpTh X_1}{\sqrt{\VarTh X_1}} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, 1}$.
+    \end{enumerate}
+\end{thm*}
+
+\begin{proof}
+\begin{enumerate}[label={\arabic*.}]
+    \item Из линейности математического ожидания:
+    \begin{equation*}
+        \ExpTh \SampleMean=\frac{1}{n}\bigl(\ExpTh  X_{1}+\ldots + \ExpTh X_{n}\bigr)=\frac{1}{n} \cdot n \, \ExpTh X_{1}= \ExpTh  X_{1} = a.
+    \end{equation*}
+    \item Из ЗБЧ в форме Хинчина:
+    \begin{equation*}
+        \SampleMean = 
+        \cfrac{X_{1}+\ldots+X_{n}}{n} \xrightarrow[n \to \infty]{\text{p}} \ExpTh X_{1} = a.
+    \end{equation*}
+
+    \item Раскроем дисперсию суммы, пользуясь тем, что $X_1, \ldots X_n$ независимы и одинаково распределены, а затем домножим числитель и знаменатель на $n$. 
+    Тогда можно будет применить ЦПТ:
+    \begin{gather*}
+        \frac{\bigl(\SampleMean - \ExpTh \SampleMean \bigr)}{\sqrt{\VarTh \SampleMean}} =
+        \frac{\bigl(\SampleMean - \ExpTh X_{1}\bigr)}{\sqrt{\VarTh \left[ \frac{1}{n} \sum\limits_{i=1}^n X_i \right]}} = 
+        \frac{\bigl(\SampleMean - \ExpTh X_{1}\bigr)}{\sqrt{\frac{1}{n^2} \VarTh \left[ \sum\limits_{i=1}^n X_i \right]}} = \\
+        \frac{\bigl(\SampleMean - \ExpTh X_{1}\bigr)}{\sqrt{\frac{1}{n^2} \, n \, \VarTh X_1}} = 
+        \frac{\frac{1}{n}\sum\limits_{i=1}^{n} X_{i} - \ExpTh X_{1}}{\sqrt{ \frac{1}{n} \, \VarTh X_1}} = 
+        \sqrt{n} \, \frac{\frac{1}{n}\sum\limits_{i=1}^{n} X_{i} - \ExpTh X_{1}}{\sqrt{\VarTh X_1}} = \\
+        \sqrt{n} \, \frac{\sum\limits_{i=1}^{n} X_{i} - n \ExpTh X_{1}}{n \sqrt{\VarTh X_1}} =
+        \frac{\sum\limits_{i=1}^{n} X_{i} - n \ExpTh X_{1}}{\sqrt{n \, \VarTh X_1}} 
+        \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, 1} 
+    \end{gather*}
+\end{enumerate}
+\end{proof}
+
+\begin{rmrk}
+    Аналогичными свойствами обладает выборочный $k$-й момент, являющийся несмещённой, состоятельной и асимптотически нормальной оценкой для теоретического $k$-го момента.
+\end{rmrk}
+
+\begin{rmrk}
+    Применив \hyperlink{SLLN}{УЗБЧ Колмогорова}, можно показать, что выборочные $k$-е моменты сходятся к теоретическим почти наверное. 
+    Такие оценки называются \textit{сильно состоятельными}. На практике обычно достаточно и состоятельности в обычном смысле (т.е. сходимости к теоретическому моменту по вероятности с ростом объёма выборки).
+\end{rmrk}
+
+\begin{thm*}
+    Пусть $\VarTh X_{1}<\infty$.
+    \begin{enumerate}
+        \item Выборочные дисперсии $\SampleVar$ и $\SampleVar_0$ являются состоятельными оценками для истинной дисперсии:
+            \begin{equation*}
+                \SampleVar \xrightarrow[n \to \infty]{\text{p}} \VarTh X_{1}=\sigma^{2}, \quad S_{0}^{2} \xrightarrow[n \to \infty]{\text{p}} \VarTh X_{1}=\sigma^{2} \quad \AllTh.
+            \end{equation*}
+        \item $\SampleVar$~--- смещённая оценка дисперсии, а $\SampleVar_0$~--— несмещённая:
+            \begin{equation*}
+                \ExpTh \SampleVar=\frac{n-1}{n} \, \VarTh X_{1}=\frac{n-1}{n} \sigma^{2} \neq \sigma^{2}, \quad \ExpTh  S_{0}^{2}=\VarTh  X_{1}=\sigma^{2} \quad \AllTh.
+            \end{equation*}
+        \item Если $0 \neq \VarTh \Bigl[ \bigl(X_{1}-\ExpTh X_{1}\bigr)^{2} \Bigr] <\infty$, то $\SampleVar$ и $\SampleVar_0$ являются асимптотически нормальными оценками истинной дисперсии:
+            \begin{equation*}
+                \sqrt{n}\left(\SampleVar-\VarTh  X_{1}\right) \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh \bigl(X_{1}-\ExpTh  X_{1}\bigr)^{2}} \quad \AllTh.
+            \end{equation*}
+    \end{enumerate}
+\end{thm*}
+
+\begin{proof}
+\begin{enumerate}
+    \item 
+    $\SampleVar = 
+    \cfrac{1}{n} \sum\limits_{i=1}^{n}\left(X_{i}-\SampleMean\right)^{2} = 
+    \cfrac{1}{n} \sum\limits_{i=1}^{n}\Bigl(X_i^2 - 2 X_i \SampleMean + \bigl(\SampleMean\bigr)^2 \Bigr) = \\
+    \cfrac{1}{n} \Bigl( n \overline{X^2} - 2 \SampleMean \sum\limits_{i=1}^{n}X_i + n \bigl(\SampleMean\bigr)^2\Bigr) = 
+    \overline{X^{2}}-2\bigl(\SampleMean\bigr)^{2} + \bigl(\SampleMean\bigr)^2 = 
+    \overline{X^{2}}-\bigl(\SampleMean\bigr)^{2}$.
+
+    Используя состоятельность первого и второго выборочных моментов и свойства сходимости по вероятности, получаем:
+    \begin{gather*}
+        \SampleVar=\overline{X^{2}}-(\SampleMean)^{2} \xrightarrow[n \to \infty]{\text{p}} \ExpTh  X_{1}^{2} - \bigl(\ExpTh  X_{1}\bigr)^{2}=\sigma^{2} \\
+        \cfrac{n}{n-1} \underset{n \to \infty}{\longrightarrow} 1 \implies S_{0}^{2}=\frac{n}{n-1} \SampleVar \xrightarrow[n \to \infty]{\text{p}} \sigma^{2}
+    \end{gather*}
+    
+    \item Используя несмещённость первого и второго выборочных моментов:
+    \begin{multline*}
+        \ExpTh  \SampleVar = \ExpTh \left(\overline{X^{2}}-(\SampleMean)^{2}\right)
+        = \ExpTh \overline{X^{2}}-\ExpTh \bigl(\SampleMean\bigr)^{2}
+        = \ExpTh X_{1}^{2}-\ExpTh \bigl(\SampleMean\bigr)^{2} = \\
+        = \ExpTh X_{1}^{2}-\Bigl(\bigl(\ExpTh \SampleMean\bigr)^{2} + \VarTh \SampleMean\Bigr)
+        = \ExpTh X_{1}^{2}-\bigl(\ExpTh X_{1}\bigr)^{2} - \VarTh \left(\frac{1}{n} \sum\limits_{i=1}^{n} X_{i}\right) = \\
+        = \VarTh X_1 - \VarTh \left(\frac{1}{n} \sum\limits_{i=1}^{n} X_{i}\right)
+        = \sigma^{2}-\frac{1}{n^{2}} n \, \VarTh  X_{1}
+        = \sigma^{2}-\frac{\sigma^{2}}{n}
+        = \frac{n-1}{n} \sigma^{2}.
+    \end{multline*}
+    
+    Откуда следует:
+    \begin{equation*}
+        \ExpTh S_{0}^{2}=\frac{n}{n-1} \, \ExpTh \SampleVar=\sigma^{2}.
+    \end{equation*}
+    
+    \item Введём случайные величины $Y_{i}=X_{i}-a$; $\ExpTh Y_{i} = 0, \; \VarTh Y_{1} = \VarTh X_{1}=\sigma^{2}$.
+    \begin{gather*}
+        \SampleVar=\frac{1}{n} \sum\limits_{i=1}^{n}(X_{i}-\SampleMean)^{2}=\frac{1}{n} \sum\limits_{i=1}^{n}(X_{i}-a-(\SampleMean-a))^{2}=\overline{Y^{2}}-\bigl(\overline{Y}\bigr)^{2}. \\
+        \begin{aligned}
+            \sqrt{n}\bigl(\SampleVar-\sigma^{2}\bigr) = \sqrt{n}\Bigl(\overline{Y^{2}}-\bigl(\overline{Y}\bigr)^{2}-\sigma^{2}\Bigr)
+            = \sqrt{n}\Bigl(\overline{Y^{2}}-\ExpTh  Y_{1}^{2} \Bigr) - \sqrt{n}\bigl(\overline{Y}\bigr)^{2} = \\
+            =\frac{\sum\limits_{i=1}^{n} Y_{i}^{2}-n \ExpTh  Y_{1}^{2}}{\sqrt{n}}-\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh (X_{1}-\ExpTh X_1}^{2}),
+    \end{aligned}
+    \end{gather*}
+    поскольку $\cfrac{\sum\limits_{i=1}^{n} Y_{i}^{2}-n \ExpTh  Y_{1}^{2}}{\sqrt{n}} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  Y_{1}^{2}}$ по ЦПТ, 
+    а ${\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} 0}$ как произведение последовательностей ${\overline{Y} \xrightarrow[n \to \infty]{p} 0}$ и ${\sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  X_{1}}}$.
+\end{enumerate}
+\end{proof}
+

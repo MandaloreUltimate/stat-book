@@ -1,0 +1,57 @@
+\chapter{Таблицы основных распределений}
+\begin{mytable}
+	\begin{center}
+        \caption{Дискретные распределения.}
+        \vspace{-4mm}
+        \begin{tabular}{|c|c|c|c|c|}
+			\hline Распределение & $\MyPr(\xi=k)$ & $\Exp \xi$ & $\Var \xi$ & $\varphi(t)$\\
+			\hline \doublerow{Бернулли $\Bernoulli_{p}$}{$p \in (0;1)$} & \doublerow{$\MyPr(\xi=1)=p$}{$\MyPr(\xi=0)=q$} & $p$ & $pq$  & $q+p e^{it}$\\[14pt]
+			\hline \doublerow{Биномиальное $\Binom_{n, p}$}{$p \in (0;1),~ n = 1, 2, \ldots$} & $C_{n}^{k} \, p^{k}(1-p)^{n-k}$ & $np$ & $npq$ & $(q+p e^{i t})^{n}$\\[14pt]
+			\hline \mylinespace[7.5pt] \doublerow{Пуассона $\Pois_{\lambda}$}{$\lambda > 0$} & $\cfrac{\lambda^{k}}{k!}\cdot e^{-\lambda}$ & $\lambda$ & $\lambda$ & $e^{\lambda (e^{i t}-1)}$\\[10pt]
+			\hline \doublerow{Геометрическое $\Geom_{p}$}{$p \in (0;1),~ k = 1, 2, \ldots$} & $p q^{k-1}$ & $\cfrac{1}{p}$ & $\cfrac{q}{p^2}$ & $\cfrac{p}{1-q e^{i t}}$\\[14pt]
+			\hline \mylinespace \doublerow{Отрицательное биномиальное $\NegBinom_{r, p}$}{$p \in (0;1), ~r = 1, 2, \ldots$} & $C_{r-1 + k}^k \, p^r q^{k-1}$ & $\cfrac{r}{p}$ & $\cfrac{rq}{p^2}$ & $\left(\cfrac{p}{1-q e^{i t}}\right)^r$\\[15pt]
+			\hline
+		\end{tabular}
+	\end{center}
+\end{mytable}
+
+\begin{mytable}
+	\begin{center}
+		\caption{Абсолютно непрерывные распределения.}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline Распределение & $f_{\xi}(x)$ & $\Exp \xi$ & $\Var \xi$ & $\varphi(t)$\\
+			\hline \mylinespace[7.5pt] \doublerow{Равномерное $\Uniform_{[a, b]}$}{$a<b$} & $\cfrac{1}{b-a} \cdot \Ind(x \in [a;b])$ & $\cfrac{a+b}{2}$ & $\cfrac{(b-a)^2}{12}$ & $\cfrac{e^{i t b}-e^{i t a}}{i t(b-a)}$\\[14pt]
+			\hline \doublerow{Показательное $\ExpDist_{\lambda}$}{$\lambda > 0$} & $\lambda e^{-\lambda x} \cdot \Ind(x > 0)$ & $\cfrac{1}{\lambda}$ & $\cfrac{1}{\lambda^{2}}$ & $\cfrac{1}{1 - it / \lambda}$\\[14pt]
+			\hline \mylinespace \doublerow{Гамма $\GammaDist_{\lambda, \alpha}$}{$\alpha>0, \lambda>0$} & $\cfrac{\lambda^{\alpha}}{\Gamma(\alpha)} \, x^{\alpha-1} e^{-\lambda x} \cdot \Ind(x > 0)$ & $\cfrac{\alpha}{\lambda}$ & $\cfrac{\alpha}{\lambda^{2}}$ & $\left(\cfrac{1}{1 - it / \lambda}\right)^{\alpha}$\\[15pt]
+			\hline \doublerow{Нормальное $\Normal_{a, \sigma^{2}}$}{$a \in \Real, \sigma>0$} & $\cfrac{1}{\sigma \sqrt{2 \pi}} \, e^{-(x-a)^{2}/2 \sigma^{2}}$ & $a$ & $\sigma^{2}$ & $\mathlarger{e^{a i t-\sigma^{2} t^{2}/2}}$\\[14pt]
+			\hline \doublerow{Коши $\Cauchy_{a, \sigma}$}{$a \in \Real, \sigma>0$} & $\cfrac{1}{\pi} \cdot \cfrac{\sigma}{\sigma^{2}+(x-a)^{2}}$ & - & - & $\mathlarger{e^{a i t-\sigma|t|}}$\\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{mytable}
+\pagebreak
+\begin{mytable}
+    \begin{center}
+		\caption{\protect\hyperlink{fisher}{Фишеровская информация}, содержащаяся в выборке размера 1.}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|}
+			\hline Модель & $\Normal_{\theta, \sigma^2}$ & $\Normal_{\mu, \theta^2}$ & $\GammaDist_{\theta, \alpha}$ & $\Cauchy_{\theta, \sigma^2}$ & $\Binom_{k, \theta}$  & $\Pois_{\theta}$ & $\NegBinom_{r, \theta}$\\
+			\hline $i_1(\theta)$ & $\cfrac{1}{\sigma^2}$ & $\cfrac{2}{\theta^2}$ & $\cfrac{\alpha}{\theta^2}$ & $\cfrac{1}{2}$ & $\cfrac{k}{\theta(1 - \theta)}$ & $\cfrac{1}{\theta}$ & $\cfrac{r}{\theta(1 - \theta)^2}$\\[12pt]
+			\hline
+		\end{tabular}
+	\end{center}
+\end{mytable}
+
+\begin{mytable}
+	\begin{center}
+		\caption{Эффективные оценки в регулярных моделях.}
+		\begin{tabular}{|c|c|c|c|}
+			\hline Модель & $\tau(\theta)$ & $\tau^*(\SampleX)$ & $\Var \tau^*(\SampleX)$\\
+			\hline $\Normal_{\theta, \sigma^2}$ & $\theta$ & $\SampleMean = \frac{1}{n} \sum\limits_{i=1}^{n} X_i$ & $\cfrac{\sigma^2}{n}$\\[12pt]
+			\hline \mylinespace[7.5pt] $\Normal_{\mu, \theta^2}$ & $\theta^2$ & $S^2 = \frac{1}{n} \sum\limits_{i=1}^{n} \left(X_i - \mu\right)^2$ & $\cfrac{2\theta^4}{n}$\\[12pt]
+			\hline \mylinespace[7.5pt] $\GammaDist_{\theta, \alpha}$ & $\cfrac{1}{\theta}$ & $\cfrac{\SampleMean}{\alpha}$ & $\cfrac{1}{\alpha n \theta^2}$\\[12pt]
+			\hline \mylinespace[7.5pt] $\Binom_{k, \theta}$ & $\theta$ & $\cfrac{\SampleMean}{k}$ & $\cfrac{\theta(1 - \theta)}{kn}$\\[12pt]
+			\hline $\Pois_{\theta}$ & $\theta$ & $\SampleMean$ & $\cfrac{\theta}{n}$\\[12pt]
+			\hline \mylinespace[7.5pt] $\NegBinom_{r, \theta}$ & $\cfrac{\theta}{1 - \theta}$ & $\cfrac{\SampleMean}{r}$ & $\cfrac{\theta}{rn(1 - \theta)^2}$\\[12pt]
+			\hline
+		\end{tabular}
+	\end{center}

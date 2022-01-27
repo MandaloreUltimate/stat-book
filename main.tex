@@ -1,0 +1,21 @@
+\input{src/preamble}
+
+\begin{document}
+\input{src/title}
+\input{src/preface}
+\input{src/figs/tikz-config}
+
+\microtypesetup{protrusion=false}
+\tableofcontents
+\microtypesetup{protrusion=true}
+
+\input{src/prob/prob}
+\input{src/stat/stat}
+\input{src/app/appendix}
+
+\nocite{*}
+\printbibliography[
+	heading=bibintoc,
+	title={Литература}
+]
+\end{document}
