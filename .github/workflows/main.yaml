@@ -26,6 +26,7 @@ jobs:
         # configure git
         git config --global user.name "user"
         git config --global user.email "email"
+        
         # Copy and commit the PDF file
         mkdir -p "$GITHUB_WORKSPACE/deploy"
         cp -f main.pdf "$GITHUB_WORKSPACE/deploy/main.pdf"
@@ -34,8 +35,7 @@ jobs:
         git checkout --orphan gh-pages
         git add main.pdf
         git commit -m "[github actions] deploy"
-        git remote add origin https://MandaloreUltimate:$PASS@github.com/MandaloreUltimate/stat-book.git
+        git remote add origin https://$TOKEN@github.com/MandaloreUltimate/stat-book.git
         git push --force --set-upstream origin gh-pages
       env:
-        PASS: ${{ secrets.PASS }}
-        EMAIL: ${{ secrets.EMAIL }} 
+        PASS: ${{ secrets.TOKEN }}
