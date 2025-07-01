@@ -1,22 +1,22 @@
 \section{Условное математическое ожидание}
     Рассмотрим дискретные случайные величины $\xi$ и $\eta$ на вероятностном пространстве $(\Omega, \SigAlg, \MyPr)$. 
-    $\xi$ принимает значения $y_1, y_2, \ldots$, $\eta$~--- $x_1, x_2, \ldots$
-    Вспомним определение условной вероятности: ${\MyPr\left( \xi = y_i | \eta = x_j \right) = \cfrac{\MyPr\left( \xi = y_i, \, \eta = x_j\right)}{\MyPr\left(\eta = x_j\right)}}$.
+    $\xi$ принимает значения $x_1, x_2, \dots$, $\eta$~--- $y_1, y_2, \dots$
+    Вспомним определение условной вероятности: ${\MyPr\left( \xi = x_i | \eta = y_j \right) = \cfrac{\MyPr\left( \xi = x_i, \, \eta = y_j\right)}{\MyPr\left(\eta = y_j\right)}}$.
     Ранее мы проверяли, что условная вероятность является вероятностной мерой на $\sigma$-алгебре $\SigAlg$.
     Рассмотрим теперь следующую величину:
     \begin{equation}
-        \Exp \left[ \xi | \eta = x_j \right] = 
-        \sum\limits_i y_i \, \MyPr\left(\xi = y_i | \eta = x_j \right) \equiv
-        f(x_j).
+        \Exp \left[ \xi | \eta = y_j \right] = 
+        \sum\limits_i y_i \, \MyPr\left(\xi = x_i | \eta = y_j \right) \equiv
+        f(y_j).
         \label{cond_exp:discrete}
     \end{equation}
     
     $f(x)$~--- \textit{регрессия} $\xi$ \textit{на} $\eta$. 
     В математическом анализе изучаются функциональные зависимости~--- каждому значению независимой переменной $x$ соответствует одно определённое значение величины $y = f(x)$.
     В теории вероятностей и статистике изучаются зависимости между случайными величинами~--- например, $\xi$ и $\eta$.
-    В этом случае при принятии величиной $\eta$ значения $x_j$ случайная величина $\xi$ может принимать разные значения~--- $y_1, y_2, \ldots$.
-    Логично сопоставить $x_j$ среднее этих значений.
-    Таким образом строится \textit{стохастическая зависимость} $f(x)$.
+    В этом случае при принятии величиной $\eta$ значения $y_j$ случайная величина $\xi$ может принимать разные значения~--- $x_1, x_2, \ldots$.
+    Логично сопоставить $y_j$ среднее этих значений.
+    Таким образом строится \textit{стохастическая зависимость} $f(y)$.
     Можно записать (пока~--- просто формально)
     \begin{equation*}
         \Exp \bigl[\xi | \eta \bigr] = f(\eta).
@@ -31,9 +31,9 @@
     В самом деле,
     \begin{gather*}
         \Exp \bigl[ \Exp \left( \xi | \eta\right) \rm{I}(\eta \in B)\bigr] = \\
-        \sum\limits_{j \colon x_j \in B} f(x_j) \, \MyPr(\eta = x_j) = 
-        \sum\limits_{j \colon x_j \in B} \biggl( \sum\limits_k y_k \, \MyPr(\xi = y_k \,|\, \eta = x_j) \biggr) \, \MyPr(\eta = x_j) = \\
-        \sum\limits_{j \colon x_j \in B} \sum\limits_k y_k \, \MyPr(\xi = y_k, \, \eta = x_j) = 
+        \sum\limits_{j \colon y_j \in B} f(y_j) \, \MyPr(\eta = y_j) = 
+        \sum\limits_{j \colon y_j \in B} \biggl( \sum\limits_k x_k \, \MyPr(\xi = x_k \,|\, \eta = y_j) \biggr) \, \MyPr(\eta = y_j) = \\
+        \sum\limits_{j \colon y_j \in B} \sum\limits_k x_k \, \MyPr(\xi = x_k, \, \eta = y_j) = 
         \Exp \bigl[ \xi \cdot \rm{I}(\eta \in B)\bigr].
     \end{gather*}
 
@@ -41,7 +41,7 @@
     Пусть $\xi, \eta \sim p_{\xi, \eta}(x, y)$, где $p_{\xi, \eta}(x, y)$~--- плотность совместного распределения.
     \begin{gather*}
         \forall B \in \Borel_{\Real^2} \quad \MyPr\bigl( (\xi, \eta) \in B\bigr) = \iint\limits_{B} p_{\xi, \eta}(x, y) \, dxdy, \\
-        p_{\eta} = \int\limits_{-\infty}^{+\infty} p_{\xi, \eta} (x, y)\, dxdy.
+        p_{\eta}(y) = \int\limits_{-\infty}^{+\infty} p_{\xi, \eta} (x, y)\, dx.
     \end{gather*}
 
     В этом случае некоторая проблема заключается в том, что при абсолютно непрерывном распределении вероятность попасть в конкретную точку равна нулю,

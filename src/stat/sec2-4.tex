@@ -103,7 +103,7 @@
             Возьмём произвольную реализацию выборки $\boldsymbol{x}$ и обозначим $t = T(\boldsymbol{x})$. Тогда
             \begin{multline*}
                 L(\boldsymbol{x}, \theta) = \MyPrTh (\SampleX=\boldsymbol{x})=\MyPrTh (\SampleX=\boldsymbol{x}, T(\SampleX)=t) =\\
-                = \underbrace{\MyPrTh (T(\SampleX)=t)}_{g(T(\SampleX), \theta)} \underbrace{\MyPrTh (\SampleX=\boldsymbol{x} | T(\SampleX)=t)}_{h(\SampleX)}
+                = \underbrace{\MyPrTh (T(\SampleX)=t)}_{g(t, \theta)} \underbrace{\MyPrTh (\SampleX=\boldsymbol{x} | T(\SampleX)=t)}_{h(\boldsymbol{x})}
             \end{multline*}
         \item[$\impliedby$] Пусть теперь функция правдоподобия имеет вид $L(\boldsymbol{x}, \theta)=g\bigl(T(\boldsymbol{x}), \theta\bigr) h(\boldsymbol{x})$. 
             Тогда, если $x$ таково, что $T(\boldsymbol{x})=t$, то:
