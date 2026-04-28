@@ -8,8 +8,8 @@
 			\hline \doublerow{Бернулли $\Bernoulli_{p}$}{$p \in (0;1)$} & \doublerow{$\MyPr(\xi=1)=p$}{$\MyPr(\xi=0)=q$} & $p$ & $pq$  & $q+p e^{it}$\\[14pt]
 			\hline \doublerow{Биномиальное $\Binom_{n, p}$}{$p \in (0;1),~ n = 1, 2, \ldots$} & $C_{n}^{k} \, p^{k}(1-p)^{n-k}$ & $np$ & $npq$ & $(q+p e^{i t})^{n}$\\[14pt]
 			\hline \mylinespace[7.5pt] \doublerow{Пуассона $\Pois_{\lambda}$}{$\lambda > 0$} & $\cfrac{\lambda^{k}}{k!}\cdot e^{-\lambda}$ & $\lambda$ & $\lambda$ & $e^{\lambda (e^{i t}-1)}$\\[10pt]
-			\hline \doublerow{Геометрическое $\Geom_{p}$}{$p \in (0;1),~ k = 1, 2, \ldots$} & $p q^{k-1}$ & $\cfrac{1}{p}$ & $\cfrac{q}{p^2}$ & $\cfrac{p}{1-q e^{i t}}$\\[14pt]
-			\hline \mylinespace \doublerow{Отрицательное биномиальное $\NegBinom_{r, p}$}{$p \in (0;1), ~r = 1, 2, \ldots$} & $C_{r-1 + k}^k \, p^r q^{k-1}$ & $\cfrac{r}{p}$ & $\cfrac{rq}{p^2}$ & $\left(\cfrac{p}{1-q e^{i t}}\right)^r$\\[15pt]
+			\hline \doublerow{Геометрическое $\Geom_{p}$}{$p \in (0;1),~ k = 1, 2, \ldots$} & $p q^{k-1}$ & $\cfrac{1}{p}$ & $\cfrac{q}{p^2}$ & $\cfrac{p e^{i t}}{1-q e^{i t}}$\\[14pt]
+			\hline \mylinespace \doublerow{Отрицательное биномиальное $\NegBinom_{r, p}$}{$p \in (0;1), ~r = 1, 2, \ldots$} & $C_{k-1}^{r-1} \, p^r q^{k-r}$ & $\cfrac{r}{p}$ & $\cfrac{rq}{p^2}$ & $\left(\cfrac{p e^{i t}}{1-q e^{i t}}\right)^r$\\[15pt]
 			\hline
 		\end{tabular}
 	\end{center}
