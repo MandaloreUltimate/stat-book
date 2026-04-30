@@ -73,15 +73,15 @@
 \begin{enumerate}[label={\arabic*.}]
     \item Из линейности математического ожидания:
     \begin{equation*}
-        \ExpTh \SampleMean=\frac{1}{n}\bigl(\ExpTh  X_{1}+\ldots + \ExpTh X_{n}\bigr)=\frac{1}{n} \cdot n \, \ExpTh X_{1}= \ExpTh  X_{1} = a.
+        \ExpTh \SampleMean=\frac{1}{n}\bigl(\ExpTh  X_{1}+\cdots+\ExpTh X_{n}\bigr)=\frac{1}{n} \cdot n \, \ExpTh X_{1}= \ExpTh  X_{1} = a.
     \end{equation*}
     \item Из ЗБЧ в форме Хинчина:
     \begin{equation*}
         \SampleMean = 
-        \cfrac{X_{1}+\ldots+X_{n}}{n} \xrightarrow[n \to \infty]{\text{p}} \ExpTh X_{1} = a.
+        \cfrac{X_{1}+\cdots+X_{n}}{n} \xrightarrow[n \to \infty]{\text{p}} \ExpTh X_{1} = a.
     \end{equation*}
 
-    \item Раскроем дисперсию суммы, пользуясь тем, что $X_1, \ldots X_n$ независимы и одинаково распределены, а затем домножим числитель и знаменатель на $n$. 
+    \item Раскроем дисперсию суммы, пользуясь тем, что $X_1, \ldots, X_n$ независимы и одинаково распределены, а затем домножим числитель и знаменатель на $n$. 
     Тогда можно будет применить ЦПТ:
     \begin{gather*}
         \frac{\bigl(\SampleMean - \ExpTh \SampleMean \bigr)}{\sqrt{\VarTh \SampleMean}} =
@@ -113,7 +113,7 @@
             \begin{equation*}
                 \SampleVar \xrightarrow[n \to \infty]{\text{p}} \VarTh X_{1}=\sigma^{2}, \quad S_{0}^{2} \xrightarrow[n \to \infty]{\text{p}} \VarTh X_{1}=\sigma^{2} \quad \AllTh.
             \end{equation*}
-        \item $\SampleVar$~--- смещённая оценка дисперсии, а $\SampleVar_0$~--— несмещённая:
+        \item $\SampleVar$~--- смещённая оценка дисперсии, а $\SampleVar_0$~--- несмещённая:
             \begin{equation*}
                 \ExpTh \SampleVar=\frac{n-1}{n} \, \VarTh X_{1}=\frac{n-1}{n} \sigma^{2} \neq \sigma^{2}, \quad \ExpTh  S_{0}^{2}=\VarTh  X_{1}=\sigma^{2} \quad \AllTh.
             \end{equation*}
@@ -164,11 +164,11 @@
         \begin{aligned}
             \sqrt{n}\bigl(\SampleVar-\sigma^{2}\bigr) = \sqrt{n}\Bigl(\overline{Y^{2}}-\bigl(\overline{Y}\bigr)^{2}-\sigma^{2}\Bigr)
             = \sqrt{n}\Bigl(\overline{Y^{2}}-\ExpTh  Y_{1}^{2} \Bigr) - \sqrt{n}\bigl(\overline{Y}\bigr)^{2} = \\
-            =\frac{\sum\limits_{i=1}^{n} Y_{i}^{2}-n \ExpTh  Y_{1}^{2}}{\sqrt{n}}-\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh (X_{1}-\ExpTh X_1}^{2}),
+            =\frac{\sum\limits_{i=1}^{n} Y_{i}^{2}-n \ExpTh  Y_{1}^{2}}{\sqrt{n}}-\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh (X_{1}-\ExpTh X_1)^{2}},
     \end{aligned}
     \end{gather*}
     поскольку $\cfrac{\sum\limits_{i=1}^{n} Y_{i}^{2}-n \ExpTh  Y_{1}^{2}}{\sqrt{n}} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  Y_{1}^{2}}$ по ЦПТ, 
-    а ${\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} 0}$ как произведение последовательностей ${\overline{Y} \xrightarrow[n \to \infty]{p} 0}$ и ${\sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  X_{1}}}$.
+    а ${\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} 0}$ как произведение последовательностей ${\overline{Y} \xrightarrow[n \to \infty]{\text{p}} 0}$ и ${\sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  X_{1}}}$.
 \end{enumerate}
 \end{proof}
 

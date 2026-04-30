@@ -4,7 +4,7 @@
 	Пусть задано вероятностное пространство $(\Omega, \SigAlg, \MyPr), \\ \text{события } {A, B \in \SigAlg,~ \MyPr(B) > 0}$. 
 	\textit{Условная вероятность события $A$ при событии $B$}:
 	\begin{equation*}
-		\MyPr(A|B)=\cfrac{\MyPr(AB)}{\MyPr(B)}.
+        \MyPr(A|B)=\frac{\MyPr(AB)}{\MyPr(B)}.
 	\end{equation*}
 \end{defn}
 
@@ -21,13 +21,13 @@
 		\item 
 		      $\MyPr(\Omega|B) = \cfrac{\MyPr(B \cap \Omega)}{\MyPr(B)} = \cfrac{\MyPr(B)}{\MyPr(B)} = 1$;
 		\item 
-		      Пусть дана некоторая последовательность событий $\it A_1, A_2, \ldots A_n, \ldots$; $A_i A_j = \varnothing~ (i \ne j)$. 
+              Пусть дана некоторая последовательность событий $A_1, A_2, \ldots, A_n, \ldots$; $A_i A_j = \varnothing~ (i \ne j)$. 
 		      Тогда: 
 		      \begin{multline*}
 		      	\MyPr\left(\,\left. \bigcup\limits_{i=1}^\infty A_i \right| B\right) 
-		      	= \cfrac{\MyPr\left(\left(\, \bigcup\limits_{i=1}^\infty A_i\right) \cap B \right)}{\MyPr(B)} 
-		      	= \cfrac{\MyPr\left(\, \bigcup\limits_{i=1}^\infty\left(A_i \cap B\right) \right)}{\MyPr(B)} = \\
-		      	= \cfrac{\sum\limits_{i=1}^\infty \MyPr(A_i \cap B)}{\MyPr(B)}
+                  = \frac{\MyPr\left(\left(\, \bigcup\limits_{i=1}^\infty A_i\right) \cap B \right)}{\MyPr(B)}
+                  = \frac{\MyPr\left(\, \bigcup\limits_{i=1}^\infty\left(A_i \cap B\right) \right)}{\MyPr(B)} = \\
+                  = \frac{\sum\limits_{i=1}^\infty \MyPr(A_i \cap B)}{\MyPr(B)}
 		      	= \sum\limits_{i=1}^\infty \MyPr(A_i | B).
 		      \end{multline*}
 	\end{enumerate}
@@ -81,7 +81,7 @@
 		      $B = AB \cup \overline{A}B$. Тогда
 		      \begin{multline*}
 		      	\MyPr(B) = \MyPr(AB) + \MyPr(\overline{A}B) = \MyPr(A)\MyPr(B) + \MyPr(\overline{A}B) \implies \\
-		      	\implies \MyPr(\overline{A}B) = \MyPr(B) - \MyPr(A)\MyPr(B) = \MyPr(B) (1 - \MyPr(A)) = \MyPr(\overline{A)}\MyPr(B).
+                  \implies \MyPr(\overline{A}B) = \MyPr(B) - \MyPr(A)\MyPr(B) = \MyPr(B) (1 - \MyPr(A)) = \MyPr(\overline{A})\MyPr(B).
 		      \end{multline*}
 		      Независимость $\overline{A}$ и $B$ доказана. 
 		      Аналогично доказываются остальные утверждения.
@@ -101,16 +101,16 @@
 		
 		Т.к. каждый цвет есть на двух гранях из четырёх, то
 		\begin{equation*}
-			\MyPr(R) = \MyPr(G) = \MyPr(B) = \cfrac{1}{2}.
+            \MyPr(R) = \MyPr(G) = \MyPr(B) = \frac{1}{2}.
 		\end{equation*}
 		Вероятность пересечения, соответственно:
 		\begin{equation*}
-			\MyPr(RG) = \MyPr(GB) = \MyPr(RB) = \cfrac{1}{4} = \cfrac{1}{2} \cdot \cfrac{1}{2},
+            \MyPr(RG) = \MyPr(GB) = \MyPr(RB) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2},
 		\end{equation*}
 		следовательно, все события попарно независимы. 
 		Однако вероятность пересечения всех трёх:
 		\begin{equation*}
-			\MyPr(RGB)  = \cfrac{1}{4} \neq \MyPr(R) \MyPr(G) \MyPr(B),
+            \MyPr(RGB)  = \frac{1}{4} \neq \MyPr(R) \MyPr(G) \MyPr(B),
 		\end{equation*}
 		т.е. события не являются независимыми в совокупности. 
 	\end{exmp}
@@ -127,7 +127,7 @@
 \end{symb}
 
 \begin{namedthm}[Критерий независимости]
-	События $A_1, \ldots, A_n$ независимы в совокупности $\iff \forall \delta_1, \delta_2, \ldots \delta_n \in \{0, 1\}$ выполнено равенство
+    События $A_1, \ldots, A_n$ независимы в совокупности $\iff \forall \delta_1, \delta_2, \ldots, \delta_n \in \{0, 1\}$ выполнено равенство
 	\begin{equation*}
 		\MyPr\left(\, \bigcap_{i=1}^{n} A_{i}^{\left( \delta_{i} \right)} \right)
 		= \prod_{i=1}^{n}\MyPr\left( A_{i}^{\left(\delta_{i}\right)} \right).
@@ -153,18 +153,18 @@
 \begin{namedthm}[Формулы Байеса]
 	Пусть даны события $A, H_1, \ldots, H_n, \ldots$; ${\MyPr(A) > 0}$, ${\MyPr(H_i) > 0}$, причём $H_i H_j = \varnothing ~(i \neq j)$ и $\bigcup\limits_{i=1}^\infty H_i \supset A$ (например, $\bigcup\limits_{i=1}^{\infty}H_i = \Omega$). Тогда справедливы \textit{формулы Байеса}:
 	\begin{equation*}
-		\MyPr\left(H_{i} | A\right)= \frac{\MyPr\left(H_{i}\right) \MyPr\left(A | H_{i}\right)}{\sum\limits_{j=1}^{\infty} \MyPr\left(H_{j}\right) \MyPr\left(A | H_{j}\right)}, \quad i = \overline{1,n}.
+        \MyPr\left(H_{i} | A\right)= \frac{\MyPr\left(H_{i}\right) \MyPr\left(A | H_{i}\right)}{\sum\limits_{j=1}^{\infty} \MyPr\left(H_{j}\right) \MyPr\left(A | H_{j}\right)}, \quad i = 1, 2, \ldots
 	\end{equation*}
 \end{namedthm}
 \begin{proof}
 	Согласно формуле полной вероятности, в знаменателе дроби стоит вероятность события $A$. 
 	Тогда
 	\begin{equation*}
-		\frac{\MyPr\left(H_{i}\right) \MyPr\left(A | H_{i}\right)}{\MyPr(A)}=\frac{\MyPr\left(H_{i}\right) \MyPr\left(A H_{i}\right)}{\MyPr(A) \MyPr\left(H_{i}\right)}=\frac{\MyPr\left(A H_{i}\right)}{\MyPr(A)}=\MyPr\left(H_{i} | A\right). 
+        \frac{\MyPr\left(H_{i}\right) \MyPr\left(A | H_{i}\right)}{\MyPr(A)}=\frac{\MyPr\left(H_{i}\right) \cdot \frac{\MyPr\left(A H_{i}\right)}{\MyPr\left(H_{i}\right)}}{\MyPr(A)}=\frac{\MyPr\left(A H_{i}\right)}{\MyPr(A)}=\MyPr\left(H_{i} | A\right). 
 	\end{equation*}
 \end{proof}
 
-Вероятности $P(H_i)$, вычисленные заранее, до проведения эксперимента, называют \textit{априорными вероятностями} (a’priori~--- «до опыта»). 
+Вероятности $\MyPr(H_i)$, вычисленные заранее, до проведения эксперимента, называют \textit{априорными вероятностями} (a’priori~--- «до опыта»). 
 Условные вероятности $\MyPr(H_i | A)$ называют \textit{апостериорными вероятностями} (a’posteriori~--- «после опыта»). 
 Формула Байеса позволяет переоценить заранее известные вероятности после того, как получено знание о результате эксперимента.
 
@@ -185,8 +185,8 @@
 	    
 	Введём следующие обозначения для событий: $H_{+} = \{\text{пациент болен}\}$, $H_{-} = \{\text{пациент здоров}\}$, $R_{+} = \{\text{положительный результат теста}\}$, \\ $R_{-} = \{\text{отрицательный результат теста}\}$. Найдём вероятность события $H_{+}$ при условии $R_{+}$ по формуле Байеса:
 	\begin{multline*}
-		\MyPr(H_{+}|R_{+}) = \cfrac{\MyPr(H_{+})\MyPr(R_{+}|H_{+})}{\MyPr(H_{+})\MyPr(R_{+}|H_{+}) + \MyPr(H_{-})\MyPr(R_{+}|H_{-})} = \\
-		= \cfrac{0{,}99 \cdot 0{,}01}{(0{,}99 \cdot 0{,}01) + (0{,}01 \cdot 0{,}99)} = 0{,}5
+        \MyPr(H_{+}|R_{+}) = \frac{\MyPr(H_{+})\MyPr(R_{+}|H_{+})}{\MyPr(H_{+})\MyPr(R_{+}|H_{+}) + \MyPr(H_{-})\MyPr(R_{+}|H_{-})} = \\
+        = \frac{0{,}99 \cdot 0{,}01}{(0{,}99 \cdot 0{,}01) + (0{,}01 \cdot 0{,}99)} = 0{,}5
 	\end{multline*}
 	    
 	Иными словами, вероятность того, что пациент болен, равна отношению вероятности правильного положительного результата теста к вероятности любого положительного результата.
@@ -194,8 +194,8 @@
 	Рассмотрим более общий случай. Пусть $q$~--- вероятность неправильного результата теста, $p$~--- вероятность заболеть раком, тогда
 	\begin{equation*}
 		\MyPr(H_{+}|R_{+}) 
-		= \cfrac{(1-q) p}{(1-q) p+q(1-p)} 
-		= \cfrac{p-q p}{p+q-2 q p}
+        = \frac{(1-q) p}{(1-q) p+q(1-p)}
+        = \frac{p-q p}{p+q-2 q p}
 	\end{equation*}
 	Эта функция принимает значение $0{,}5$ на диагонали $p = q$; ниже диагонали~--- вероятность выше $0{,}5$, т.е. чтобы верить результатам теста, вероятность болезни должна превышать вероятность его ошибки.
 \end{exmp}

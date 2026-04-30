@@ -5,7 +5,7 @@
 В силу независимости~$\xi_i$
 \begin{multline*}
     \MyPr(\xi_1 = 0,\, \xi_2 = 0, \ldots, \xi_{k-1} = 0,\, \xi_k = 1) = \\
-    \MyPr(\xi_1 = 0) \cdot \MyPr(\xi_2 = 0) \cdot \ldots \cdot \MyPr(\xi_{k-1} = 0) \cdot \MyPr(\xi_k = 1) =
+    \MyPr(\xi_1 = 0) \cdot \MyPr(\xi_2 = 0) \cdot \cdots \cdot \MyPr(\xi_{k-1} = 0) \cdot \MyPr(\xi_k = 1) =
     q^{k-1}p.
 \end{multline*}
 
@@ -13,7 +13,7 @@
     Набор вероятностей $\{p q^{k-1}\}$, где $k$ принимает любые значения из множества натуральных чисел, называется \textit{геометрическим распределением} вероятностей ($\Geom_{p}$).
 \end{defn}
 
-Аналогично можно ввести геометрическое распределение как <<число неудач до первого успеха>>. 
+Аналогично можно ввести геометрическое распределение как <<число неудач до первого успеха>> ($\GeomZero_{p}$).
 Тогда $k$ будет принимать значения из множества $\{0, 1, 2, \ldots\}$, и $\MyPr(\tau^{\prime} = k) = pq^k$.
 
 \subsubsection{Числовые характеристики $\Geom_{p}$}
@@ -72,12 +72,12 @@
 
 Найдём для произвольного $k \in \Natural$ момент порядка $k$:
 \begin{equation*}
-    \Exp \xi^{k}=\int\limits_{-\infty}^{\infty} x^{k} f_{\xi}(x) d x=\int\limits_{0}^{\infty} x^{k} \lambda e^{-\lambda x} d x=\frac{1}{\lambda^{k}} \int\limits_{0}^{\infty}(\lambda x)^{k} e^{-\lambda x} d(\lambda x)=\frac{k !}{\lambda^{k}}
+    \Exp \xi^{k}=\int\limits_{-\infty}^{\infty} x^{k} f_{\xi}(x)\,d x=\int\limits_{0}^{\infty} x^{k} \lambda e^{-\lambda x}\,d x=\frac{1}{\lambda^{k}} \int\limits_{0}^{\infty}(\lambda x)^{k} e^{-\lambda x}d(\lambda x)=\frac{k !}{\lambda^{k}}
 \end{equation*}
 
 В последнем равенстве была использована формула для гамма-функции:
 \begin{equation*}
-    \Gamma(k+1)=\int\limits_{0}^{\infty} u^{k} e^{-u} d u=k !
+    \Gamma(k+1)=\int\limits_{0}^{\infty} u^{k} e^{-u}\,d u=k !
 \end{equation*}
 \begin{enumerate}
     \item Математическое ожидание: $\Exp \xi=\frac{1}{\lambda}$.
@@ -87,7 +87,7 @@
 Важным требованием в схеме Бернулли является однородность, т.е. постоянство параметра $p$ на протяжении всех испытаний.
 Но иногда есть желание посмотреть, например, что получится, если устремить вероятность успеха к нулю, а количество испытаний к бесконечности. В этом случае придётся прибегнуть к нетривиальной модели эксперимента.
 \begin{thm*}
-    Рассмотрим серию схем Бернулли~--- последовательность схем Бернулли с количеством испытаний $n$ и вероятностями успеха $p_n$ (т.е. в первой схеме~--- одно испытание с вероятностью успеха $p_1$, в второй~--- два испытания с вероятностью успеха $p_2$ и т.д.). В каждой схеме рассмотрим случайную величину $\tau_n \sim \Geom_{p_n}$.
+    Рассмотрим серию схем Бернулли~--- последовательность схем Бернулли с количеством испытаний $n$ и вероятностями успеха $p_n$ (т.е. в первой схеме~--- одно испытание с вероятностью успеха $p_1$, во второй~--- два испытания с вероятностью успеха $p_2$ и т.д.). В каждой схеме рассмотрим случайную величину $\tau_n \sim \Geom_{p_n}$.
     Пусть $n p_n \xrightarrow[n \to \infty]{} \lambda > 0$.
 
     Тогда распределение случайной величины $\frac{\tau_n}{n}$ сходится к показательному с параметром $\lambda$ при $n \to +\infty$.
@@ -100,17 +100,17 @@
         F_{n}(x)=\MyPr\left(\frac{\tau_{n}}{n} \leqslant x\right)=
         \MyPr\left(\tau_{n} \leqslant n x\right) = 
         \MyPr\left(\tau_{n} \leqslant \lfloor n x\rfloor\right) = \\
-        = \sum\limits_{k = 1}^{\lfloor nx \rfloor} p_n q_n^{k-1} = 
-        p_n \, \frac{1 - q_n^{\lfloor nx \rfloor + 1}} {1-q_n} = 
-        1-\left(1-p_{n}\right)^{\lfloor nx \rfloor + 1}
+        = \sum\limits_{k = 1}^{\lfloor nx \rfloor} p_n q_n^{k-1} =
+        p_n \, \frac{1 - q_n^{\lfloor nx \rfloor}} {1-q_n} =
+        1-\left(1-p_{n}\right)^{\lfloor nx \rfloor}
     \end{multline*}
     
-    Далее, т.к. $\left(1-p_{n}\right)^{n}=\left(1-\frac{n p_{n}}{n}\right)^{n} \xrightarrow[n \to +\infty]{} e^{-\lambda}$, 
-    то $(1 - p_n)^{nx} \xrightarrow[n \to +\infty]{} e^{-\lambda x}.$ 
-    По определению, $\lfloor n x\rfloor \leqslant n x<\lfloor n x\rfloor\,+\,1$, 
-    или, что эквивалентно, $nx < \lfloor nx \rfloor \,+\,1 \leqslant nx\,+\,1$. 
-    Таким образом верно $(1 - p_n)^{\lfloor nx \rfloor + 1} \xrightarrow[n \to +\infty]{} e^{-\lambda x}$. 
-    Следовательно, $F_n(x) \xrightarrow[n \to +\infty]{} 1 - e^{-\lambda x}$, что есть функция показательного распределения. 
+    Далее, т.к. $\left(1-p_{n}\right)^{n}=\left(1-\frac{n p_{n}}{n}\right)^{n} \xrightarrow[n \to +\infty]{} e^{-\lambda}$,
+    то $(1 - p_n)^{nx} \xrightarrow[n \to +\infty]{} e^{-\lambda x}.$
+    По определению, $\lfloor n x\rfloor \leqslant n x < \lfloor n x\rfloor\,+\,1$,
+    или, что эквивалентно, $nx - 1 < \lfloor nx \rfloor \leqslant nx$.
+    Таким образом, верно $(1 - p_n)^{\lfloor nx \rfloor} \xrightarrow[n \to +\infty]{} e^{-\lambda x}$.
+    Следовательно, $F_n(x) \xrightarrow[n \to +\infty]{} 1 - e^{-\lambda x}$, что есть функция показательного распределения.
 \end{proof}
 
 \input{src/figs/fig4}

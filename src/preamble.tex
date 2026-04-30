@@ -1,7 +1,6 @@
 \documentclass[oneside,final,14pt]{extreport}
 
 %Общий вид и оформление
-\usepackage{setspace}
 \usepackage{indentfirst}
 \usepackage{geometry}
 \geometry{
@@ -18,7 +17,6 @@
 \usepackage[nottoc,notlot,notlof]{tocbibind}
 \usepackage{cmap}
 \usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
 
 %Шрифты
@@ -59,7 +57,7 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.16}
+\pgfplotsset{compat=1.18}
 \usepgfplotslibrary{fillbetween}
 
 %Заголовки глав и секций
@@ -106,6 +104,9 @@
 \DeclareMathOperator{\MyPrTh}{\MyPr_{\theta}}
 
 \DeclareMathOperator{\Ind}{\mathrm{I}}
+\DeclareMathOperator{\Cov}{cov}
+\DeclareMathOperator{\Med}{Med}
+\newcommand{\ChiSq}{\chi^{2}}
 
 \DeclareMathOperator{\Dist}{\mathcal{P}}
 \DeclareMathOperator{\Uniform}{\mathrm{U}}
@@ -113,6 +114,7 @@
 \DeclareMathOperator{\Binom}{\mathrm{Bi}}
 \DeclareMathOperator{\NegBinom}{\mathrm{NB}}
 \DeclareMathOperator{\Geom}{\mathrm{Geom}}
+\newcommand{\GeomZero}{\Geom^{\,0}}
 \DeclareMathOperator{\ExpDist}{\mathrm{Exp}}
 \DeclareMathOperator{\Pois}{\mathrm{Pois}}
 \DeclareMathOperator{\Normal}{\mathrm{N}}
@@ -138,8 +140,8 @@
 \newcommand{\AllTh}{\forall \theta \in \Theta} 
 
 %Оформление определений, теорем, доказательств и т.п.
-\renewcommand{\qedsymbol}{$\blacksquare$}
-\renewenvironment{proof}{{\bfseries Доказательство.}}{\qed}
+\renewcommand{\qedsymbol}{$\square$}
+\renewcommand*{\proofname}{Доказательство}
 
 \theoremstyle{definition}
 \newtheorem*{defn}{Определение}

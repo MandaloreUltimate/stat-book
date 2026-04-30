@@ -1,7 +1,7 @@
 \section {Числовые характеристики случайных величин: квантили. Медиана и ее свойства. Интерквартильный размах}
 
 \begin{defn}
-    \textit{Медианой} $\operatorname{Med} \xi$ распределения случайной величины $\xi$ называется любое из \textit{чисел} $\mu$ таких, что
+    \textit{Медианой} $\Med \xi$ распределения случайной величины $\xi$ называется любое из \textit{чисел} $\mu$ таких, что
     \begin{equation*}
         \MyPr(\xi \leqslant \mu) \geqslant \frac{1}{2}, ~~~ \MyPr(\xi \geqslant \mu) \geqslant \frac{1}{2}.
     \end{equation*}
@@ -17,7 +17,7 @@
 \begin{equation*}
     \begin{cases} 
         \MyPr(\xi \leqslant \kappa_\gamma) = F(\kappa_\gamma + 0) \geqslant \gamma, \\
-        \MyPr(\xi \geqslant \kappa_\gamma) = 1 - F(\kappa_\gamma) \geqslant 1 - \gamma 
+        \MyPr(\xi \geqslant \kappa_\gamma) = 1 - F(\kappa_\gamma - 0) \geqslant 1 - \gamma
     \end{cases}
 \end{equation*}
 \end{defn}
@@ -42,20 +42,20 @@
 \begin{enumerate}
     \item Медиана случайной величины $\xi$ минимизирует средний модуль отклонения $\xi$:
     \begin{equation*}
-        \Exp |\xi - \operatorname{Med} \xi| 
+        \Exp |\xi - \Med \xi| 
     = \min _{a} \Exp |\xi-a|;
     \end{equation*}
     \item Отклонение медианы случайной величины $\xi$ от её матожидания $\Exp \xi$ не превышает по модулю среднеквадратичного отклонения $\sigma = \sqrt{\Var\xi}$:
     \begin{equation*}
-        |\Exp \xi - \operatorname{Med}\xi| \leqslant \sigma.
+        |\Exp \xi - \Med\xi| \leqslant \sigma.
     \end{equation*}
 \end{enumerate}
 \end{namedthm}
 
 \begin{proof}
     \begin{enumerate}
-        \item Рассмотрим случайную величину $\eta = \xi - \operatorname{Med}\xi$. 
-        Очевидно, что $\operatorname{Med} \eta = 0$. 
+        \item Рассмотрим случайную величину $\eta = \xi - \Med\xi$. 
+        Очевидно, что $\Med \eta = 0$. 
         Тогда нам надо показать, что $\forall c \in \Real $ справедливо 
         \begin{equation*}
             \Exp |\eta - c| - \Exp |\eta| \geqslant 0.
@@ -64,27 +64,27 @@
         Рассмотрим случай $c > 0$. Заметим, что 
         \begin{equation*}
             \begin{cases}
-                |\eta - c| - |\eta| = c, & \eta < 0; \\
-                |\eta - c| - |\eta|  \geqslant -c, & \eta \geqslant 0.
+                |\eta - c| - |\eta| = c, & \eta \leqslant 0; \\
+                |\eta - c| - |\eta|  \geqslant -c, & \eta > 0.
         \end{cases}
         \end{equation*}
         
         Тогда
         \begin{gather*}
-            \Exp \bigl(|\eta - c| - |\eta| \bigl) 
-            = \Exp \bigl( (|\eta - c| - |\eta|) \cdot \Ind(\eta < 0) + (|\eta - c| - |\eta|) \cdot \Ind(\eta \geqslant 0) \bigl) \\
-            \Exp \bigl( |\eta - c| - |\eta| \bigl) \geqslant c~\MyPr(\eta < 0) - c~\MyPr(\eta \geqslant 0).
+            \Exp \bigl(|\eta - c| - |\eta| \bigr)
+            = \Exp \bigl( (|\eta - c| - |\eta|) \cdot \Ind(\eta \leqslant 0) + (|\eta - c| - |\eta|) \cdot \Ind(\eta > 0) \bigr) \\
+            \Exp \bigl( |\eta - c| - |\eta| \bigr) \geqslant c~\MyPr(\eta \leqslant 0) - c~\MyPr(\eta > 0).
         \end{gather*}
-        Так как $\operatorname{Med}\eta = 0$, то $\MyPr(\eta \leqslant 0) = \MyPr(\eta \geqslant 0) = \frac{1}{2} \implies \Exp \bigl( |\eta - c| - |\eta| \bigl) \geqslant 0.$.
+        Так как $\Med\eta = 0$, то $\MyPr(\eta \leqslant 0) \geqslant \frac{1}{2} \geqslant \MyPr(\eta > 0) \implies \Exp \bigl( |\eta - c| - |\eta| \bigr) \geqslant 0.$
 
         Случай $c < 0$ сводится к предыдущему умножением случайной величины и $c$ на $-1$. Отсюда следует, что медиана действительно минимизирует средний модуль отклонения.
 
         \item Рассмотрим цепочку неравенств:
         \begin{multline*}
-            |\Exp \xi - \operatorname{Med}\xi| =
-            |\Exp (\operatorname{Med}\xi - \xi)| \leqslant
+            |\Exp \xi - \Med\xi| =
+            |\Exp (\Med\xi - \xi)| \leqslant
             {\text{\{св-во (6) матожидания\}}} \leqslant 
-            \Exp |\operatorname{Med}\xi - \xi| \leqslant \\ {\text{\{св-во (1) медианы\}}} \leqslant
+            \Exp |\Med\xi - \xi| \leqslant \\ {\text{\{св-во (1) медианы\}}} \leqslant
             \Exp | \Exp \xi - \xi| = 
             \Exp \sqrt{|\Exp \xi - \xi|^2} \leqslant
             {\text{\{нер-во Йенсена\}}} \leqslant \\
@@ -97,4 +97,4 @@
     \textit{Интерквартильным размахом} называется разность между третьим и первым квартилями, то есть ${\displaystyle x_{0{,}75}-x_{0{,}25}}.$
 \end{defn} 
 
-В каком-то смысле эту величину можно считать аналогом дисперсии случайной величины, устойчивой к выбросам.
+В каком-то смысле эту величину можно считать аналогом дисперсии случайной величины, устойчивым к выбросам.

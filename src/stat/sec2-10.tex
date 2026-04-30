@@ -169,7 +169,7 @@ $\SigAlg = {\{F_{\theta}(x), \: \theta \in \Theta \subseteq \Real^r\}}, \; \thet
 \begin{defn}
     \textit{Мощность критерия}:
     \begin{equation*}
-        W(\theta, \varphi) = \ExpTh \varphi(\SampleX) = \int\limits_{x \in \Real^n} \varphi(x) L(\mathbf{x}, \theta) \, dx.
+        W(\theta, \varphi) = \ExpTh \varphi(\SampleX) = \int\limits_{x \in \Real^n} \varphi(x) L(x, \theta) \, dx.
         \footnote{Напоминаем, что при фиксированном $\theta$ функция правдоподобия является вероятностной мерой на выборочном пространстве.}
     \end{equation*}
 \end{defn}
@@ -267,12 +267,12 @@ $H_0\colon \theta = \theta_0$ и $H_1\colon \theta = \theta_1$.
 \begin{namedthm}[Лемма Неймана"--~Пирсона]
     Пусть $\alpha_{0} \in(0, 1)$.
     Введём отношение функций правдоподобия $l(\SampleX) = \cfrac{L_{1}(\SampleX)}{L_{0}(\SampleX)}$.
-    Тогда при фиксированной вероятности ошибки первого рода $\alpha_{0}$ наиболее мощный критерий (сокращенно НМК) имеет вид
+    Тогда при фиксированной вероятности ошибки первого рода $\alpha_{0}$ наиболее мощный критерий (сокращённо НМК) имеет вид
     \begin{equation*}
         \varphi^{*}(x) = \begin{cases}
-            1, & \text { если } l(\SampleX) > C \\
-            \varepsilon, & \text { если } l(\SampleX) = C \\
-            0, & \text { если } l(\SampleX) < C
+            1, & \text { если } l(x) > C \\
+            \varepsilon, & \text { если } l(x) = C \\
+            0, & \text { если } l(x) < C
         \end{cases}
     \end{equation*}
     где константы $C$ и $\varepsilon$ являются решениями уравнения "<вероятность ошибки первого рода для этого критерия равна $\alpha_0$">: 
@@ -337,15 +337,15 @@ $H_0\colon \theta = \theta_0$ и $H_1\colon \theta = \theta_1$.
     \item Докажем, что $\varphi^{*}(x)$~--- наиболее мощный критерий.
 
     Выберем любой другой критерий $\tilde{\varphi}(x)$ такой, что $\alpha(\tilde{\varphi}) \leqslant \alpha_{0}$, 
-    и сравним ее с критерием $\varphi^{*}(x)$. 
+    и сравним его с критерием $\varphi^{*}(x)$.
     Заметим, что для любого $x$ справедливо неравенство:
     \begin{equation*}
-        \bigl(\varphi^{*}(x)-\tilde{\varphi}(x)\bigr) \Bigl(L_{1}(x)-c_{\alpha_{0}} L_{0}(x)\Bigr) \geqslant 0
+        \bigl(\varphi^{*}(x)-\tilde{\varphi}(x)\bigr) \Bigl(L_{1}(x)-C_{\alpha_{0}} L_{0}(x)\Bigr) \geqslant 0
     \end{equation*}
 
     Тогда
     \begin{equation*}
-        \int\limits_{\Real^{n}} \bigl(\varphi^{*}(x)-\tilde{\varphi}(x)\bigr) \Bigl(L_{1}(x)-c_{\alpha_{0}} L_{0}(x)\Bigr) \, dx \geqslant 0
+        \int\limits_{\Real^{n}} \bigl(\varphi^{*}(x)-\tilde{\varphi}(x)\bigr) \Bigl(L_{1}(x)-C_{\alpha_{0}} L_{0}(x)\Bigr) \, dx \geqslant 0
     \end{equation*}
 
     Раскроем скобки и преобразуем:

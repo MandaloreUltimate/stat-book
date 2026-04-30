@@ -23,7 +23,7 @@
 \begin{defn}
     \textit{Математическое ожидание} случайной величины $\xi$, имеющей абсолютно непрерывное распределение с плотностью распределения $f(x)$~--- значение абсолютно сходящегося интеграла
     \begin{equation*}
-        \Exp \xi=\int\limits_{\Real} x \, f(x) \, dx.
+        \Exp \xi=\int\limits_{\Real} x \, f(x) dx.
     \end{equation*}
 \end{defn}
 
@@ -38,14 +38,14 @@
         \Exp g(\xi) =
         \begin{cases}
             \sum\limits_{k} g\left(a_{k}\right) \MyPr\left(\xi=a_{k}\right), & \text {если~} P_{\xi} \text {~дискретно}; \\
-            \int\limits_{-\infty}^{+\infty} g(x) f_{\xi}(x) \, dx, & \text {если~} P_{\xi} \text{~абсолютно непрерывно.}
+            \int\limits_{-\infty}^{+\infty} g(x) f_{\xi}(x) dx, & \text {если~} P_{\xi} \text{~абсолютно непрерывно.}
         \end{cases}
         \end{equation*}
 
         Такое же свойство верно и для числовых функций нескольких аргументов $g(x_1, \ldots, x_n)$, если $\xi$~--- вектор из $n$ случайных величин, а в сумме и в интеграле участвует их совместное распределение. Например, для $g(x,y) = x + y$ и для случайных величин $\xi$ и $\eta$ с плотностью совместного распределения $f(x,y)$ верно: 
         \begin{equation}
             \label{expectation_of_sum}
-            \Exp (\xi+\eta)=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty}(x+y) f(x, y) d x d y;
+            \Exp (\xi+\eta)=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty}(x+y) f(x, y) dxdy;
         \end{equation}
     \item 
         Математическое ожидание линейно:
@@ -116,24 +116,24 @@
         Воспользуемся равенством \eqref{expectation_of_sum} и теоремой о совместном распределении:
         \begin{equation*}
             \begin{aligned}
-                \Exp (\xi+\eta) &=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty}(x+y) f(x, y) \, dx dy=\\
-                &=\int\limits_{-\infty}^{\infty} x \, dx \int\limits_{-\infty}^{\infty} f(x, y) \, dy + \int\limits_{-\infty}^{\infty} y \, dy \int\limits_{-\infty}^{\infty} f(x, y) \, dx=\\
-                &=\int\limits_{-\infty}^{\infty} x f_{\xi}(x) \, dx + \int\limits_{-\infty}^{\infty} y f_{\eta}(y) \, dy=\Exp \xi+\Exp \eta.
+                \Exp (\xi+\eta) &=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty}(x+y) f(x, y) dxdy=\\
+                &=\int\limits_{-\infty}^{\infty} x dx \int\limits_{-\infty}^{\infty} f(x, y) dy + \int\limits_{-\infty}^{\infty} y dy \int\limits_{-\infty}^{\infty} f(x, y) dx=\\
+                &=\int\limits_{-\infty}^{\infty} x f_{\xi}(x) dx + \int\limits_{-\infty}^{\infty} y f_{\eta}(y) dy=\Exp \xi+\Exp \eta.
             \end{aligned}
         \end{equation*}
     \item 
-        Неотрицательность $\xi$ означает, что $a_i \geqslant 0$ при всех $i \colon p_i > 0$ в случае дискретного распределения, либо $f_\xi(x) = 0$ при $x < 0$ (кроме, может быть, множества меры нуль) - для абсолютно непрерывного распределения. 
+        Неотрицательность $\xi$ означает, что $a_i \geqslant 0$ при всех $i \colon p_i > 0$ в случае дискретного распределения, либо $f_\xi(x) = 0$ при $x < 0$ (кроме, может быть, множества меры нуль)~--- для абсолютно непрерывного распределения. 
         И в том, и в другом случае имеем:
         \begin{equation*}
-            \Exp \xi=\sum a_{i} p_{i} \geqslant 0 \quad \text {или} \quad \Exp \xi=\int\limits_{0}^{\infty} x f(x) \, dx \geqslant 0.
+            \Exp \xi=\sum a_{i} p_{i} \geqslant 0 \quad \text {или} \quad \Exp \xi=\int\limits_{0}^{\infty} x f(x) dx \geqslant 0.
         \end{equation*}
         
     \item 
         В равенстве \eqref{expectation_of_sum} заменим сложение умножением и плотность совместного распределения произведением плотностей (это возможно в силу независимости случайных величин):
         \begin{equation*}
             \begin{aligned}
-                \Exp (\xi \eta) &=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty} x y f_{\xi}(x) f_{\eta}(y) \,  dx dy = \\
-                &=\int\limits_{-\infty}^{\infty} x f_{\xi}(x) \, dx \int\limits_{-\infty}^{\infty} y f_{\eta}(y) \, dy = \Exp \xi \Exp \eta.
+                \Exp (\xi \eta) &=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty} x y f_{\xi}(x) f_{\eta}(y) dxdy = \\
+                &=\int\limits_{-\infty}^{\infty} x f_{\xi}(x) dx \int\limits_{-\infty}^{\infty} y f_{\eta}(y) dy = \Exp \xi \Exp \eta.
             \end{aligned}
         \end{equation*}
         
@@ -150,10 +150,10 @@
                 
                 Условие $\xi \overset{\text{п.н.}}{\geqslant} 0$ говорит о том, что при $x < 0$ плотность равна нулю всюду, кроме, может быть, множества меры нуль по Лебегу.
                 В самом деле, если существует борелевское множество $B \subset \{x \: | \: x < 0\}$ ненулевой меры и при этом ${f_{\xi}(x) > 0 \; \forall x \in B}$, 
-                то ${\MyPr\left(\xi \in B\right) = \int\limits_{B} f_{\xi}(x) \, dx > 0}$, т.е. случайная величина принимает отрицательные значения с ненулевой вероятностью, что противоречит ограничению.
+                то ${\MyPr\left(\xi \in B\right) = \int\limits_{B} f_{\xi}(x) dx > 0}$, т.е. случайная величина принимает отрицательные значения с ненулевой вероятностью, что противоречит ограничению.
                 Учитывая это, можем написать
                 \begin{equation*}
-                    \Exp \xi = \int\limits_{-\infty}^{+\infty} x f_{\xi}(x) \, dx = \int\limits_{0}^{+\infty} x f_{\xi}(x) \, dx \geqslant 0,
+                    \Exp \xi = \int\limits_{-\infty}^{+\infty} x f_{\xi}(x) dx = \int\limits_{0}^{+\infty} x f_{\xi}(x) dx \geqslant 0,
                 \end{equation*}
                 так как на промежутке интегрирования $x \geqslant 0$, а плотность по определению неотрицательна.
         \end{compactlist}
@@ -161,7 +161,7 @@
         Следует непосредственно из определений индикатора и матожидания.
     
     \item 
-        Начнём со следующего утверждения: если функция $g$ выпукла, то для любого ${y \in \Real} \; {\exists c = c(y) \colon} \forall x \in \Real \; g(x) \geqslant g(y) + c(y)(x - y)$. Это вытекает из того, что график выпуклой функции лежит не ниже любой из касательной к нему. \footnote{Вообще говоря, выпуклая функция может не иметь первой производной и, следовательно, касательной на не более чем счётном множестве точек, но тогда её можно заменить на опорную гиперплоскость.} Положим в этом неравенстве $y = \Exp \xi$. 
+        Начнём со следующего утверждения: если функция $g$ выпукла, то для любого ${y \in \Real} \; {\exists c = c(y) \colon} \forall x \in \Real \; g(x) \geqslant g(y) + c(y)(x - y)$. Это вытекает из того, что график выпуклой функции лежит не ниже любой касательной к нему.\footnote{Вообще говоря, выпуклая функция может не иметь первой производной и, следовательно, касательной на не более чем счётном множестве точек, но тогда её можно заменить на опорную гиперплоскость.} Положим в этом неравенстве $y = \Exp \xi$. 
         Тогда
         \begin{equation*}
             g(\xi) \geqslant g(\Exp \xi) + c(\Exp \xi)(\xi - \Exp \xi), \quad \Exp g(\xi) \geqslant \Exp g(\Exp \xi) +  \Exp c(\Exp \xi)(\xi - \Exp \xi)
@@ -182,7 +182,7 @@
         \item 
             $\mu_k = {\Exp (\xi - \Exp \xi)^k}$~--- \textit{центральный $k$-й момент};
         \item 
-            ${\Exp |\xi - \Exp \xi|^k}$~--- \textit{абсолютный центральный $k$-й момент} случайной величины $\xi$
+            ${\Exp |\xi - \Exp \xi|^k}$~--- \textit{абсолютный центральный $k$-й момент} случайной величины $\xi$.
     \end{enumerate}
 \end{defn}
 
@@ -191,7 +191,7 @@
 \end{defn} 
 
 \begin{thm*}
-    Если существует момент порядка $t > 0$ случайной величины $\xi$, то существует и ее момент порядка $s$, где $0 < s < t$.
+    Если существует момент порядка $t > 0$ случайной величины $\xi$, то существует и её момент порядка $s$, где $0 < s < t$.
 \end{thm*}
 
 \begin{proof} 
@@ -207,7 +207,7 @@
         \item Дисперсия всегда неотрицательна: $\Var\xi \geqslant 0$;
         \item Дисперсия обращается в нуль лишь для вырожденного распределения: если $\Var\xi = 0$, то $\xi \overset{\text{п.н.}}{=} \text{const}$, и наоборот;
         \item Если $\xi$ и $\eta$ независимы, то $\Var(\xi + \eta) = \Var\xi + \Var\eta, ~ \Var(\xi-\eta)=\Var \xi+\Var \eta$;
-        \item Дисперсия не зависит от сдвига случайной величины на постоянную: $\Var(\xi + c) = \Var\xi$;
+        \item Дисперсия не зависит от сдвига случайной величины на постоянную: $\Var(\xi + c) = \Var\xi$.
     \end{enumerate}
 \end{namedthm}
 
@@ -238,7 +238,7 @@
             \begin{equation*}
                 \Var(\xi \pm \eta)=\Var \xi+\Var \eta \pm 2(\Exp (\xi \eta)-\Exp \xi\, \Exp \eta),
             \end{equation*}
-            где величина $\Exp (\xi \eta)-\Exp \xi \, \Exp \eta$ называется \textit{ковариацией} случайных величин $\xi$ и $\eta$ ($\text{cov}(\xi, \eta)$).
+            где величина $\Exp (\xi \eta)-\Exp \xi \, \Exp \eta$ называется \textit{ковариацией} случайных величин $\xi$ и $\eta$ ($\Cov(\xi, \eta)$).
         \end{crlr}
         \item $\Var(\xi + c) = \Var\xi + \Var c = \Var\xi$
     \end{enumerate}
@@ -249,7 +249,7 @@
 \begin{defn}
     \textit{Коэффициент асимметрии} случайной величины $\xi$:
     \begin{equation*}
-        \gamma_1=\Exp \left(\frac{\xi - \Exp \xi}{\sqrt{\Var\xi}}\right)^3 = \frac{\mu^3}{\sigma^3}
+        \gamma_1=\Exp \left(\frac{\xi - \Exp \xi}{\sqrt{\Var\xi}}\right)^3 = \frac{\mu_3}{\sigma^3}
     \end{equation*}
     Характеризует <<скошенность>> графика плотности распределения: \medskip\hfill\break
     \input{src/figs/fig1}
@@ -258,7 +258,7 @@
 \begin{defn}
     \textit{Коэффициент эксцесса} случайной величины $\xi$:
     \begin{equation*}
-        \gamma_2=\Exp \left(\frac{\xi - \Exp \xi}{\sqrt{\Var\xi}}\right)^4 - 3 = \frac{\mu^4}{\sigma^4} - 3
+        \gamma_2=\Exp \left(\frac{\xi - \Exp \xi}{\sqrt{\Var\xi}}\right)^4 - 3 = \frac{\mu_4}{\sigma^4} - 3
     \end{equation*}
     Характеризует <<островершинность>> графика плотности распределения:
     \medskip\hfill\break

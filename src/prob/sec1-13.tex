@@ -10,7 +10,7 @@
     
     Для абсолютно непрерывного распределения характеристическая функция имеет вид
     \begin{equation*}
-        \varphi_{\xi}(t)=\int\limits_{\Real} e^{i t x} f(x) \, dx.
+        \varphi_{\xi}(t)=\int\limits_{\Real} e^{i t x} f(x) dx.
     \end{equation*}
     Для дискретного, соответственно,
     \begin{equation*}
@@ -24,7 +24,7 @@
         \varphi_{\xi}(t) 
         = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{i t x} e^{-x^{2} / 2} d x
         = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{-t^{2} / 2} e^{-x^2/2 \,+\, itx \,+\, t^2/2} d x = \\
-        = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{-t^{2} / 2} e^{-(x-i t)^{2} / 2} d x =  
+        = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{-t^{2} / 2} e^{-(x-i t)^{2} / 2} d x =
          e^{-t^{2} / 2} \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{\infty} e^{-(x-i t)^{2} / 2} d(x-i t)
         = e^{-t^{2} / 2}.
     \end{multline*}
@@ -60,16 +60,16 @@
             и его можно вычислить по той же формуле.
         
         \item 
-            Характеристическая функция случайно величины $\xi$ однозначно определяет её функцию распределения $F_{\xi}(x)$. 
+            Характеристическая функция случайной величины $\xi$ однозначно определяет её функцию распределения $F_{\xi}(x)$. 
             Ряд распределения или плотность восстанавливаются по характеристической функции с помощью преобразования Фурье.
             
             Дискретное распределение:
             \begin{equation*}
-                \MyPr(\xi=k)=\frac{1}{2 \pi} \int\limits_{-\pi}^{\pi} e^{-i t k} \varphi_{\xi}(t) \, d t, k \in \Integer.
+                \MyPr(\xi=k)=\frac{1}{2 \pi} \int\limits_{-\pi}^{\pi} e^{-i t k} \varphi_{\xi}(t) d t, \quad k \in \Integer.
             \end{equation*}
             Абсолютно непрерывное распределение:
             \begin{equation*}
-                f_{\xi}(x)=\frac{1}{2 \pi} \int\limits_{-\infty}^{\infty} e^{-i t x} \varphi_{\xi}(t) \, d t, \quad x \in \Real.
+                f_{\xi}(x)=\frac{1}{2 \pi} \int\limits_{-\infty}^{\infty} e^{-i t x} \varphi_{\xi}(t) d t, \quad x \in \Real.
             \end{equation*}
         \item 
             $\xi_n \xrightarrow[n \to \infty]{\text{d}} \xi \iff \varphi_{\xi_{n}}(t) \xrightarrow[n \to \infty]{} \varphi_{\xi}(t)$ (теорема Леви о непрерывном соответствии).
@@ -82,7 +82,7 @@
             Существование характеристической функции равносильно равномерной сходимости соответствующего интеграла. 
             Докажем её по признаку Вейерштрасса:
             \begin{equation*}
-                \left|\varphi_{\xi}(t)\right|=\left|\int\limits_{\Real} e^{i t x} d F(x)\right| 
+                \left|\varphi_{\xi}(t)\right|=\left|\int\limits_{\Real} e^{i t x} d F(x)\right|
                 \leqslant \int\limits_{\Real}\left|e^{i t x}\right| d F(x)=\int\limits_{\Real} d F(x)=1.
             \end{equation*}
         \item 
@@ -93,8 +93,8 @@
         \item 
             Неравенство доказано в пункте 1, равенство $(b)$ очевидно.
             \begin{equation*}
-                \varphi_{\xi}(-t) = \Exp cos(-t \xi) + i\Exp sin(-t \xi) 
-                = \Exp cos(t \xi) - i\Exp sin(t \xi) = \overline{\varphi_{\xi}(t)}.
+                \varphi_{\xi}(-t) = \Exp \cos(-t \xi) + i\Exp \sin(-t \xi)
+                = \Exp \cos(t \xi) - i\Exp \sin(t \xi) = \overline{\varphi_{\xi}(t)}.
             \end{equation*}
             Оставшиеся равенства следуют из второго свойства.
         \item 
@@ -111,12 +111,12 @@
                 = \left|\int\limits_{\Real} e^{i t x}\left(e^{i h x}-1\right) d F(x)\right| \leqslant \\
                 \leqslant \int\limits_{\Real} \left|e^{i h x}-1\right| d F(x)=\int\limits_{|x| \leqslant R}\left|e^{i h x}-1\right| d F(x)+\int\limits_{|x|>R}\left|e^{i h x}-1\right| d F(x)
             \end{multline*}
-            Теперь выберем $R$ настолько большим, чтобы $\MyPr\bigl(|x|>R\bigr) < \frac{\varepsilon}{4}$. 
+            Теперь выберем $R$ настолько большим, чтобы $\MyPr\bigl(|\xi|>R\bigr) < \frac{\varepsilon}{4}$. 
             Поскольку $\left|e^{i h x}-1\right| \leqslant 2$, второй интеграл при этом не превосходит по величине~$\frac{\varepsilon}{2}$. 
             После этого выберем $h$ столь малым, чтобы $\left|e^{i h x}-1\right|<\frac{\varepsilon}{2}~$ при всех $|x| \leqslant R$. 
             Тогда и первый интеграл не превосходит $\frac{\varepsilon}{2}$ и, таким образом, по заданному $\varepsilon > 0$ подобрано столь малое $h >0$, что ${|\varphi(t+h)-\varphi(t)|<\varepsilon~ \forall t \in \Real}$.
         \item 
-            Если существует $\Exp \xi^{k}<\infty,~ k \geqslant 1$, то для всех $m = \overline{1, k}$ существуют $\Exp \xi^{m}<\infty$. Следовательно,
+            Если существует $\Exp |\xi|^{k}<\infty,~ k \geqslant 1$, то для всех $m = \overline{1, k}$ существуют $\Exp |\xi|^{m}<\infty$. Следовательно,
             \begin{equation*}
                 \left|\int\limits_{\Real}(i x)^{m} e^{i t x} d F(x)\right| \leqslant \int\limits_{\Real}|x|^{m} d F(x)=\Exp |\xi|^{m}<\infty \quad \forall m = \overline{1, k}.
             \end{equation*}
@@ -130,9 +130,8 @@
             и можно показать, что при этих условиях можно поменять знаки интегрирования и дифференцирования местами.
             Тогда мы получим, что
             \begin{equation*}
-                \varphi^{(k)}(0) = i^k \left.\Exp \xi^k e^{itx}\right|_{t=0} = i^k \Exp \xi^k = 
-            \int\limits_{\Real} x^k dF(x).
+                \varphi^{(k)}(0) = \left.i^k \int\limits_{\Real} x^k e^{itx} dF(x)\right|_{t=0} = i^k \int\limits_{\Real} x^k dF(x).
             \end{equation*}
-            $x^k \geqslant 0$ в силу чётности k, а значит, указанный интеграл сходится абсолютно, что и означает существование искомого математического ожидания.
+            $x^k \geqslant 0$ в силу чётности $k$, а значит, указанный интеграл сходится абсолютно, что и означает существование искомого математического ожидания.
     \end{enumerate}
 \end{proof}

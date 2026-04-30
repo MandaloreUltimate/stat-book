@@ -14,7 +14,7 @@
         \theta^{*}
         = \SampleMean
         = \frac{1}{n} \sum\limits_{i=1}^{n} X_{i} \sim \Normal_{\theta, \frac{1}{n}}
-        \;   \implies \; (\SampleMean-\theta) \sqrt{n}  \xrightarrow[n \to \infty]{\text{d}} \Normal_{0;1}
+        \;   \implies \; (\SampleMean-\theta) \sqrt{n}  \xrightarrow[n \to \infty]{\text{d}} \Normal_{0,1}
     \end{equation*}
 
     Для величины, имеющей стандартное нормальное распределение, можно построить доверительный интервал следующим образом: находим такое $t_{\gamma / 2}$, что
@@ -34,7 +34,7 @@
 Она зависит лишь от размера выборки.
 Однако в общем случае длина доверительного интервала является случайной величиной~--- $T_2(X) - T_1(X)$.
 Вместе с тем очевидно, что нам хотелось бы сделать интервал как можно более коротким.
-Рассмотрим достотаточно общий способ построения кратчайших доверительных интервалов.
+Рассмотрим достаточно общий способ построения кратчайших доверительных интервалов.
 Для этого нам понадобится ввести следующее определение.
 
 \begin{defn}
@@ -163,20 +163,20 @@
         Заключительный шаг:
         \begin{equation*}
             \begin{aligned}
-                t_{1}(\theta) < T(\SampleX)
-                \iff \theta > \varphi_{1} \bigl(T(\SampleX)\bigr)
-                \implies 
-                \MyPrTh\Bigl(\theta>\varphi_{1} \bigl(T(\SampleX)\bigr)\Bigr)
+                T(\SampleX) < t_{1}(\theta)
+                \iff \theta < \varphi_{1} \bigl(T(\SampleX)\bigr)
+                \implies
+                \MyPrTh\Bigl(\theta<\varphi_{1} \bigl(T(\SampleX)\bigr)\Bigr)
                 = \cfrac{1-\gamma}{2} \\
-                t_{2}(\theta) > T(\SampleX) 
-                \iff \theta < \varphi_{2} \bigl(T(\SampleX)\bigr) 
-                \implies 
-                \MyPrTh\Bigl(\theta < \varphi_{2}\bigl(T(\SampleX)\bigr)\Bigr)
+                T(\SampleX) > t_{2}(\theta)
+                \iff \theta > \varphi_{2} \bigl(T(\SampleX)\bigr)
+                \implies
+                \MyPrTh\Bigl(\theta > \varphi_{2}\bigl(T(\SampleX)\bigr)\Bigr)
                 = \cfrac{1-\gamma}{2} \\
-                \implies 
-                \MyPrTh \Bigl(\underbrace{\varphi_{2} \bigl(T(\SampleX)\bigr)}_{T_{1}(\SampleX)} 
-                \leqslant \theta 
-                \leqslant \underbrace{\varphi_{1}\bigl(T(\SampleX)\bigr)}_{T_{2}(\SampleX)} \Bigr)
+                \implies
+                \MyPrTh \Bigl(\underbrace{\varphi_{1} \bigl(T(\SampleX)\bigr)}_{T_{1}(\SampleX)}
+                \leqslant \theta
+                \leqslant \underbrace{\varphi_{2}\bigl(T(\SampleX)\bigr)}_{T_{2}(\SampleX)} \Bigr)
                 = \gamma
             \end{aligned}
         \end{equation*}

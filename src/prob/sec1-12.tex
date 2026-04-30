@@ -5,7 +5,7 @@
     Последовательность случайных величин $\{\xi_n\}_{n = 1}^{+\infty}$ \\ 
     \textit{почти наверное сходится} к случайной величине $\xi$ ($\xi_n \xrightarrow[]{\text{п.н.}} \xi$), если
     \begin{equation*}
-        \MyPr\biggl(\left\{\omega \colon \lim\limits _{n \to \infty} \xi_{n}(w)=\xi(w)\right\}\biggr)=1.
+        \MyPr\biggl(\left\{\omega \colon \lim\limits _{n \to \infty} \xi_{n}(\omega)=\xi(\omega)\right\}\biggr)=1.
     \end{equation*}
 \end{defn}
 
@@ -19,7 +19,7 @@
 
 \begin{defn}
     Последовательность случайных величин $\{\xi_n\}_{n=1}^{+\infty}$ \\
-    \textit{сходится в среднем} к случайной величине $\xi$ ($\xi_n \xrightarrow[]{\text{(r)}} \xi$ или $\xi_n \xrightarrow[]{L_p} \xi$), если
+    \textit{сходится в среднем} к случайной величине $\xi$ ($\xi_n \xrightarrow[]{\text{(r)}} \xi$ или $\xi_n \xrightarrow[]{L_r} \xi$), если
     \begin{equation*}
         \Exp \left|\xi_{n}-\xi\right|^{r} \xrightarrow[n \to +\infty]{} 0, \quad r \geqslant 1.
     \end{equation*}
@@ -105,13 +105,13 @@
     
     \item[$\text{p} \implies \text{w}$]
     
-        Пусть $f$ - ограниченная и непрерывная функция, $|f| \leqslant C$. 
+        Пусть $f$~--- ограниченная и непрерывная функция, $|f| \leqslant C$. 
         Зафиксируем $\varepsilon > 0$. 
         %Т.к. $\MyPr(|\xi| = \infty) = 0$, то 
         $\exists N, \exists \delta$:
     
         \begin{enumerate}
-            \item $\MyPr(|\xi| > N) \leqslant \frac{\varepsilon}{6C}$, (это возможно, т.к. $\MyPr(\xi > x) \xrightarrow[x \to +\infty]{} 0$)
+            \item $\MyPr(|\xi| > N) \leqslant \frac{\varepsilon}{6C}$, (это возможно, т.к. $\MyPr(|\xi| > x) \xrightarrow[x \to +\infty]{} 0$)
             \item $\MyPr(|\xi_n - \xi| > \delta) \leqslant \frac{\varepsilon}{6C} \quad \forall n \geqslant N$ (из сходимости по вероятности)
             \item $\forall x, y \colon |x| < N, |x - y| < \delta \implies |f(x) - f(y)| \leqslant \frac{\varepsilon}{3}$, т.к. $f$ по теореме Кантора равномерно непрерывна на отрезке $[-N, N]$.
         \end{enumerate}
@@ -130,28 +130,28 @@
             \bigl| \Exp f\left(\xi_{n}\right)-\Exp f(\xi) \bigr|=
             \bigl| \Exp \bigl( f\left(\xi_{n}\right)-f(\xi) \bigr) \bigr|\leqslant 
             \Exp \bigl| f\left(\xi_{n}\right)-f(\xi) \bigr| = \\
-            = \Exp \biggl[ \bigl| f\left(\xi_{n}\right)-f(\xi)\bigr| \cdot \left(\Ind(A_{1})+\Ind(A_{2})+\Ind(A_{3})\right) \biggr]\leq \\
+            = \Exp \biggl[ \bigl| f\left(\xi_{n}\right)-f(\xi)\bigr| \cdot \left(\Ind(A_{1})+\Ind(A_{2})+\Ind(A_{3})\right) \biggr]\leqslant \\
             \leqslant \frac{\varepsilon}{3} \, \MyPr\left(A_{1}\right)+2 C\bigl(\MyPr\left(A_{2}\right) + \MyPr\left(A_{3}\right)\bigr) \leqslant 
             \frac{\varepsilon}{3}+2 C\left(\frac{\varepsilon}{6 C}+\frac{\varepsilon}{6 C}\right)=\varepsilon,
         \end{multline*}
         откуда следует, что $\bigl|\Exp f(\xi_n) - \Exp f(\xi)\bigr| \to 0 \implies \xi_n \xrightarrow[]{\text{w}} \xi$.
         
-    \item[p $\notimpliedby d$]
+    \item[$\text{p} \notimpliedby \text{d}$]
     
         Пусть $\xi_n = \begin{cases}
         1, \; p_1 = \frac{1}{2} \\
         0, \; p_0 = \frac{1}{2}
         \end{cases} \negthickspace \negthickspace \negthickspace , \; 
         \xi = \begin{cases}
-        0, \; p_1 = \frac{1}{2} \\
-        1, \; p_0 = \frac{1}{2}
+        0, \; p_0 = \frac{1}{2} \\
+        1, \; p_1 = \frac{1}{2}
         \end{cases} \negthickspace \negthickspace \negthickspace .$ \\
         Тогда $|\xi_n - \xi| = \begin{cases}
         1, \; p_1 = \frac{1}{2} \\
         0, \; p_0 = \frac{1}{2}
         \end{cases} \negthickspace \negthickspace \negthickspace ,$ и не выполняется определение сходимости по вероятности, например, при $\varepsilon_0 = \frac{1}{3}$, т.к. 
         \begin{equation*}
-            \MyPr\left({|\xi_n - \xi| > \frac{1}{3}}\right) = 1 \; {\nrightarrow} \; 0 \text{ при } n \to \infty.
+            \MyPr\left({|\xi_n - \xi| > \frac{1}{3}}\right) = \frac{1}{2} \; {\nrightarrow} \; 0 \text{ при } n \to \infty.
         \end{equation*}
         
    \item[$\text{p} \notimpliedby \text{w}$]
@@ -161,7 +161,9 @@
         Определим для любого $n$ $\xi_n(\omega_1) = 1, \xi_n(\omega_2) = -1.$ 
         Положим $\xi = -\xi_n.$ Тогда:
         
-        $$ \Exp f(\xi_n) = \frac{f(1) + f(-1)}{2} = \Exp f(\xi),$$
+        \begin{equation*}
+            \Exp f(\xi_n) = \frac{f(1) + f(-1)}{2} = \Exp f(\xi),
+        \end{equation*}
         
         но $\forall n \quad |\xi_n - \xi| = 2 \implies \xi_n \overset{\text{p}}{\nrightarrow} \xi.$
     
@@ -169,7 +171,7 @@
 \end{proof}
 
 \begin{rmrk}
-    Cлабая сходимость всё же не есть сходимость случайных величин, и ею нельзя оперировать как сходимостями п.н. и по вероятности, для которых предельная случайная величина единственна (с точностью до значений на множестве нулевой вероятности).
+    Слабая сходимость всё же не есть сходимость случайных величин, и ею нельзя оперировать как сходимостями п.н. и по вероятности, для которых предельная случайная величина единственна (с точностью до значений на множестве нулевой вероятности).
 \end{rmrk}
 
 \begin{rmrk}

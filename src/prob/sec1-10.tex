@@ -17,10 +17,10 @@
 \end{defn}
 
 \begin{rmrk}
-    Для функции совместного распределения выполняются свойства, аналогичные одномерному случаю~--- сохраняется монотонность, непререрывность слева по каждой переменной.
+    Для функции совместного распределения выполняются свойства, аналогичные одномерному случаю~--- сохраняется монотонность, непрерывность слева по каждой переменной.
     При этом частные функции распределения восстанавливаются по совместной следующим образом:
     \begin{equation*}
-        \lim\limits_{\substack{x_{k} \to +\infty \\ k \neq i}}  F(x_{1}, \ldots, x_{i}, \ldots, x_{n}) = F_{i}(x), \quad i = \overline{1,n}.
+        \lim\limits_{\substack{x_{k} \to +\infty \\ k \neq i}}  F(x_{1}, \ldots, x_{i}, \ldots, x_{n}) = F_{i}(x_i), \quad i = \overline{1,n}.
     \end{equation*}
     Следует, однако, обратить внимание на предельные свойства. 
     Для простоты проиллюстрируем их на двумерном случае.
@@ -34,9 +34,9 @@
             }
         } F(x_1, x_2) & = 1
     \end{align*}
-    В самом деле, по определению $F(x_1, x_2) = \MyPr(\xi_1 < x_1, \xi_2 < 2) = \MyPr(B_1 \cap B_2),$ 
+    В самом деле, по определению $F(x_1, x_2) = \MyPr(\xi_1 < x_1, \xi_2 < x_2) = \MyPr(B_1 \cap B_2),$ 
     где $B_1 = \{\xi_1 < x_1\}, B_2 = \{\xi_2 < x_2\}$. 
-    Если хоть одно из событий "<стремится"> к пустому множеству (что и происходит при $x_1 \to -\infty$ или $x_2 \to -\infty$), 
+    Если хоть одно из событий <<стремится>> к пустому множеству (что и происходит при $x_1 \to -\infty$ или $x_2 \to -\infty$), 
     то и пересечение делает то же самое.
 
     Если же мы хотим получить в пересечении $\Omega$ (и, следовательно, вероятность~$1$), то необходимо устремить $x_1$ и $x_2$ к $+\infty$ \textit{одновременно}.
@@ -56,20 +56,20 @@
 \begin{defn}
     Случайные величины $\xi_1, \xi_2$ имеют абсолютно непрерывное совместное распределение, если существует неотрицательная функция $f_{\xi_{1}, \xi_{2}}(x, y)$ такая, что для любого борелевского множества $B \in \Borel\left(\Real^{2}\right)$ имеет место равенство
     \begin{equation*}
-        \MyPr\bigl(\left(\xi_{1}, \xi_{2}\right) \in B\bigr)=\iint\limits_{B} f_{\xi_{1}, \xi_{2}}(x, y) \, dx dy.
+        \MyPr\bigl(\left(\xi_{1}, \xi_{2}\right) \in B\bigr)=\iint\limits_{B} f_{\xi_{1}, \xi_{2}}(x, y) dx dy.
     \end{equation*}
     Если такая функция $f_{\xi_{1}, \xi_{2}}(x, y)$ существует, она называется \textit{плотностью совместного распределения} случайных величин $\xi_1, \xi_2$.
     
     Функция совместного распределения в этом случае имеет вид:
     \begin{equation*}
-        F(x, y)=\MyPr(\xi_{1}<x, \xi_{2}<y)=\int\limits_{-\infty}^{x}\left(\int\limits_{-\infty}^{y} f_{\xi_{1}, \xi_{2}}(u, v) \, dv\right) du.
+        F(x, y)=\MyPr(\xi_{1}<x, \xi_{2}<y)=\int\limits_{-\infty}^{x}\left(\int\limits_{-\infty}^{y} f_{\xi_{1}, \xi_{2}}(u, v) dv\right) du.
     \end{equation*}
 \end{defn}
 
 \begin{rmrk}
     Плотность совместного распределения имеет те же свойства, что и плотность распределения одной случайной величины: неотрицательность и нормированность:
     \begin{equation*}
-        f(x, y) \geqslant 0~ \forall x, y \in \Real, \quad \iint\limits_{\Real^{2}} f(x, y) \, dx dy = 1.
+        f(x, y) \geqslant 0~ \forall x, y \in \Real, \quad \iint\limits_{\Real^{2}} f(x, y) dx dy = 1.
     \end{equation*}
 
     По функции совместного распределения его плотность находится как смешанная частная производная (в точках, где она существует):
@@ -95,8 +95,8 @@
 \begin{equation*}
     F_{\xi_{1}}\left(x_{1}\right)
     = \lim _{x_{2} \to+\infty} F_{\xi_{1}, \xi_{2}}\left(x_{1}, x_{2}\right)
-    = \int\limits_{-\infty}^{x_{1}}\left(\int\limits_{-\infty}^{\infty} f(x, y) d y\right) d x
-    = \int\limits_{-\infty}^{x_{1}} f_{\xi_{1}}(x) d x
+    = \int\limits_{-\infty}^{x_{1}}\left(\int\limits_{-\infty}^{\infty} f(x, y) \,d y\right) \,d x
+    = \int\limits_{-\infty}^{x_{1}} f_{\xi_{1}}(x) \,d x
 \end{equation*}
 \end{proof}
 
@@ -104,21 +104,21 @@
 \begin{defn}
     Случайные величины $\xi_1, \ldots, \xi_n$ называют \textit{независимыми в совокупности}, если для любого набора борелевских множеств $B_{1}, \ldots, B_{n} \in \Borel(\Real)$:
     \begin{equation*}
-        \MyPr\left(\xi_{1} \in B_{1}, \ldots, \xi_{n} \in B_{n}\right)=\MyPr\left(\xi_{1} \in B_{1}\right) \cdot \ldots \cdot \MyPr\left(\xi_{n} \in B_{n}\right)
+        \MyPr\left(\xi_{1} \in B_{1}, \ldots, \xi_{n} \in B_{n}\right)=\MyPr\left(\xi_{1} \in B_{1}\right) \cdot \cdots \cdot \MyPr\left(\xi_{n} \in B_{n}\right)
     \end{equation*}
 \end{defn}
 \begin{namedthm}[Критерий независимости]
     Случайные величины $\xi_1, \ldots, \xi_n$ независимы в совокупности $\iff$ имеет место равенство:
     \begin{equation*}
-        F_{\xi_{1}, \ldots, \xi_{n}}\left(x_{1}, \ldots, x_{n}\right)=F_{\xi_{1}}\left(x_{1}\right) \cdot \ldots \cdot F_{\xi_{n}}\left(x_{n}\right).
+        F_{\xi_{1}, \ldots, \xi_{n}}\left(x_{1}, \ldots, x_{n}\right)=F_{\xi_{1}}\left(x_{1}\right) \cdot \cdots \cdot F_{\xi_{n}}\left(x_{n}\right).
     \end{equation*}
     В частности, в случае дискретного совместного распределения:
     \begin{equation*}
-        \MyPr\left(\xi_{1}=a_{1}, \ldots, \xi_{n}=a_{n}\right)=\MyPr\left(\xi_{1}=a_{1}\right) \cdot \ldots \cdot \MyPr\left(\xi_{n}=a_{n}\right) \quad \forall a_1, \ldots, a_n \in \Real.
+        \MyPr\left(\xi_{1}=a_{1}, \ldots, \xi_{n}=a_{n}\right)=\MyPr\left(\xi_{1}=a_{1}\right) \cdot \cdots \cdot \MyPr\left(\xi_{n}=a_{n}\right) \quad \forall a_1, \ldots, a_n \in \Real.
     \end{equation*}
     В случае абсолютно непрерывного:
     \begin{equation*}
-        f_{\xi_{1}, \ldots, \xi_{n}}\left(x_{1}, \ldots, x_{n}\right)=f_{\xi_{1}}\left(x_{1}\right) \cdot \ldots \cdot f_{\xi_{n}}\left(x_{n}\right).
+        f_{\xi_{1}, \ldots, \xi_{n}}\left(x_{1}, \ldots, x_{n}\right)=f_{\xi_{1}}\left(x_{1}\right) \cdot \cdots \cdot f_{\xi_{n}}\left(x_{n}\right).
     \end{equation*}
 \end{namedthm}
 
@@ -126,7 +126,7 @@
 Пусть $\xi_1, \xi_2$~--- случайные величины с плотностью совместного распределения $f_{\xi_{1}, \xi_{2}}\left(x_{1}, x_{2}\right)$, задана борелевская функция $g\colon \Real^{2} \to \Real$. 
 Требуется найти функцию распределения (и плотность, если она существует) случайной величины $\eta=g\left(\xi_{1}, \xi_{2}\right)$.
 \begin{lem}
-    Пусть $x \in \Real$, задана область $D_{x} \subseteq \Real^{2},~ D_x = \{(u,v)\colon g(u,v) < x\}$ Тогда случайная величина $\eta=g\left(\xi_{1}, \xi_{2}\right)$ имеет функцию распределения
+    Пусть $x \in \Real$, задана область $D_{x} \subseteq \Real^{2},~ D_x = \{(u,v)\colon g(u,v) < x\}$. Тогда случайная величина $\eta=g\left(\xi_{1}, \xi_{2}\right)$ имеет функцию распределения
     \begin{equation*}
         F_{\eta}(x)=\MyPr\left(g\left(\xi_{1}, \xi_{2}\right)<x\right)=\MyPr\left(\left(\xi_{1}, \xi_{2}\right) \in D_{x}\right)=\iint\limits_{D_{x}} f_{\xi_{1}, \xi_{2}}(u, v) du dv.
     \end{equation*}
@@ -142,7 +142,7 @@
 \begin{proof}
     Воспользуемся утверждением вышеуказанной леммы для борелевской функции $g(u, v)=u+v$. 
     Интегрирование по двумерной области $D_{x}=\{(u, v) \colon u+v<x\}$ можно заменить последовательным вычислением двух интегралов: 
-    наружного — по переменной $u$, меняющейся в пределах от $-\infty$ до $+\infty$, и внутреннего~--- по переменной $v$, которая при каждом $u$ должна быть меньше, чем $x-u$. 
+    наружного~--- по переменной $u$, меняющейся в пределах от $-\infty$ до $+\infty$, и внутреннего~--- по переменной $v$, которая при каждом $u$ должна быть меньше, чем $x-u$. 
     Поэтому
     \begin{equation*}
         F_{\xi_{1}+\xi_{2}}(x)=\iint\limits_{D_{x}} f_{\xi_{1}}(u) f_{\xi_{2}}(v) dv du=\int\limits_{-\infty}^{\infty}\left(\int\limits_{-\infty}^{x-u} f_{\xi_{1}}(u) f_{\xi_{2}}(v) dv\right) du.
@@ -151,7 +151,7 @@
     Сделаем в последнем интеграле замену $v=t-u$. При этом $v \in(-\infty, x-u) \iff t \in(-\infty, x), d v=d t$. 
     В полученном интеграле меняем порядок интегрирования:
     \begin{equation*}
-        F_{\xi_{1}+\xi_{2}}(x)=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{x} f_{\xi_{1}}(u) f_{\xi_{2}}(t-u) d t d u=\int\limits_{-\infty}^{x}\left(\int\limits_{-\infty}^{\infty} f_{\xi_{1}}(u) f_{\xi_{2}}(t-u) du\right) dt.
+        F_{\xi_{1}+\xi_{2}}(x)=\int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{x} f_{\xi_{1}}(u) f_{\xi_{2}}(t-u) \,d t \,d u=\int\limits_{-\infty}^{x}\left(\int\limits_{-\infty}^{\infty} f_{\xi_{1}}(u) f_{\xi_{2}}(t-u) du\right) dt.
     \end{equation*}
     Из функции распределения $F_{\xi_{1}+\xi_{2}}(x)$ выражается плотность $f_{\xi_{1}+\xi_{2}}(t)$.
 \end{proof}
@@ -159,7 +159,7 @@
 \subsubsection{Ковариация, коэффициент корреляции, их свойства}
 
 \begin{defn} Рассмотрим случайные величины $\xi$ и $\eta$. 
-Дисперсия их суммы в общем случае равна $\Var(\xi+n)=\Var \xi+\Var \eta + 2 \bigl( \Exp (\xi \eta)-\Exp \xi \, \Exp \eta \bigr)$. Величина $\operatorname{cov}(\xi, \eta) \equiv \Exp (\xi \eta)-\Exp \xi \, \Exp \eta$ называется \textit{ковариацией} случайных величин $\xi$ и $\eta$. Если $\xi$ и $\eta$ независимы, то $\operatorname{cov}(\xi, \eta) = 0$. Обратное, вообще говоря, неверно.
+Дисперсия их суммы в общем случае равна $\Var(\xi+\eta)=\Var \xi+\Var \eta + 2 \bigl( \Exp (\xi \eta)-\Exp \xi \, \Exp \eta \bigr)$. Величина $\Cov(\xi, \eta) \equiv \Exp (\xi \eta)-\Exp \xi \, \Exp \eta$ называется \textit{ковариацией} случайных величин $\xi$ и $\eta$. Если $\xi$ и $\eta$ независимы, то $\Cov(\xi, \eta) = 0$. Обратное, вообще говоря, неверно.
 \end{defn}
 
 \hypertarget{counter_exmp_independence}{}
@@ -167,12 +167,12 @@
     Рассмотрим $\xi \sim \Uniform_{[-\pi;\pi]}$, случайные величины ${\eta_{1}=\cos \xi}$ и ${\eta_{2}=\sin \xi}$.
     \begin{enumerate}
         \item 
-            Докажем некореллированность данных случайных величин.
+            Докажем некоррелированность данных случайных величин.
             \begin{gather*}
-                \Exp \eta_{1}=\int\limits_{-\pi}^{\pi} \cos x \cdot \frac{1}{2 \pi} d x=0, \quad \Exp \eta_{2}=\int\limits_{-\pi}^{\pi} \sin x \cdot \frac{1}{2 \pi} d x=0 \\
-                \Exp \eta_{1} \eta_{2}=\int\limits_{-\pi}^{\pi}(\cos x \sin x) \frac{1}{2 \pi} d x=\frac{1}{4 \pi} \int\limits_{-\pi}^{\pi} \sin 2 x d x=0
+                \Exp \eta_{1}=\int\limits_{-\pi}^{\pi} \cos x \cdot \frac{1}{2 \pi} \,d x=0, \quad \Exp \eta_{2}=\int\limits_{-\pi}^{\pi} \sin x \cdot \frac{1}{2 \pi} \,d x=0 \\
+                \Exp \eta_{1} \eta_{2}=\int\limits_{-\pi}^{\pi}(\cos x \sin x) \frac{1}{2 \pi} \,d x=\frac{1}{4 \pi} \int\limits_{-\pi}^{\pi} \sin 2 x \,d x=0
             \end{gather*}
-            Следовательно, $\operatorname{cov}(\eta_1, \eta_2) = 0$.
+            Следовательно, $\Cov(\eta_1, \eta_2) = 0$.
         \item 
             Докажем зависимость $\eta_1$ и $\eta_2$. Рассмотрим события:
             \begin{equation*}
@@ -192,18 +192,18 @@
 \begin{namedthm}[Свойства ковариации]\leavevmode
     \begin{enumerate}
         \item 
-            $\operatorname{cov}(\xi, \xi)=\Var \xi$;
+            $\Cov(\xi, \xi)=\Var \xi$;
         \item 
-            $\operatorname{cov}(\xi, \eta)=\operatorname{cov}(\eta, \xi)$;
+            $\Cov(\xi, \eta)=\Cov(\eta, \xi)$;
         \item 
-            $\forall a, b \in \Real ~ \operatorname{cov}(a \xi + b, \eta)=a \operatorname{cov}(\xi, \eta)$;
+            $\forall a, b \in \Real ~ \Cov(a \xi + b, \eta)=a \Cov(\xi, \eta)$;
         \item 
-            $\operatorname{cov}(\eta + \zeta, \xi) = 
-            \operatorname{cov}(\eta, \xi) + \operatorname{cov}(\zeta, \xi)$;
+            $\Cov(\eta + \zeta, \xi) = 
+            \Cov(\eta, \xi) + \Cov(\zeta, \xi)$;
         \item 
-            $\operatorname{cov}^2(\xi, \eta) \leqslant \Var\xi \, \Var\eta$,
+            $\Cov^2(\xi, \eta) \leqslant \Var\xi \, \Var\eta$,
         
-            $\operatorname{cov}^2(\xi, \eta) = \Var\xi \,\Var\eta \iff \xi \overset{\text{п.н.}}{=} a\eta + b, \; a, b \in \Real$ (аналог неравенства Коши-Буняковского);
+            $\Cov^2(\xi, \eta) = \Var\xi \,\Var\eta \iff \xi \overset{\text{п.н.}}{=} a\eta + b, \; a, b \in \Real$ (аналог неравенства Коши-Буняковского);
     \end{enumerate}
 \end{namedthm}
 
@@ -212,7 +212,7 @@
 \begin{defn}
     \textit{Коэффициент корреляции} $\rho(\xi,\eta)$ случайных величин $\xi$ и $\eta$, дисперсии которых существуют и отличны от нуля:
     \begin{equation*}
-        \rho(\xi, \eta)=\frac{\operatorname{cov}(\xi, \eta)}{\sqrt{\Var \xi} \sqrt{\Var \eta}}.
+        \rho(\xi, \eta)=\frac{\Cov(\xi, \eta)}{\sqrt{\Var \xi} \sqrt{\Var \eta}}.
     \end{equation*}
 \end{defn}
 
@@ -239,12 +239,12 @@
 
     \item 
         Обозначим эти две случайные величины как $\xi$ и $\eta$ и центрируем: $\xi_c = \xi - \Exp \xi$ и $\eta_c = \eta - \Exp \eta$. 
-        Так как $\operatorname{cov}(\xi, \eta)=\operatorname{cov}\left(\xi_{c}, \eta_{c}\right)$, а дисперсия случайной величины не меняется от смещения случайной величины на константу, коэффициент корреляции не изменится.
+        Так как $\Cov(\xi, \eta)=\Cov\left(\xi_{c}, \eta_{c}\right)$, а дисперсия случайной величины не меняется от смещения случайной величины на константу, коэффициент корреляции не изменится.
         
         Далее, т.к. $\Exp \xi_{c}=\Exp \eta_{c}=0$:
         \begin{gather*}
             \Var \xi_{c}=\Exp \xi_{c}^{2}-\left(\Exp \xi_{c}\right)^{2}=\Exp \xi_{c}^{2},~ \Var \eta_{c}=\Exp \eta_{c}^{2}; \\
-            \operatorname{cov}\left(\xi_{c}, \eta_{c}\right)=\Exp \left(\xi_{c} \, \eta_{c}\right) - \Exp \xi_{c} \, \Exp \eta_{c}=\Exp \left(\xi_{c} \, \eta_{c}\right).
+            \Cov\left(\xi_{c}, \eta_{c}\right)=\Exp \left(\xi_{c} \, \eta_{c}\right) - \Exp \xi_{c} \, \Exp \eta_{c}=\Exp \left(\xi_{c} \, \eta_{c}\right).
         \end{gather*}
         
         Далее идут те же рассуждения, что часто используются при доказательстве неравенства Коши-Буняковского:
@@ -262,27 +262,27 @@
         Поскольку верно это для любого $a$, то дискриминанту нельзя быть больше нуля. То есть:
         \begin{multline*}
             \bigl(\Exp \left(\xi_{c} \eta_{c}\right) \bigr)^{2} - \Exp \xi_{c}^{2} \, \Exp \eta_{c}^{2} \leqslant 0 \Longleftrightarrow \bigl|\Exp \left(\xi_{c} \eta_{c}\right)\bigr| \leqslant \sqrt{\Exp \xi_{c}^{2} \, \Exp \eta_{c}^{2}} \implies \\
-            \implies \bigl|\operatorname{cov}\left(\xi_{c}, \eta_{c}\right)\bigr| \leqslant \sqrt{\Var \xi_{c} \, \Var \eta_{c}}.
+            \implies \bigl|\Cov\left(\xi_{c}, \eta_{c}\right)\bigr| \leqslant \sqrt{\Var \xi_{c} \, \Var \eta_{c}}.
         \end{multline*}
         
         По доказанному выше <<стирание>> индексов не изменит коэффициентов.
 
     \item 
-        Доказательство этого свойства целиком опирается на доказательство предыдущего: если выполнилось равенство $|\operatorname{cov}(\xi, \eta)|=\sqrt{\Var \xi \, \Var \eta}$, 
+        Доказательство этого свойства целиком опирается на доказательство предыдущего: если выполнилось равенство $|\Cov(\xi, \eta)|=\sqrt{\Var \xi \, \Var \eta}$, 
         то квадратное неравенство относительно $a$ обратилось в равенство.
         Но это равенство означает, что равна нулю $\Var(\xi - a \eta)$, а это сразу говорит о том, что с вероятностью один $\xi - a\eta$ равна константе.
         Обозначим эту константу за $b$ и получим то, что нужно было доказать.
         
-        Знак коэффициента корреляции совпадает с знаком ковариации, так дисперсии по предположению положительны. Выразив $\xi$ через $\eta$, мы можем воспользоваться свойствами ковариации и получить
+        Знак коэффициента корреляции совпадает со знаком ковариации, так как дисперсии по предположению положительны. Выразив $\xi$ через $\eta$, мы можем воспользоваться свойствами ковариации и получить
         \begin{equation*}
             \rho(\xi, \eta) = \rho(a\eta + b, \eta)=
-            \frac{\operatorname{cov}(a\eta + b, \eta)}
+            \frac{\Cov(a\eta + b, \eta)}
             {\sqrt{\Var(a\eta + b) \, \Var\eta}} = 
-            \frac{a\operatorname{cov}(\eta, \eta)}
+            \frac{a\Cov(\eta, \eta)}
             {\sqrt{a^2\, \Var\eta \, \Var\eta}} = 
             \frac{a\Var\eta}
             {|a|\Var\eta} = 
-            \text{sign}(a).
+            \operatorname{sign}(a).
         \end{equation*}
 
 \end{enumerate}

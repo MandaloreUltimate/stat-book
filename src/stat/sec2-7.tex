@@ -12,7 +12,7 @@
 
 Полученная оценка $\theta^{*}$~--- \textit{оценка метода моментов} для параметра $\theta$. 
 Чаще всего берут $g(y)=y^{k}$. 
-В этом случае, при условии обратимости функции~$h$ на~$\Omega$:
+В этом случае, при условии обратимости функции~$h$ на~$\Theta$:
 \begin{equation*}
     \ExpTh X_{1}^{k}=h(\theta), \quad 
     \theta = h^{-1}\left(\ExpTh X_{1}^{k}\right), \quad 
@@ -28,7 +28,7 @@
         \theta = 2\,\ExpTh X_{1}, \quad 
         \theta_{1}^{*}=2 \SampleMean
     \end{equation*}
-    Найдём оценку метода моментов k по $k$-му моменту:
+    Найдём оценку метода моментов по $k$-му моменту:
     \begin{equation*}
         \ExpTh X_{1}^{k} =
         \int\limits_{0}^{\theta} y^{k} \frac{1}{\theta} \, dy = 
@@ -88,9 +88,9 @@
     \begin{equation*}
         \theta^{*} = 
         H \bigl( \overline{g(\SampleX)} \bigr) = 
-        H\left(\cfrac{g\left(X_{1}\right)+\ldots+g\left(X_{n}\right)}{n}\right)
+        H\left(\cfrac{g\left(X_{1}\right)+\cdots+g\left(X_{n}\right)}{n}\right)
     \end{equation*}
-    которые обычно получаются при использовании метода моментов, при этом всегда $\theta = H \bigl(\ExpTh g\left(X_{1}\right) \bigr)$.
+    , которые обычно получаются при использовании метода моментов, при этом всегда $\theta = H \bigl(\ExpTh g\left(X_{1}\right) \bigr)$.
 \end{rmrk}
 
 \begin{thm*}
@@ -99,7 +99,7 @@
 \end{thm*}
 
 \begin{proof}
-    Согласно ЗБЧ последовательность $\overline{g(\SampleX)}$ стремится к $a=\ExpTh g\left(X_{1}\right)$ по вероятности с ростом $n$: Функция
+    Согласно ЗБЧ последовательность $\overline{g(\SampleX)}$ стремится к $a=\ExpTh g\left(X_{1}\right)$ по вероятности с ростом $n$. Функция
 
     \begin{equation*}
         G(y)=\left\{\begin{array}{ll}

@@ -1,5 +1,5 @@
 \section{Неравенство Рао"--~Крамера. Эффективные оценки}
-Пусть $X_1, \ldots, X_n$  —  некоторая выборка с функцией правдоподобия $L(\mathbf{X}, \theta)$ относительно некоторой меры $\mu$. Введём функцию ${\varphi(\theta)=\int\limits_{\mathbf{R}^{n}} T(x) L(\mathbf{x}, \theta) \mu(d x)<\infty}$, в дальнейшем считая, что она дифференцируема необходимое число раз.
+Пусть $X_1, \ldots, X_n$  —  некоторая выборка с функцией правдоподобия $L(\mathbf{X}, \theta)$ относительно некоторой меры $\mu$. Введём функцию ${\varphi(\theta)=\int\limits_{\Real^{n}} T(x) L(\mathbf{x}, \theta) \mu(d x)<\infty}$, в дальнейшем считая, что она дифференцируема необходимое число раз.
 
 \begin{defn}
     Функция правдоподобия $L(\SampleX, \theta)$ \textit{удовлетворяет условиям регулярности для $m$-й производной}, если существует
@@ -23,11 +23,11 @@
     Если функция правдоподобия удовлетворяет условиям регулярности для первой производной, то $\ExpTh U(\SampleX, \theta) = 0$. 
     В самом деле,
     \begin{multline*}
-        \ExpTh U(\SampleX, \theta) = \int\limits_{\Real^n} U(x, \theta) L(\mathbf{x}, \theta) \mu(dx) = 
-        \int\limits_{\Real^n} \cfrac{\partial \ln L(\mathbf{x}, \theta)}{\partial \theta} L(\mathbf{x}, \theta) \mu(dx) = \\
-        \int\limits_{\Real^n} \cfrac{1}{L(\mathbf{x}, \theta)} \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta} L(\mathbf{x}, \theta) \mu(dx) = 
-        \int\limits_{\Real^n} \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta} \mu(dx) = \{\text{регулярность}\}\\
-        = \cfrac{\partial}{\partial \theta} \int\limits_{\Real^n} L(\mathbf{x}, \theta) \mu(dx) 
+        \ExpTh U(\SampleX, \theta) = \int\limits_{\Real^n} U(x, \theta) L(\mathbf{x}, \theta) \mu(d x) = 
+        \int\limits_{\Real^n} \cfrac{\partial \ln L(\mathbf{x}, \theta)}{\partial \theta} L(\mathbf{x}, \theta) \mu(d x) = \\
+        \int\limits_{\Real^n} \cfrac{1}{L(\mathbf{x}, \theta)} \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta} L(\mathbf{x}, \theta) \mu(d x) = 
+        \int\limits_{\Real^n} \cfrac{\partial L(\mathbf{x}, \theta)}{\partial \theta} \mu(d x) = \{\text{регулярность}\}\\
+        = \cfrac{\partial}{\partial \theta} \int\limits_{\Real^n} L(\mathbf{x}, \theta) \mu(d x) 
         = \cfrac{\partial}{\partial \theta} ~ 1 = 0.
     \end{multline*}
 Из этого, в частности, вытекает, что для регулярных моделей ${\VarTh U(\SampleX, \theta) = \ExpTh U^2(\SampleX, \theta)}$.
@@ -69,7 +69,7 @@
 \end{namedthm}
 
 \begin{proof}
-    Из условий регулярности $L(\SampleX, \theta)$ для следует:
+    Из условий регулярности для $L(\SampleX, \theta)$ следует:
     \begin{gather*}
         \int L(\mathbf{x}, \theta) \mu(d x)=1 
         \quad \implies \quad
@@ -90,7 +90,7 @@
         \int T(x) U(x, \theta) L(\mathbf{x}, \theta) \mu(d x) = \tau'(\theta) \; \iff \; \ExpTh \bigl[ T(\SampleX) U(\SampleX, \theta) \bigr] = \tau'(\theta)
     \end{gather*}
 
-    Вычитая из второго равенства первое, умноженного на $\tau(\theta) = \ExpTh \left[ T(\SampleX) \right]$, получаем:
+    Вычитая из второго равенства первое, умноженное на $\tau(\theta) = \ExpTh \left[ T(\SampleX) \right]$, получаем:
     \begin{equation*}
         \ExpTh\left[T(\SampleX) U(\SampleX, \theta)\right] - \ExpTh\left[T(\SampleX)\right] \, \ExpTh\left[U(\SampleX, \theta)\right] = 
         \tau'(\theta) - 0 \cdot \tau(\theta) = 
@@ -99,12 +99,12 @@
 
     В левой части полученного равенства стоит ковариация случайных величин $T(\SampleX)$ и $U(\SampleX,\theta)$:
     \begin{equation*}
-        \operatorname{cov}_{\theta}\bigl(T(\SampleX), U(\SampleX, \theta)\bigr)=\tau'(\theta)
+        \Cov_{\theta}\bigl(T(\SampleX), U(\SampleX, \theta)\bigr)=\tau'(\theta)
     \end{equation*}
 
     Из неравенства Коши-Буняковского:
     \begin{equation*}
-        \bigl(\tau'(\theta)\bigr)^{2}=\operatorname{cov}_{\theta}^{2} \bigl(T(\SampleX), \, U(\SampleX, \theta)\bigr) \leqslant 
+        \bigl(\tau'(\theta)\bigr)^{2}=\Cov_{\theta}^{2} \bigl(T(\SampleX), \, U(\SampleX, \theta)\bigr) \leqslant 
         \VarTh T(\SampleX) \,\VarTh U(\SampleX, \theta) = 
         \VarTh T(\SampleX) \, n \, i_1(\theta),
     \end{equation*}

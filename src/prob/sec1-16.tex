@@ -1,17 +1,17 @@
 \section{Условное математическое ожидание}
     Рассмотрим дискретные случайные величины $\xi$ и $\eta$ на вероятностном пространстве $(\Omega, \SigAlg, \MyPr)$. 
-    $\xi$ принимает значения $x_1, x_2, \dots$, $\eta$~--- $y_1, y_2, \dots$
-    Вспомним определение условной вероятности: ${\MyPr\left( \xi = x_i | \eta = y_j \right) = \cfrac{\MyPr\left( \xi = x_i, \, \eta = y_j\right)}{\MyPr\left(\eta = y_j\right)}}$.
+    $\xi$ принимает значения $x_1, x_2, \dots$, $\eta$~--- $y_1, y_2, \dots$.
+    Вспомним определение условной вероятности: ${\MyPr\left( \xi = x_i | \eta = y_j \right) = \frac{\MyPr\left( \xi = x_i, \, \eta = y_j\right)}{\MyPr\left(\eta = y_j\right)}}$.
     Ранее мы проверяли, что условная вероятность является вероятностной мерой на $\sigma$-алгебре $\SigAlg$.
     Рассмотрим теперь следующую величину:
     \begin{equation}
-        \Exp \left[ \xi | \eta = y_j \right] = 
-        \sum\limits_i y_i \, \MyPr\left(\xi = x_i | \eta = y_j \right) \equiv
+        \Exp \left[ \xi | \eta = y_j \right] =
+        \sum\limits_i x_i \, \MyPr\left(\xi = x_i | \eta = y_j \right) \equiv
         f(y_j).
         \label{cond_exp:discrete}
     \end{equation}
     
-    $f(x)$~--- \textit{регрессия} $\xi$ \textit{на} $\eta$. 
+    $f(y)$~--- \textit{регрессия} $\xi$ \textit{на} $\eta$.
     В математическом анализе изучаются функциональные зависимости~--- каждому значению независимой переменной $x$ соответствует одно определённое значение величины $y = f(x)$.
     В теории вероятностей и статистике изучаются зависимости между случайными величинами~--- например, $\xi$ и $\eta$.
     В этом случае при принятии величиной $\eta$ значения $y_j$ случайная величина $\xi$ может принимать разные значения~--- $x_1, x_2, \ldots$.
@@ -25,37 +25,37 @@
     
     Заметим теперь, что введённая нами величина обладает следующим свойством:
     \begin{equation*}
-        \forall B \in \Borel \quad \Exp \bigl[ \Exp \left( \xi | \eta\right) \rm{I}(\eta \in B)\bigr] = 
-        \Exp \bigl[ \xi \cdot \rm{I}(\eta \in B) \bigr].
+        \forall B \in \Borel \quad \Exp \bigl[ \Exp \left( \xi | \eta\right) \Ind(\eta \in B)\bigr] = 
+        \Exp \bigl[ \xi \cdot \Ind(\eta \in B) \bigr].
     \end{equation*}
     В самом деле,
     \begin{gather*}
-        \Exp \bigl[ \Exp \left( \xi | \eta\right) \rm{I}(\eta \in B)\bigr] = \\
+        \Exp \bigl[ \Exp \left( \xi | \eta\right) \Ind(\eta \in B)\bigr] = \\
         \sum\limits_{j \colon y_j \in B} f(y_j) \, \MyPr(\eta = y_j) = 
         \sum\limits_{j \colon y_j \in B} \biggl( \sum\limits_k x_k \, \MyPr(\xi = x_k \,|\, \eta = y_j) \biggr) \, \MyPr(\eta = y_j) = \\
         \sum\limits_{j \colon y_j \in B} \sum\limits_k x_k \, \MyPr(\xi = x_k, \, \eta = y_j) = 
-        \Exp \bigl[ \xi \cdot \rm{I}(\eta \in B)\bigr].
+        \Exp \bigl[ \xi \cdot \Ind(\eta \in B)\bigr].
     \end{gather*}
 
     Рассмотрим теперь абсолютно непрерывный случай.
     Пусть $\xi, \eta \sim p_{\xi, \eta}(x, y)$, где $p_{\xi, \eta}(x, y)$~--- плотность совместного распределения.
     \begin{gather*}
-        \forall B \in \Borel_{\Real^2} \quad \MyPr\bigl( (\xi, \eta) \in B\bigr) = \iint\limits_{B} p_{\xi, \eta}(x, y) \, dxdy, \\
-        p_{\eta}(y) = \int\limits_{-\infty}^{+\infty} p_{\xi, \eta} (x, y)\, dx.
+        \forall B \in \Borel_{\Real^2} \quad \MyPr\bigl( (\xi, \eta) \in B\bigr) = \iint\limits_{B} p_{\xi, \eta}(x, y) dxdy, \\
+        p_{\eta}(y) = \int\limits_{-\infty}^{+\infty} p_{\xi, \eta} (x, y)dx.
     \end{gather*}
 
     В этом случае некоторая проблема заключается в том, что при абсолютно непрерывном распределении вероятность попасть в конкретную точку равна нулю,
     и не получится так просто записать условную вероятность:
     \begin{equation*}
-        \MyPr\left( \xi < x \, |\, \eta = y\right) = \cfrac{\MyPr(\xi < x, \, \eta = y)}{\MyPr(\eta = y)}  = \frac{0}{0} = \; ?
+        \MyPr\left( \xi < x \, |\, \eta = y\right) = \frac{\MyPr(\xi < x, \, \eta = y)}{\MyPr(\eta = y)}  = \frac{0}{0} = \; ?
     \end{equation*}
 
     Возьмём тогда произвольный $\varepsilon > 0$ и рассмотрим
     \begin{gather*}
         \MyPr(\xi < x\, | \, y \leqslant \eta < y + \varepsilon) = \frac{\MyPr(\xi < x, \, y \leqslant \eta < y + \varepsilon)}{\MyPr(y \leqslant \eta < y + \varepsilon)} = \\
-        \frac{\int\limits_{-\infty}^{x} \int\limits_{y}^{y + \varepsilon} p_{\xi, \eta}(x, y) \, dydx}{\int\limits_{y}^{y + \varepsilon} p_{\eta}(y)\,dy} = \text{\{теорема о среднем, } \hat{y}, \tilde{y} \in (y, y + \varepsilon) \} = \\
-        \frac{\varepsilon \cdot \int\limits_{-\infty}^{x} p_{\xi, \eta}(x, \hat{y}) \, dx}{\varepsilon \cdot p_{\eta}(\tilde{y})} \xrightarrow[\varepsilon \to 0]{} 
-        = \int\limits_{-\infty}^{x} \frac{p_{\xi, \eta}(x, y)}{p_{\eta}(y)} \, dx \quad \forall x \in \Real.
+        \frac{\int\limits_{-\infty}^{x} \int\limits_{y}^{y + \varepsilon} p_{\xi, \eta}(x, y) dydx}{\int\limits_{y}^{y + \varepsilon} p_{\eta}(y)dy} = \text{\{теорема о среднем, } \hat{y}, \tilde{y} \in (y, y + \varepsilon) \} = \\
+        \frac{\varepsilon \cdot \int\limits_{-\infty}^{x} p_{\xi, \eta}(x, \hat{y}) dx}{\varepsilon \cdot p_{\eta}(\tilde{y})} \xrightarrow[\varepsilon \to 0]{}
+        \int\limits_{-\infty}^{x} \frac{p_{\xi, \eta}(x, y)}{p_{\eta}(y)} dx \quad \forall x \in \Real.
     \end{gather*}
     Положим по определению
     \begin{equation*}
@@ -63,10 +63,10 @@
     \end{equation*}
     Тогда 
     \begin{equation}
-        \label{cond_exp:abs_continious}
+        \label{cond_exp:abs_continuous}
         \boxed{\Exp \bigl[ \xi | \eta = y \bigr] = 
-        \int\limits_{-\infty}^{+\infty} x \, p_{\xi | \eta = y}(x) \, dx = 
-        \int\limits_{-\infty}^{+\infty} x \, \frac{p_{\xi, \eta}(x, y)}{p_{\eta}(y)} \, dx \equiv 
+        \int\limits_{-\infty}^{+\infty} x \, p_{\xi | \eta = y}(x) dx = 
+        \int\limits_{-\infty}^{+\infty} x \, \frac{p_{\xi, \eta}(x, y)}{p_{\eta}(y)} dx \equiv 
         f(y),}
     \end{equation}
     \begin{equation*}
@@ -77,28 +77,28 @@
     \vspace{5mm}
     Заметим, что эта величина также удовлетворяет свойству
     \begin{equation*}
-        \forall B \in \Borel \quad \Exp \bigl[ \Exp \left( \xi | \eta\right) \rm{I}(\eta \in B)\bigr] = 
-        \Exp \bigl[ \xi \cdot \rm{I}(\eta \in B) \bigr],
+        \forall B \in \Borel \quad \Exp \bigl[ \Exp \left( \xi | \eta\right) \Ind(\eta \in B)\bigr] = 
+        \Exp \bigl[ \xi \cdot \Ind(\eta \in B) \bigr],
     \end{equation*}
-    Так как
+    так как
     \begin{gather*}
-        \Exp \left[ \Exp \left(\xi | \eta\right) \rm{I}(\eta \in B) \right] = 
-        \Exp \left[ f(\eta) \rm{I}(\eta \in B) \right] = 
-        \int\limits_{B} f(y) p_{\eta}(y)\,dy = \\
-        \int\limits_{B} \left( \int\limits_{-\infty}^{+\infty} x \, \frac{p_{\xi, \eta}(x, y)}{p_{\eta}(y)} \, dx \right) p_{\eta}(y) \,dy = 
-        \int\limits_{B} \int\limits_{-\infty}^{+\infty} x \, p_{\xi, \eta}(x, y) \,dxdy = 
-        \Exp \bigl[ \xi \cdot \rm{I}(\eta \in B)\bigr].
+        \Exp \left[ \Exp \left(\xi | \eta\right) \Ind(\eta \in B) \right] = 
+        \Exp \left[ f(\eta) \Ind(\eta \in B) \right] = 
+        \int\limits_{B} f(y) p_{\eta}(y)dy = \\
+        \int\limits_{B} \left( \int\limits_{-\infty}^{+\infty} x \, \frac{p_{\xi, \eta}(x, y)}{p_{\eta}(y)} dx \right) p_{\eta}(y) dy = 
+        \int\limits_{B} \int\limits_{-\infty}^{+\infty} x \, p_{\xi, \eta}(x, y) dxdy = 
+        \Exp \bigl[ \xi \cdot \Ind(\eta \in B)\bigr].
     \end{gather*}
 
     Итак, мы обсудили два частных случая и убедились в том, что обе рассмотренные величины обладают некоторым общим свойством.
-    Перейдём теперь к более строгому, формальному опеределению условного математического ожидания и поймём, зачем мы установили вышеописанный факт.
+    Перейдём теперь к более строгому, формальному определению условного математического ожидания и поймём, зачем мы установили вышеописанный факт.
 
     %\vspace{1cm}
 \subsubsection{Определения, примеры}
     Рассмотрим вероятностное пространство $(\Omega, \SigAlg, \MyPr)$.
     Пусть $\Alg \subseteq \SigAlg$~--- некоторая $\sigma$-подалгебра $\sigma$-алгебры $\SigAlg$.
     \begin{defn}
-        Случайная величина $\eta$ называется $\Alg$-измеримой, если для $\forall B \in \Borel \quad \eta^{-1}(B) \in \Alg$.
+        Случайная величина $\eta$ называется $\Alg$-измеримой, если $\forall B \in \Borel \quad \eta^{-1}(B) \in \Alg$.
     \end{defn}
     
     \begin{defn}
@@ -106,7 +106,7 @@
         называется случайная величина~$\Exp \left( \xi | \Alg\right)$, такая~что:
         \begin{enumerate}
             \item $\Exp \left(\xi | \Alg \right)$~--- $\Alg$-измерима;
-            \item Для любого события $C \in \Alg \quad \Exp \bigl[ \Exp \left( \xi | \Alg \right) \rm{I}(C) \bigr] \; = \; \Exp \bigl[ \xi \, \rm{I}(C) \bigr]$.
+            \item Для любого события $C \in \Alg \quad \Exp \bigl[ \Exp \left( \xi | \Alg \right) \Ind(C) \bigr] \; = \; \Exp \bigl[ \xi \, \Ind(C) \bigr]$.
         \end{enumerate}
     \end{defn}
 
@@ -145,7 +145,7 @@
             \Exp \left( \xi | \eta \right) \equiv \Exp \bigl( \xi | \sigma(\eta) \bigr).
         \end{equation*}
     \end{defn}
-    Таким образом, величины \ref{cond_exp:discrete} и \ref{cond_exp:abs_continious} удовлетворяют определению и являются выражениями для УМО в дискретном и абсолютно непрерывном случае соответственно.
+    Таким образом, величины \eqref{cond_exp:discrete} и \eqref{cond_exp:abs_continuous} удовлетворяют определению и являются выражениями для УМО в дискретном и абсолютно непрерывном случае соответственно.
 
     \begin{exmp}
         Возьмём вероятностное пространство из предыдущего примера.
@@ -220,7 +220,7 @@
     \end{namedthm}
     С помощью условного математического ожидания можно ввести условную вероятность относительно $\sigma$-алгебры:
     \begin{equation*}
-        \MyPr(B | \Alg) \overset{\text{def}}{=} \Exp \bigl(\rm{I}(B) | \Alg \bigr).
+        \MyPr(B | \Alg) \overset{\text{def}}{=} \Exp \bigl(\Ind(B) | \Alg \bigr).
     \end{equation*}
 
 \iffalse
@@ -235,11 +235,11 @@
         
         \item Во втором случае пусть $f_{\xi, \eta}(x, y)$~--- плотность совместного распределения, $f_{\eta}(y)$~--- плотность распределения величины $\eta$.Тогда положим
         \begin{equation*}
-            h(y)=\int\limits_{\Real} x \frac{f_{\xi, \eta}(x, y)}{f_{\eta}(y)} d x
+            h(y)=\int\limits_{\Real} x \frac{f_{\xi, \eta}(x, y)}{f_{\eta}(y)} dx
         \end{equation*}
         При фиксированном $y$ число $h(y)$ есть математическое ожидание абсолютно непрерывного распределения с плотностью распределения
         \begin{equation*}
-            f(x | y)=\frac{f_{\xi, \eta}(x, y)}{f_{\eta}(y)}=\frac{f_{\xi, \eta}(x, y)}{\int\limits_{\Real} f_{\xi, \eta}(x, y) d x}
+            f(x | y)=\frac{f_{\xi, \eta}(x, y)}{f_{\eta}(y)}=\frac{f_{\xi, \eta}(x, y)}{\int\limits_{\Real} f_{\xi, \eta}(x, y) dx}
         \end{equation*}
         Такое распределение называется \textit{условным распределением величины $\xi$ при условии $\eta = y$}, а функция $f(x | y)$~--- \textit{условной плотностью}.
     \end{enumerate}
@@ -247,12 +247,12 @@
 
         Убедимся формально (скажем, в абсолютно непрерывном случае), что определённая выше $h(\eta)$ удовлетворяет тождеству ортопроекции и, следовательно, является условным матожиданием $\Exp (\xi | \eta)$. Для любой $g(\eta) \in L$ (такой, что соответствующее математическое ожидание существует) левая часть тождества ортопроекции равна
         \begin{equation*}
-            \Exp (\xi \cdot g(\eta))=\iint_{\Real^{2}} x g(y) f_{\xi, \eta}(x, y) d x d y
+            \Exp (\xi \cdot g(\eta))=\iint_{\Real^{2}} x g(y) f_{\xi, \eta}(x, y) dxdy
         \end{equation*}
         
         Правая часть равна
         \begin{equation*}
-            \Exp (h(\eta) g(\eta))=\int\limits_{\Real} h(y) g(y) f_{\eta}(y) d y=\iint_{\Real \Real} x \frac{f_{\xi, \eta}(x, y)}{f_{\eta}(y)} d x \cdot g(y) f_{\eta}(y) d y
+            \Exp (h(\eta) g(\eta))=\int\limits_{\Real} h(y) g(y) f_{\eta}(y) dy=\iint_{\Real \Real} x \frac{f_{\xi, \eta}(x, y)}{f_{\eta}(y)} dx \cdot g(y) f_{\eta}(y) dy
         \end{equation*}
         
         Сокращая $f_{\eta}(y)$, получаем равенство левой и правой частей.

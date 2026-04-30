@@ -29,7 +29,7 @@
     Функция правдоподобия зависит от выборки~$\SampleX$ и от параметра~$\theta$.
     Если мы зафиксируем некоторое~$\theta_0$, то получим вероятностную меру над выборочным пространством~$\Real^n$.
     Тогда значение функции правдоподобия~$L(\mathbf{x}, \theta_0)$ на некоторой реализации выборки~$x$~--- это вероятность этой реализации в предположении, что параметр~$\theta_0$~--- истинное значение. \\
-    Если же мы напротив, зафиксируем некоторую реализацию выборки~${\mathbf{x}^* = (x_1^*, \ldots, x_n^*)}$ (что соответствует реальным условиям~--- как правило, у нас есть некоторые наблюдения, а параметр неизвестен), то значение функции правдоподобия на некотором параметре~$\theta$~--- это "<правдоподобие">, "<вероятность"> этого параметра.
+    Если же мы, напротив, зафиксируем некоторую реализацию выборки~${\mathbf{x}^* = (x_1^*, \ldots, x_n^*)}$ (что соответствует реальным условиям~--- как правило, у нас есть некоторые наблюдения, а параметр неизвестен), то значение функции правдоподобия на некотором параметре~$\theta$~--- это "<правдоподобие">, "<вероятность"> этого параметра.
     Но, строго говоря, при фиксированной реализации выборки~$x^*$ функция правдоподобия~$L(\mathbf{x}^*, \theta)$ не является вероятностной мерой над~$\Theta$.
     Рассмотрим пример.
 \end{rmrk}
@@ -42,7 +42,7 @@
     \begin{equation*}
         L(\SampleX, \theta) = \MyPrTh (X_1 = x_1) \cdot \MyPrTh (X_2 = x_2).
     \end{equation*}
-    Для любого фиксированнного значения параметра $\theta_0$ функция правдоподобия $L(\SampleX, \theta_0)$ является функцией совместного распределения $(X_1, X_2)$:
+    Для любого фиксированного значения параметра $\theta_0$ функция правдоподобия $L(\SampleX, \theta_0)$ является функцией совместного распределения $(X_1, X_2)$:
     \begin{center}
         \begin{tabular}{|c|c|c|}
             \hline
@@ -63,9 +63,9 @@
     \end{gather*}
     Но если мы зафиксируем реализацию выборки $x^* = (x_{1}^{*} = 1, x_{2}^{*} = 1)$ и проинтегрируем по $\Theta = [0, 1]$, то получим
     \begin{equation*}
-        \int\limits_0^1 L(\mathbf{x}^*, \theta) \, d\theta = 
-        \int\limits_0^1 \MyPrTh(X_1 = 1) \cdot \MyPrTh(X_2 = 1) \, d\theta = 
-        \int\limits_0^1 \theta^2 \, d\theta = 
+        \int\limits_0^1 L(\mathbf{x}^*, \theta) d\theta = 
+        \int\limits_0^1 \MyPrTh(X_1 = 1) \cdot \MyPrTh(X_2 = 1) d\theta = 
+        \int\limits_0^1 \theta^2 d\theta = 
         \left. \frac{\theta^3}{3} \right|_0^1 = 
         \frac{1}{3}.
     \end{equation*}
@@ -106,7 +106,7 @@
                 = \underbrace{\MyPrTh (T(\SampleX)=t)}_{g(t, \theta)} \underbrace{\MyPrTh (\SampleX=\boldsymbol{x} | T(\SampleX)=t)}_{h(\boldsymbol{x})}
             \end{multline*}
         \item[$\impliedby$] Пусть теперь функция правдоподобия имеет вид $L(\boldsymbol{x}, \theta)=g\bigl(T(\boldsymbol{x}), \theta\bigr) h(\boldsymbol{x})$. 
-            Тогда, если $x$ таково, что $T(\boldsymbol{x})=t$, то:
+            Тогда, если $\boldsymbol{x}$ таково, что $T(\boldsymbol{x})=t$, то:
             \begin{multline*}
                 \MyPrTh (\SampleX=\boldsymbol{x} | \, T(\SampleX)=t) =\frac{\MyPrTh (\SampleX=\boldsymbol{x}, T(\SampleX)=t)}{\MyPrTh (T(\SampleX)=t)}
                 =\frac{\MyPrTh (\SampleX=\boldsymbol{x})}{\sum\limits_{\boldsymbol{x}^{\prime}: T(\boldsymbol{x}^{\prime})=t} \MyPrTh(\SampleX=\boldsymbol{x}^{\prime})} = \\
@@ -123,7 +123,7 @@
 
 \begin{exmp}
     Рассмотрим равномерное распределение $\Uniform_{[0,\theta]}$ и докажем, что статистика $T(\SampleX) = X_{(n)}$ является полной. 
-    Напоминаем, что плотность распредения $X_{(n)}$ для $U[0, \theta]$ - это $f(t) = \cfrac{n t^{n-1}}{\theta^n} \, \Ind(0 \leqslant t \leqslant \theta)$.
+    Напоминаем, что плотность распределения $X_{(n)}$ для $U[0, \theta]$~--- это $f(t) = \cfrac{n t^{n-1}}{\theta^n} \, \Ind(0 \leqslant t \leqslant \theta)$.
     \begin{gather*}
         \ExpTh \varphi(X_{(n)})= \int\limits_{0}^{\theta} \varphi(t) \cfrac{nt^{n-1}}{\theta^n} dt = 0 \implies \int\limits_{0}^{\theta} \varphi(t) t^{n-1} dt = 0 \implies \\
         \{ \text{продифференцируем по}~ \theta\} \implies 

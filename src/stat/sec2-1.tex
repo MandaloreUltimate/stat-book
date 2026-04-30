@@ -5,7 +5,7 @@
     где $\Real^n$~--- выборочное пространство, 
     $\Borel^{n}$~--- борелевская $\sigma$-алгебра на $\Real^n$, $\Dist_\theta$~--- семейство распределений, 
     определённых на $\Borel^n$, параметризованное одно- или многомерным числовым параметром: 
-    $\Dist_\theta = (\MyPr{\theta} \colon \theta \in \Theta \subseteq R^{m})$.
+    $\Dist_\theta = (\MyPr_{\theta} \colon \theta \in \Theta \subseteq \Real^{m})$.
 \end{defn}
 
 \begin{defn}
@@ -24,13 +24,13 @@
 
     Отметим также то, что в различных источниках $\Dist_\theta$ может называться семейством \textit{вероятностных мер}.
     Это тоже верно, но может внести путаницу~--- распределение случайной величины действительно является мерой, определённой на борелевской $\sigma$-алгебре.
-    Однако вероятностная мера, вообще говоря, не связана ни с какой случайной величиной~--- это просто отображение из некоторой $\sigma$-алгебры событий в вещественные числа, удовлетворяющее аксиомам неотрицательности, ограниченности и счётной аддитивности.
+    Однако вероятностная мера, вообще говоря, не связана ни с какой случайной величиной~--- это просто отображение из некоторой $\sigma$-алгебры событий в вещественные числа, удовлетворяющее аксиомам неотрицательности, нормировки и счётной аддитивности.
     А распределение случайной величины~--- это композиция прообраза и вероятностной меры: $P_{\xi} = \MyPr \circ \xi^{-1}$.
     Т.е. распределение содержит информацию о конкретной случайной величине, с некоторыми фиксированными параметрами.
     Именно поэтому мы используем семейство распределений.
     Нам не нужно много вероятностных мер~--- нам нужно много распределений с разными наборами параметров.
 
-    Следует обратить внимание на то, что поскольку распределение зависит от параметра $\theta$, то от него будут зависеть и математическое ожидание, и дисперсия, и прочие числовые характеристики налюдаемой случайной величины.
+    Следует обратить внимание на то, что поскольку распределение зависит от параметра $\theta$, то от него будут зависеть и математическое ожидание, и дисперсия, и прочие числовые характеристики наблюдаемой случайной величины.
     Например, для "<честной"> монетки математическое ожидание при 10 подбрасываниях должно быть равно 5, а дисперсия~--- $npq = 10 \cdot \frac{1}{2} \cdot \frac{1}{2} = 2.5$. 
     Но в случае асимметричной монетки с вероятностью выпадения "<решки">, равной $0.7$, математическое ожидание будет равно 7, а дисперсия~--- $2.1$.
     Поэтому лучше явно указывать зависимость от параметра и писать $\MyPrTh\,, \ExpTh, \VarTh$.
@@ -50,7 +50,7 @@
 
 \begin{rmrk}
     Согласно нашему определению, вариационный ряд \textit{не является выборкой}, хотя бы потому, что разные порядковые статистики, как мы вскоре убедимся, имеют разное распределение.
-    Однако он является статистикой $T\colon \Real^n \mapsto \Real^n$, так как зависит только от выборки\footnote{Конечно, формально ещё необходимо проверить на измеримость функцию, осуществляющую переупорядочение}.
+    Однако он является статистикой $T\colon \Real^n \mapsto \Real^n$, так как зависит только от выборки\footnote{Конечно, формально ещё необходимо проверить на измеримость функцию, осуществляющую переупорядочение.}.
     Порядковые статистики тоже удовлетворяют определению статистики, но являются уже отображениями из $\Real^n$ в $\Real$.
 \end{rmrk}
 
@@ -72,22 +72,22 @@
 \end{equation*}
 
 \begin{exmp}
-    Найдём эмпирические функции распределения для крайних порядковых статистик.
+    Найдём эмпирические функции распределения крайних порядковых статистик.
     \begin{gather*}
         \begin{aligned}
             F_{(1)}(x)=\MyPrTh \bigl(X_{(1)} < x \bigr) 
         = 1 - \MyPrTh \bigl(X_{(1)} \geqslant x \bigr) 
-        = 1 - \MyPrTh \bigl(x_{1} \geqslant x, \ldots, x_{n} \geqslant x\bigr) = \\
-        = 1 - \prod_{i=1}^{n} \MyPrTh (x_{i} \geqslant x) 
-        = 1 - \bigl(\MyPrTh ({x}_{1} \geqslant x)\bigr)^{n} 
+        = 1 - \MyPrTh \bigl(X_{1} \geqslant x, \ldots, X_{n} \geqslant x\bigr) = \\
+        = 1 - \prod_{i=1}^{n} \MyPrTh (X_{i} \geqslant x)
+        = 1 - \bigl(\MyPrTh ({X}_{1} \geqslant x)\bigr)^{n} 
         = 1 - \bigl(1 - F_{\theta}(x)\bigr)^{n}\!.
         \end{aligned} \\
         \begin{aligned}
             F_{(n)}(x) 
             = \MyPrTh \bigl(X_{(n)} < x\bigr) 
-            = \MyPrTh \bigl(x_{1} < x, \ldots, x_{n} < x\bigr) = \\
-            = \prod_{i=1}^{n} \MyPrTh (x_{i} < x) 
-            = \bigl(\MyPrTh ({x}_{1} < x)\bigr)^{n} 
+            = \MyPrTh \bigl(X_{1} < x, \ldots, X_{n} < x\bigr) = \\
+            = \prod_{i=1}^{n} \MyPrTh (X_{i} < x)
+            = \bigl(\MyPrTh ({X}_{1} < x)\bigr)^{n} 
             = \bigl( F_{\theta}(x) \bigr)^n \!.
         \end{aligned}
     \end{gather*}
@@ -95,12 +95,12 @@
 
 \begin{namedthm}[Свойства эмпирической функции распределения]\leavevmode
     \begin{enumerate}
-        \item Пусть $\Sample$~--- выборка из семейства распределений $\Dist_{\theta}$ с функцией распределения $F_{\theta}$ и пусть $F_{n}^{*}$ — эмпирическая функция распределения, построенная по этой выборке. 
+        \item Пусть $\Sample$~--- выборка из семейства распределений $\Dist_{\theta}$ с функцией распределения $F_{\theta}$ и пусть $F_{n}^{*}$~--- эмпирическая функция распределения, построенная по этой выборке. 
         Тогда $F_{n}^{*}(y) \xrightarrow[n \to \infty]{\text{p}} F_{\theta}(y)$ для любого $y \in \Real$ и $\AllTh.$
-        \item Для любого y $\in \Real$ и любого $\theta \in \Theta$:
+        \item Для любого $y \in \Real$ и любого $\theta \in \Theta$:
         \begin{enumerate}[label={\arabic*)}]
             \item $\ExpTh F_{n}^{*}(y) = F_{\theta}(y)$, т.е. $F_{n}^{*}(y)$~--- несмещённая оценка для $F_{\theta}(y)$.
-            \item $\VarTh F_{n}^{*}(y)=\cfrac{F_{\theta}(y)\bigl(1-F_{\theta}(y)\bigr)}{n} \: \leqslant \: \cfrac{1}{4n}$\, .
+            \item $\VarTh F_{n}^{*}(y)=\frac{F_{\theta}(y)\bigl(1-F_{\theta}(y)\bigr)}{n} \: \leqslant \: \frac{1}{4n}$\, .
             \item Пусть $\sigma^2(y) = \bigl(1 - F_{\theta}(y)\bigr)F_{\theta}(y)$. 
             Тогда
             \begin{equation*}
@@ -122,7 +122,7 @@
             \end{equation*}
             Следовательно, можно применить ЗБЧ в форме Хинчина:
             \begin{equation*}
-                F_{n}^{*}(y)=\cfrac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)}{n} \xrightarrow[n \to \infty]{\text{p}} \ExpTh \Ind(X_{1}<y)=F_{\theta}(y) \quad \AllTh.
+                F_{n}^{*}(y)=\frac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)}{n} \xrightarrow[n \to \infty]{\text{p}} \ExpTh \Ind(X_{1}<y)=F_{\theta}(y) \quad \AllTh.
             \end{equation*}
         \item 
             Заметим:
@@ -133,40 +133,40 @@
             \begin{enumerate}[label={\arabic*)}]
                 \item Случайные величины $\Ind(X_{i}<y)$ одинаково распределены, поэтому:
                 \begin{equation*}
-                    \ExpTh F_{n}^{*}(y) = \ExpTh \, \cfrac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)}{n} =\cfrac{\sum\limits_{i=1}^{n} \ExpTh \Ind(X_{i}<y)}{n}=\cfrac{n \ExpTh \Ind(X_{1}<y)}{n}=F_{\theta}(y)  
+                    \ExpTh F_{n}^{*}(y) = \ExpTh \, \frac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)}{n} =\frac{\sum\limits_{i=1}^{n} \ExpTh \Ind(X_{i}<y)}{n}=\frac{n \ExpTh \Ind(X_{1}<y)}{n}=F_{\theta}(y)  
                 \end{equation*}
                 
                 \item Случайные величины $\Ind(X_{i}<y)$ независимы и одинаково распределены, поэтому:
                 \begin{multline*}
                     \VarTh F_{n}^{*}(y)
-                    = \VarTh \, \cfrac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)}{n}
-                    = \cfrac{\sum\limits_{i=1}^{n} \VarTh \Ind(X_{i}<y)}{n^{2}}
+                    = \VarTh \, \frac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)}{n}
+                    = \frac{\sum\limits_{i=1}^{n} \VarTh \Ind(X_{i}<y)}{n^{2}}
                     = \\
-                    = \cfrac{n\VarTh \Ind(X_{1}<y)}{n^{2}}
-                    = \cfrac{F_{\theta}(y)\bigl(1-F_{\theta}(y)\bigr)}{n}
+                    = \frac{n\VarTh \Ind(X_{1}<y)}{n^{2}}
+                    = \frac{F_{\theta}(y)\bigl(1-F_{\theta}(y)\bigr)}{n}
                 \end{multline*}
-                Значения $F_{\theta}(y)$ принадлежат отрезку $[0, 1]$, а значит, произведение $F_{\theta}(y)\bigl(1 - F_{\theta}(y)\bigr) \leqslant \cfrac{1}{2}\cdot\left(1 - \cfrac{1}{2}\right) = \cfrac{1}{4}~$ (нетрудно убедиться, что 1/2~--- точка максимума). 
-                А значит, $\VarTh F_{n}^{*} \leqslant \cfrac{1}{4n}\,$. 
+                Значения $F_{\theta}(y)$ принадлежат отрезку $[0, 1]$, а значит, произведение $F_{\theta}(y)\bigl(1 - F_{\theta}(y)\bigr) \leqslant \frac{1}{2}\cdot\left(1 - \frac{1}{2}\right) = \frac{1}{4}~$ (нетрудно убедиться, что 1/2~--- точка максимума). 
+                А значит, $\VarTh F_{n}^{*}(y) \leqslant \frac{1}{4n}\,$. 
             \end{enumerate}
         \item 
             Применим ЦПТ:
             \begin{multline*}
                 \sqrt{n}\bigl( F_{n}^{*}(y)-F_{\theta}(y) \bigr)
-                = \sqrt{n}\left(\cfrac{\sum \Ind(X_{i}<y)}{n}-F_{\theta}(y)\right) 
+                = \sqrt{n}\left(\frac{\sum \Ind(X_{i}<y)}{n}-F_{\theta}(y)\right) 
                 = \\
-                = \cfrac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)-n F_{\theta}(y)}{\sqrt{n}} 
-                = \cfrac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)-n \ExpTh\Ind(X_{1}<y)}{\sqrt{n}} 
+                = \frac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)-n F_{\theta}(y)}{\sqrt{n}} 
+                = \frac{\sum\limits_{i=1}^{n} \Ind(X_{i}<y)-n \ExpTh\Ind(X_{1}<y)}{\sqrt{n}} 
                 \xrightarrow[n \to \infty]{\text{d}} \\
                 \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh\Ind(X_{1}<y)}
                 = \Normal_{0, (1-F_{\theta}(y))F_{\theta}(y)}.
             \end{multline*}
         \item 
             Следует из устойчивости по суммированию биномиального распределения. 
-            Поскольку $\Ind\left(X_{i}<y\right)$ независимы и имеют биномиальное распределение $\Binom_{1, F_{\theta}(y})$, то их сумма
+            Поскольку $\Ind\left(X_{i}<y\right)$ независимы и имеют биномиальное распределение $\Binom_{1, F_{\theta}(y)}$, то их сумма
             \begin{equation*}
-                n F_{n}^{*}(y)=\Ind\left(X_{1}<y\right)+\ldots+\Ind\left(X_{n}<y\right)
+                n F_{n}^{*}(y)=\Ind\left(X_{1}<y\right)+\cdots+\Ind\left(X_{n}<y\right)
             \end{equation*}
-            имеет биномиальное распределение $\Binom_{n, F_{\theta}(y})$.
+            имеет биномиальное распределение $\Binom_{n, F_{\theta}(y)}$.
             
         \item 
             Выберем произвольный $y \in \Real$. 

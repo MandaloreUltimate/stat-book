@@ -3,7 +3,7 @@
     \begin{tikzpicture}[
         declare function={
             normal_pdf(\x,\sstd,\mu) = 1 / sqrt(2 * pi * \sstd)*  exp(-(\x - \mu)^2 / (2 * \sstd));
-            cdfapp(\x) = 1 / (1 + exp(-0.07056 * (\x)^3 - 1.5976 * (\x);
+            cdfapp(\x) = 1 / (1 + exp(-0.07056 * (\x)^3 - 1.5976 * (\x)));
             sknorm(\x,\mu,\std,\alpha) = 2 * normal_pdf(\x, \std * \std, \mu) * cdfapp(\alpha * (\x - \mu) / \std);
         }]
         \begin{axis}[

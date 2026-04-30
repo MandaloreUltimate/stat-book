@@ -6,7 +6,7 @@
 \end{defn}
 
 \begin{defn}
-    \textit{Схема Бернулли}~--- последовательность из $n$ \textit{независимых однородных} испытаний Бернулли c вероятностью успеха $p$ и неудачи $q = 1 - p$.
+    \textit{Схема Бернулли}~--- последовательность из $n$ \textit{независимых однородных} испытаний Бернулли с вероятностью успеха $p$ и неудачи $q = 1 - p$.
 \end{defn}
 
 Со схемой Бернулли можно связать последовательность случайных величин $\xi_1,\, \xi_2,\, \ldots,\, \xi_n,$ где 
@@ -21,7 +21,7 @@ $\xi_k =
 Так как испытания в схеме Бернулли независимы и однородны, данные случайные величины должны быть \textit{независимы и одинаково распределены}.
 
 \begin{namedthm}[Формула Бернулли]
-    Пусть $\xi$~--- случайная величина, равная числу успехов в $n$ испытаниях. Тогда $\forall k = \overline{1,n}$ вероятность получить в $n$ испытаниях ровно $k$ успехов равна
+    Пусть $\xi$~--- случайная величина, равная числу успехов в $n$ испытаниях. Тогда $\forall k = \overline{0,n}$ вероятность получить в $n$ испытаниях ровно $k$ успехов равна
     \begin{equation*}
         \MyPr\left(\xi=k\right)=C_{n}^{k} p^{k} q^{n-k}
     \end{equation*}
@@ -32,11 +32,11 @@ $\xi_k =
     \begin{equation*}
         (\underbrace{y, y, \ldots, y}_{k}, \underbrace{\textit{ н}, \textit{ н}, \ldots,\textit{ н}}_{n-k})
     \end{equation*}
-    когда первые $k$ испытаний завершились успехом (у), остальные неудачей (н). Поскольку испытания независимы, вероятность такого элементарного исхода равна $p^k(1 - p)^{n-k}.$ Другие элементарные исходы из события $A$ отличаются лишь расположением $k$ успехов на $n$ местах. Поэтому событие $A$ состоит из $C_n^k$ элементарых исходов, вероятность каждого из которых равна $p^kq^{n-k}$.
+    когда первые $k$ испытаний завершились успехом (у), остальные неудачей (н). Поскольку испытания независимы, вероятность такого элементарного исхода равна $p^k(1 - p)^{n-k}.$ Другие элементарные исходы из события $A$ отличаются лишь расположением $k$ успехов на $n$ местах. Поэтому событие $A$ состоит из $C_n^k$ элементарных исходов, вероятность каждого из которых равна $p^kq^{n-k}$.
     \end{proof}
     
     \begin{defn}
-        Пусть $\xi_1, \ldots, \xi_n$~--- последовательность независимых случайных величин, имеющих одинаковое распределение Бернулли с параметром $p$ ($\Bernoulli_{p}$), то есть принимает значение $1$ (<<успех>>) с вероятностью $p$ и $0$ (<<неудача>>) с вероятностью $1 - p = q$. Тогда говорят, что случайная величина $\xi = \xi_1 + \ldots + \xi_n$ имеет \textit{биномиальное распределение} с параметрами $n$ и $p$ ($\Binom_{n, p}$).
+        Пусть $\xi_1, \ldots, \xi_n$~--- последовательность независимых случайных величин, имеющих одинаковое распределение Бернулли с параметром $p$ ($\Bernoulli_{p}$), то есть принимает значение $1$ (<<успех>>) с вероятностью $p$ и $0$ (<<неудача>>) с вероятностью $1 - p = q$. Тогда говорят, что случайная величина $\xi = \xi_1 + \cdots + \xi_n$ имеет \textit{биномиальное распределение} с параметрами $n$ и $p$ ($\Binom_{n, p}$).
     \end{defn}
     
     \subsubsection{Числовые характеристики $\Bernoulli_{p}$}
@@ -46,18 +46,20 @@ $\xi_k =
             \Exp \xi =  1 \cdot p + 0 \cdot q = p
         \end{equation*}
         \item Дисперсия:
-            $$\Exp \xi^2 = 1^2 \cdot p + 0^2 \cdot q = p; \quad \Var\xi = \Exp \xi^2 - (\Exp \xi)^2 = p - p^2 = p \cdot (1 - p) = pq$$
+            \begin{equation*}
+                \Exp \xi^2 = 1^2 \cdot p + 0^2 \cdot q = p; \quad \Var\xi = \Exp \xi^2 - (\Exp \xi)^2 = p - p^2 = p \cdot (1 - p) = pq
+            \end{equation*}
     \end{enumerate}
     
     \subsubsection{Числовые характеристики $\Binom_{n, p}$}
     \begin{enumerate}
         \item Математическое ожидание:
         \begin{equation*}
-            \Exp \xi = \Exp (\xi_1 + \ldots + \xi_n) = \Exp \xi_1 + \ldots + \Exp \xi_n = \underbrace{p + \ldots + p}_{n} = np
+            \Exp \xi = \Exp (\xi_1 + \cdots + \xi_n) = \Exp \xi_1 + \cdots + \Exp \xi_n = \underbrace{p + \cdots + p}_{n} = np
         \end{equation*}
         \item Дисперсия:
         \begin{equation*}
-            \Var\xi = \Var(\xi_1 + \ldots + \xi_n) = \Var\xi_1 + \ldots + \Var\xi_n = \underbrace{p \cdot q + \ldots + p \cdot q}_{n} = npq
+            \Var\xi = \Var(\xi_1 + \cdots + \xi_n) = \Var\xi_1 + \cdots + \Var\xi_n = \underbrace{p \cdot q + \cdots + p \cdot q}_{n} = npq
         \end{equation*}
     \end{enumerate}
     
@@ -72,11 +74,11 @@ $\xi_k =
         По условию теоремы, $n p_n \xrightarrow[n \to +\infty]{} \lambda$. Тогда $p_n \xrightarrow[n \to +\infty]{} 0$. Рассмотрим формулу Бернулли:
         \begin{multline*}
             \MyPr(\xi = k) = C_n^k p^k (1 - p)^{n-k} = \frac{n!}{k!(n - k)!} \cdot \frac{\lambda^k}{n^k} \cdot \left(1 - \frac{\lambda}{n}\right)^{-k} \cdot \left(1 - \frac{\lambda}{n}\right)^n = \\
-            = \frac{\lambda^k}{k!} \cdot \frac{(n - k + 1) \cdot \ldots \cdot (n - 1) \cdot n}{n^k} \cdot \left(1 - \frac{\lambda}{n}\right)^n \cdot \left(1 - \frac{\lambda}{n}\right)^{-k}
+            = \frac{\lambda^k}{k!} \cdot \frac{(n - k + 1) \cdot \cdots \cdot (n - 1) \cdot n}{n^k} \cdot \left(1 - \frac{\lambda}{n}\right)^n \cdot \left(1 - \frac{\lambda}{n}\right)^{-k}
         \end{multline*}
         Перейдём к пределу при $n \to +\infty$:
         \begin{equation*}
-            \frac{(n - k + 1) \cdot \ldots \cdot (n - 1) \cdot n}{n^k} \to 1,~ \left(1 - \frac{\lambda}{n}\right)^n \to e^{-\lambda},~ \left(1 - \frac{\lambda}{n}\right)^{-k} \to 1
+            \frac{(n - k + 1) \cdot \cdots \cdot (n - 1) \cdot n}{n^k} \to 1,~ \left(1 - \frac{\lambda}{n}\right)^n \to e^{-\lambda},~ \left(1 - \frac{\lambda}{n}\right)^{-k} \to 1
         \end{equation*}
         
         Таким образом, получим

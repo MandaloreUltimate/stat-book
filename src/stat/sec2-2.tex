@@ -4,7 +4,7 @@
 \end{defn}
 
 \begin{defn}
-    \textit{Несмещённая оценка} параметра $\theta$~--- статистика $T(\SampleX)$, т.ч. $\AllTh\colon \ExpTh T(X) = \theta$.
+    \textit{Несмещённая оценка} параметра $\theta$~--- статистика $T(\SampleX)$, т.ч. $\AllTh\colon \ExpTh T(\SampleX) = \theta$.
 \end{defn}
 
 Обозначим $T_n(\SampleX) = T(\SampleX)$, чтобы подчеркнуть зависимость от объёма выборки.
@@ -35,11 +35,11 @@
     \begin{enumerate}
         \item Несмещённые оценки не единственны.
         
-        К примеру, в качестве несмещённой оценки для математического ожидания $\ExpTh X$ могут выступать $\ExpTh X_{1}$ или $\ExpTh \SampleMean$.
+        К примеру, в качестве несмещённой оценки для математического ожидания $\ExpTh X$ могут выступать $X_{1}$ или $\SampleMean$.
         
         \item Несмещённые оценки могут не существовать.
         \begin{exmp}
-            Дано распределение $\Pois_{\theta}$, над которым произведено одно наблюдение. Найти несмещённую оценку для функции $\tau(\theta) = \cfrac{1}{\theta}$.
+            Дано распределение $\Pois_{\theta}$, над которым произведено одно наблюдение. Найти несмещённую оценку для функции $\tau(\theta) = \frac{1}{\theta}$.
                 \begin{gather*}
                     \ExpTh T(\SampleX) = \tau(\theta) \\
                     \mathlarger{\sum}_{x = 0}^{\infty} T(x) \, e^{-\theta} \frac{\theta^x}{x!} = \frac{1}{\theta} \\
@@ -51,7 +51,7 @@
         
     \item Несмещённые оценки могут существовать, но быть бессмысленными.
     \begin{exmp}
-        Дано геометрическое распределение $\Geom_{1 - \theta}$ с вероятностью успеха $1 - \theta$, над которым произведено одно наблюдение.
+        Дано геометрическое распределение $\GeomZero_{1 - \theta}$ с вероятностью успеха $1 - \theta$, над которым произведено одно наблюдение.
         Найти несмещённую оценку для параметра $\theta$.
         \begin{gather*}
             \ExpTh T(\SampleX) = \theta \\
@@ -82,7 +82,7 @@
 Рассмотрим несмещённые оценки $T(\SampleX)$ параметра $\theta$, для которых существует дисперсия: $\ExpTh \bigl(T(\SampleX)-\theta\bigr)^{2}=\VarTh T(\SampleX)$.
 Обозначим класс всех таких оценок $\mathcal{T}$.
 Тогда можно оценивать точность оценок дисперсией.
-Если $T, T^* \in \mathcal{T}$ и $\VarTh T^* \leqslant \VarTh T \quad \AllTh$, то по $T^*$ \textit{равномерно (по $\theta$) не хуже} $T$.
+Если $T, T^* \in \mathcal{T}$ и $\VarTh T^* \leqslant \VarTh T \quad \AllTh$, то $T^*$ \textit{равномерно (по $\theta$) не хуже} $T$.
 
 Введём понятие оптимальной оценки.
 \begin{defn}
@@ -100,34 +100,34 @@
 
 \begin{proof}
     Предположим обратное: пусть существуют две оптимальные оценки $T_1(\SampleX)$ и $T_2(\SampleX)$ параметра $\theta$. 
-    Тогда в силу их несмещённости: $\ExpTh  T_{1}(\SampleX) = \ExpTh T_{2}(\SampleX) = T(\SampleX)$,
+    Тогда в силу их несмещённости: $\ExpTh  T_{1}(\SampleX) = \ExpTh T_{2}(\SampleX) = \theta$,
     а в силу того, что они имеют равномерно минимальную дисперсию: $\VarTh  T_{1}(\SampleX)=\VarTh  T_{2}(\SampleX) \quad \AllTh$.
 
     Введём новую статистику: 
     \begin{equation*}
-        T_{3}(\SampleX)=\cfrac{T_{1}(\SampleX)+T_{2}(\SampleX)}{2}
+        T_{3}(\SampleX)=\frac{T_{1}(\SampleX)+T_{2}(\SampleX)}{2}
     \end{equation*}
 
-    Так как $\ExpTh  T_{3}(\SampleX)=\cfrac{\ExpTh  T_{1}(\SampleX)+\ExpTh  T_{2}(\SampleX)}{2}=\theta$, то $T_{3}(\SampleX)$~--- несмещённая оценка параметра $\theta$.
+    Так как $\ExpTh  T_{3}(\SampleX)=\frac{\ExpTh  T_{1}(\SampleX)+\ExpTh  T_{2}(\SampleX)}{2}=\theta$, то $T_{3}(\SampleX)$~--- несмещённая оценка параметра $\theta$.
 
     Имеем также:
     \begin{equation*}
         \VarTh  T_{3}(\SampleX) = 
-        \cfrac{\VarTh \bigl(T_{1}(\SampleX)+T_{2}(\SampleX)\bigr)}{2^2} =
-        \cfrac{\VarTh  T_{1}(\SampleX)+\VarTh  T_{2}(\SampleX)+2 \operatorname{cov}\bigl(T_{1}(\SampleX) T_{2}(\SampleX)\bigr)}{4}
+        \frac{\VarTh \bigl(T_{1}(\SampleX)+T_{2}(\SampleX)\bigr)}{2^2} =
+        \frac{\VarTh  T_{1}(\SampleX)+\VarTh  T_{2}(\SampleX)+2 \Cov\bigl(T_{1}(\SampleX), T_{2}(\SampleX)\bigr)}{4}
     \end{equation*}
 
     %В силу свойства
     %\begin{equation*}
-    %    \ExpTh \xi^{2}<\infty, \ExpTh \eta^{2}<\infty \implies|\operatorname{cov}(\xi, \eta)| = | \ExpTh (\xi-\ExpTh  \xi)(\eta-\ExpTh  \eta)| \leqslant \sqrt{\VarTh  \xi} \sqrt{\VarTh  \eta},
+    %    \ExpTh \xi^{2}<\infty, \ExpTh \eta^{2}<\infty \implies|\Cov(\xi, \eta)| = | \ExpTh (\xi-\ExpTh  \xi)(\eta-\ExpTh  \eta)| \leqslant \sqrt{\VarTh  \xi} \sqrt{\VarTh  \eta},
     %\end{equation*}
-    По свойствам ковариции $| \operatorname{cov}(\xi, \eta)| \leqslant \sqrt{\VarTh \!\xi \, \VarTh \!\eta}$, а значит
+    По свойствам ковариации $| \Cov(\xi, \eta)| \leqslant \sqrt{\VarTh \!\xi \, \VarTh \!\eta}$, а значит
     %где равенство достигается тогда и только тогда, когда $\xi=a \eta+b$, получаем:
     \begin{equation*}
-        \VarTh  T_{3}(\SampleX) \leqslant \cfrac{\VarTh  T_{1}(\SampleX)+\VarTh  T_{2}(\SampleX)+2 \sqrt{\VarTh  T_{1}(\SampleX)} \sqrt{\VarTh  T_{2}(\SampleX)}}{4} =\VarTh  T_{1}(\SampleX)
+        \VarTh  T_{3}(\SampleX) \leqslant \frac{\VarTh  T_{1}(\SampleX)+\VarTh  T_{2}(\SampleX)+2 \sqrt{\VarTh  T_{1}(\SampleX)} \sqrt{\VarTh  T_{2}(\SampleX)}}{4} =\VarTh  T_{1}(\SampleX)
     \end{equation*}
 
-    В силу того, что $T_1(\SampleX)$ и $T_2(\SampleX)$ — оптимальные, дисперсия $T_3(\SampleX)$ не может быть меньше дисперсии $T_1(\SampleX)$, 
+    В силу того, что $T_1(\SampleX)$ и $T_2(\SampleX)$~--- оптимальные, дисперсия $T_3(\SampleX)$ не может быть меньше дисперсии $T_1(\SampleX)$, 
     следовательно, неравенство должно обратиться в равенство, но тогда
     \begin{equation*}
     \begin{aligned}
