@@ -80,12 +80,12 @@ $\xi_k =
         \begin{equation*}
             \frac{(n - k + 1) \cdot \cdots \cdot (n - 1) \cdot n}{n^k} \to 1,~ \left(1 - \frac{\lambda}{n}\right)^n \to e^{-\lambda},~ \left(1 - \frac{\lambda}{n}\right)^{-k} \to 1
         \end{equation*}
-        
+
         Таким образом, получим
         \begin{equation*}
-            \MyPr(\xi = k) \xrightarrow[n \to +\infty]{} \frac{\lambda^k}{k!} e^{-\lambda}
+            \MyPr(\xi = k) \xrightarrow[n \to +\infty]{} \frac{\lambda^k}{k!} e^{-\lambda} \qedhere
         \end{equation*}
-    \end{proof}
+\end{proof}
     
     \begin{defn}
         Набор вероятностей $\{\frac{\lambda^k}{k!} e^{-\lambda} \}$, где $k$ принимает значения $0, 1, 2, \ldots$, называется \textit{распределением Пуассона} с параметром $\lambda > 0$ ($\Pois_{\lambda}$).

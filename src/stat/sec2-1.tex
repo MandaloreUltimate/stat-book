@@ -168,9 +168,10 @@
             \end{equation*}
             имеет биномиальное распределение $\Binom_{n, F_{\theta}(y)}$.
             
-        \item 
-            Выберем произвольный $y \in \Real$. 
+        \item
+            Выберем произвольный $y \in \Real$.
             $\xi_i = \Ind(X_i < y)$ независимы, одинаково распределены и $\exists \ExpTh \xi_i = F_{\theta}(y)$.
             Тогда можно применить \hyperlink{SLLN}{усиленный закон больших чисел в форме Колмогорова}: ${\MyPrTh\left(\lim\limits_{n \to \infty} \frac{1}{n} \sum\limits_{i = 1}^{n}\xi_i = F_{\theta}(y)\right) = 1} \; \AllTh$, что является непосредственным определением сходимости эмпирической функции распределения почти наверное к теоретической.
-    \end{enumerate}  
+            \qedhere
+    \end{enumerate}
 \end{proof}

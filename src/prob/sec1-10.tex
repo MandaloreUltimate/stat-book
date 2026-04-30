@@ -96,7 +96,7 @@
     F_{\xi_{1}}\left(x_{1}\right)
     = \lim _{x_{2} \to+\infty} F_{\xi_{1}, \xi_{2}}\left(x_{1}, x_{2}\right)
     = \int\limits_{-\infty}^{x_{1}}\left(\int\limits_{-\infty}^{\infty} f(x, y) \,d y\right) \,d x
-    = \int\limits_{-\infty}^{x_{1}} f_{\xi_{1}}(x) \,d x
+    = \int\limits_{-\infty}^{x_{1}} f_{\xi_{1}}(x) \,d x \qedhere
 \end{equation*}
 \end{proof}
 
@@ -277,13 +277,12 @@
         \begin{equation*}
             \rho(\xi, \eta) = \rho(a\eta + b, \eta)=
             \frac{\Cov(a\eta + b, \eta)}
-            {\sqrt{\Var(a\eta + b) \, \Var\eta}} = 
+            {\sqrt{\Var(a\eta + b) \, \Var\eta}} =
             \frac{a\Cov(\eta, \eta)}
             {\sqrt{a^2\, \Var\eta \, \Var\eta}} = 
             \frac{a\Var\eta}
-            {|a|\Var\eta} = 
-            \operatorname{sign}(a).
+            {|a|\Var\eta} =
+            \operatorname{sign}(a). \qedhere
         \end{equation*}
-
 \end{enumerate}
 \end{proof}

@@ -91,8 +91,8 @@
         \frac{\frac{1}{n}\sum\limits_{i=1}^{n} X_{i} - \ExpTh X_{1}}{\sqrt{ \frac{1}{n} \, \VarTh X_1}} = 
         \sqrt{n} \, \frac{\frac{1}{n}\sum\limits_{i=1}^{n} X_{i} - \ExpTh X_{1}}{\sqrt{\VarTh X_1}} = \\
         \sqrt{n} \, \frac{\sum\limits_{i=1}^{n} X_{i} - n \ExpTh X_{1}}{n \sqrt{\VarTh X_1}} =
-        \frac{\sum\limits_{i=1}^{n} X_{i} - n \ExpTh X_{1}}{\sqrt{n \, \VarTh X_1}} 
-        \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, 1} 
+        \frac{\sum\limits_{i=1}^{n} X_{i} - n \ExpTh X_{1}}{\sqrt{n \, \VarTh X_1}}
+        \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, 1} \qedhere
     \end{gather*}
 \end{enumerate}
 \end{proof}
@@ -167,8 +167,8 @@
             =\frac{\sum\limits_{i=1}^{n} Y_{i}^{2}-n \ExpTh  Y_{1}^{2}}{\sqrt{n}}-\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh (X_{1}-\ExpTh X_1)^{2}},
     \end{aligned}
     \end{gather*}
-    поскольку $\cfrac{\sum\limits_{i=1}^{n} Y_{i}^{2}-n \ExpTh  Y_{1}^{2}}{\sqrt{n}} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  Y_{1}^{2}}$ по ЦПТ, 
-    а ${\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} 0}$ как произведение последовательностей ${\overline{Y} \xrightarrow[n \to \infty]{\text{p}} 0}$ и ${\sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  X_{1}}}$.
+    поскольку $\cfrac{\sum\limits_{i=1}^{n} Y_{i}^{2}-n \ExpTh  Y_{1}^{2}}{\sqrt{n}} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  Y_{1}^{2}}$ по ЦПТ,
+    а ${\overline{Y} \cdot \sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} 0}$ как произведение последовательностей ${\overline{Y} \xrightarrow[n \to \infty]{\text{p}} 0}$ и ${\sqrt{n} \, \overline{Y} \xrightarrow[n \to \infty]{\text{d}} \Normal_{0, \VarTh  X_{1}}}$. \qedhere
 \end{enumerate}
 \end{proof}
 

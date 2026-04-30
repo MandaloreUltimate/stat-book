@@ -24,11 +24,11 @@
               Пусть дана некоторая последовательность событий $A_1, A_2, \ldots, A_n, \ldots$; $A_i A_j = \varnothing~ (i \ne j)$. 
 		      Тогда: 
 		      \begin{multline*}
-		      	\MyPr\left(\,\left. \bigcup\limits_{i=1}^\infty A_i \right| B\right) 
+			      \MyPr\left(\,\left. \bigcup\limits_{i=1}^\infty A_i \right| B\right)
                   = \frac{\MyPr\left(\left(\, \bigcup\limits_{i=1}^\infty A_i\right) \cap B \right)}{\MyPr(B)}
                   = \frac{\MyPr\left(\, \bigcup\limits_{i=1}^\infty\left(A_i \cap B\right) \right)}{\MyPr(B)} = \\
                   = \frac{\sum\limits_{i=1}^\infty \MyPr(A_i \cap B)}{\MyPr(B)}
-		      	= \sum\limits_{i=1}^\infty \MyPr(A_i | B).
+			      = \sum\limits_{i=1}^\infty \MyPr(A_i | B). \qedhere
 		      \end{multline*}
 	\end{enumerate}
 \end{proof}
@@ -85,11 +85,12 @@
 		      \end{multline*}
 		      Независимость $\overline{A}$ и $B$ доказана. 
 		      Аналогично доказываются остальные утверждения.
-		\item 
-		      Предположим, что события независимы. 
+		\item
+		      Предположим, что события независимы.
 		      Тогда $\MyPr(AB) = \MyPr(A)\MyPr(B),$ но в силу вложенности $A \subset B$: $\MyPr(AB) = \MyPr(A) > 0$, следовательно, $\MyPr(B) = 1$, что противоречит условию.
-		\item 
+		\item
 		      $\MyPr(A | B) = \cfrac{\MyPr(AB)}{\MyPr(B)} = \cfrac{\MyPr(A)\MyPr(B)}{\MyPr(B)} = \MyPr(A)$.
+		      \qedhere
 	\end{enumerate}
 \end{proof}
 
@@ -146,7 +147,7 @@
 	Достаточно заметить, что при вышеперечисленных условиях $A = \bigcup\limits_{i=1}^{\infty}(AB_i),$ и $AB_i \cap AB_j = \varnothing ~(i \neq j).$ 
 	Тогда, учитывая $\MyPr(B_i) > 0$, получаем
 	\begin{equation*}
-		\MyPr(A)=\sum\limits_{i=1}^{\infty} \MyPr\left(A B_{i}\right)=\sum\limits_{i=1}^{\infty} \MyPr\left(B_{i}\right) \frac{\MyPr\left(A B_{i}\right)}{\MyPr\left(B_{i}\right)}=\sum\limits_{i=1}^{\infty} \MyPr\left(B_{i}\right) \MyPr\left(A | B_{i}\right).
+		\MyPr(A)=\sum\limits_{i=1}^{\infty} \MyPr\left(A B_{i}\right)=\sum\limits_{i=1}^{\infty} \MyPr\left(B_{i}\right) \frac{\MyPr\left(A B_{i}\right)}{\MyPr\left(B_{i}\right)}=\sum\limits_{i=1}^{\infty} \MyPr\left(B_{i}\right) \MyPr\left(A | B_{i}\right). \qedhere
 	\end{equation*}
 \end{proof}
 
@@ -157,10 +158,10 @@
 	\end{equation*}
 \end{namedthm}
 \begin{proof}
-	Согласно формуле полной вероятности, в знаменателе дроби стоит вероятность события $A$. 
+	Согласно формуле полной вероятности, в знаменателе дроби стоит вероятность события $A$.
 	Тогда
 	\begin{equation*}
-        \frac{\MyPr\left(H_{i}\right) \MyPr\left(A | H_{i}\right)}{\MyPr(A)}=\frac{\MyPr\left(H_{i}\right) \cdot \frac{\MyPr\left(A H_{i}\right)}{\MyPr\left(H_{i}\right)}}{\MyPr(A)}=\frac{\MyPr\left(A H_{i}\right)}{\MyPr(A)}=\MyPr\left(H_{i} | A\right). 
+        \frac{\MyPr\left(H_{i}\right) \MyPr\left(A | H_{i}\right)}{\MyPr(A)}=\frac{\MyPr\left(H_{i}\right) \cdot \frac{\MyPr\left(A H_{i}\right)}{\MyPr\left(H_{i}\right)}}{\MyPr(A)}=\frac{\MyPr\left(A H_{i}\right)}{\MyPr(A)}=\MyPr\left(H_{i} | A\right). \qedhere
 	\end{equation*}
 \end{proof}
 

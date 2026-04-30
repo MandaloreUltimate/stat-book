@@ -135,8 +135,9 @@ $\Omega = [0, 1], \SigAlg = \{\varnothing, \Omega\}$~--- минимальная 
     % что за A_i??
     % Ответ: A_i – это произвольные множества, принадлежащие классу D.
     Следовательно, $\mathcal{D}$~--- ${\sigma \text{-алгебра}}$. $\Borel = \sigma(\mathcal{E}) \subseteq \sigma(\mathcal{D}) = \mathcal{D} \subseteq \Borel \implies \\ \implies \Borel = \mathcal{D}.$
-    
+
     \item[$\implies$] Следует непосредственно из определения случайной величины, т.к. ${\mathcal{E} \subseteq \Borel}$.
+    \qedhere
     \end{compactlist}
 \end{proof}
 
@@ -248,13 +249,14 @@ $\Omega = [0, 1], \SigAlg = \{\varnothing, \Omega\}$~--- минимальная 
             = \MyPr\left( x_0 - \frac{1}{n} \leqslant \xi < x_0 \right) \xrightarrow[n \to +\infty]{} 0.
         \end{multline*}
         Рассмотрим последовательность множеств $B_n = \{ x_0 - \frac{1}{n} \leqslant \xi < x_0 \} $. 
-        ${B_1 \supset B_2 \supset \ldots \supset B_n \supset \ldots}$; 
+        ${B_1 \supset B_2 \supset \ldots \supset B_n \supset \ldots}$;
         $\bigcap\limits_{k=1}^{n}B_k = B_n$;
         $\bigcap\limits_{k=1}^{\infty}B_k = \varnothing$.
-        В силу непрерывности вероятностной меры 
-        $\lim\limits_{n \to \infty} \MyPr(B_n) = 
-        \lim\limits_{n \to \infty} \MyPr\left( \bigcap\limits_{k=1}^{n}B_k \right) = 
+        В силу непрерывности вероятностной меры
+        $\lim\limits_{n \to \infty} \MyPr(B_n) =
+        \lim\limits_{n \to \infty} \MyPr\left( \bigcap\limits_{k=1}^{n}B_k \right) =
         \MyPr(\varnothing) = 0$.
+        \qedhere
 \end{enumerate}
 \end{proof}
 
